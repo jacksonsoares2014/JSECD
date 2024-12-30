@@ -4,7 +4,7 @@ interface
 
 uses
   JSEcd.Model.Registro,
-  JSEcd.Model.Typs;
+  JSEcd.Model.Types;
 
 type
   TJSEcdModelRegistro0180 = class(TJSEcdModelRegistro)

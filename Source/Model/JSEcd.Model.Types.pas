@@ -64,6 +64,14 @@ type
 
   TJSEcdTipoLivroAssoc = (tlaDigital, tlaOutros);
 
+  TJSEcdTipoDoc = (tdDemonstracaoResultadoAbrangentePeriodo,
+                   tdDemonstracaoFluxosCaixa,
+                   tdDemonstracaoValorAdicionado,
+                   tdNotasExplicativas,
+                   tdRelatorioAdministracao,
+                   tdParecerAuditores,
+                   tdOutros);
+
 
 //  TJSEcdIndCentralizadaHelper = record helper for TJSEcdIndCentralizada
 //  public
