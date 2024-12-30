@@ -231,6 +231,8 @@ type
 
     function HashEscrituracaoSubstituida: string; overload;
     function NIREEscrituracaoSubst: string; overload;
+
+    function &End: I;
   end;
 
   IJSEcdConfigFiscal<I: IInterface> = interface
@@ -246,6 +248,8 @@ type
     function TipoDocNIRE: Integer; overload;
     function DataArquivamentoAtosConstituitivos: string; overload;
     function DataArquivamentoAtoConversao: string; overload;
+
+    function &End: I;
   end;
 
   IJSEcdConfigSignatario<I: IInterface> = interface
@@ -307,6 +311,8 @@ type
     function EmailSignatarioCertificado: string; overload;
     function TelefoneSignatarioCertificado: string; overload;
     function ResponsavelLegalCertificado: string; overload;
+
+    function &End: I;
   end;
 
   IJSEcdConfigDemonstracoesContabeis<I: IInterface> = interface
@@ -328,6 +334,8 @@ type
     function IndicaDLPADMPL: Integer; overload;
     function DemonstrativoDFC: Integer; overload;
     function DemonstrativoDVA: Integer; overload;
+
+    function &End: I;
   end;
 
   IJSEcdConfigInfoFiliaisLivroAuxiliar<I: IInterface> = interface
@@ -349,6 +357,8 @@ type
     function TipoDocSUFRAMA: Integer; overload;
     function IdentificadorTrabalhador: Integer; overload;
     function InscricaoEstadualContribuinteSubstituto: Integer; overload;
+
+    function &End: I;
   end;
 
 //FCont ?????
