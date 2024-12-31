@@ -3,30 +3,35 @@ unit JSEcd.Service.Interfaces;
 interface
 
 type
-  IJSEcdConfig<I: IInterface> = interface;
-  IJSEcdConfigAssociacaoPlanoGoverno<I: IInterface> = interface;
-  IJSEcdConfigGeral<I: IInterface> = interface;
-  IJSEcdConfigFiscal<I: IInterface> = interface;
-  IJSEcdConfigSignatario<I: IInterface> = interface;
-  IJSEcdConfigDemonstracoesContabeis<I: IInterface> = interface;
-  IJSEcdConfigInfoFiliaisLivroAuxiliar<I: IInterface> = interface;
-  IJSEcdConfigInfoCadastroParticipante<I: IInterface> = interface;
-  IJSEcdConfigInfoPlanoAnteriorSaldos<I: IInterface> = interface;
-  IJSEcdConfigConglomeradoEconomicos<I: IInterface> = interface;
+  IJSEcdServiceConfig<I: IInterface> = interface;
+  IJSEcdServiceConfigAssociacaoPlanoGoverno<I: IInterface> = interface;
+  IJSEcdServiceConfigGeral<I: IInterface> = interface;
+  IJSEcdServiceConfigFiscal<I: IInterface> = interface;
+  IJSEcdServiceConfigSignatario<I: IInterface> = interface;
+  IJSEcdServiceConfigDemonstracoesContabeis<I: IInterface> = interface;
+  IJSEcdServiceConfigInfoFiliaisLivroAuxiliar<I: IInterface> = interface;
+  IJSEcdServiceConfigInfoCadastroParticipante<I: IInterface> = interface;
+  IJSEcdServiceConfigInfoPlanoAnteriorSaldos<I: IInterface> = interface;
+  IJSEcdServiceConfigConglomeradoEconomicos<I: IInterface> = interface;
 
   IJSEcdService = interface
     ['{EADF2DEB-7ED2-4BB9-9AC0-BD8EE28703EA}']
-    function Config: IJSEcdConfig<IJSEcdService>;
+    function Config: IJSEcdServiceConfig<IJSEcdService>;
     function Execute: IJSEcdService;
   end;
 
-  IJSEcdConfig<I: IInterface> = interface
+  IJSEcdServiceFactory = interface
+    ['{13841F67-3824-42BE-A546-0973908A63A0}']
+    function createService: IJSEcdService;
+  end;
+
+  IJSEcdServiceConfig<I: IInterface> = interface
     ['{2EF6489D-FBDD-4B86-82F2-EC8FE0B9D75D}']
-    function Exercicio(Value: Integer): IJSEcdConfig<I>; overload;
-    function PeriodoInicial(Value: Integer): IJSEcdConfig<I>; overload;
-    function PeriodoFinal(Value: Integer): IJSEcdConfig<I>; overload;
-    function DataInicial(Value: TDateTime): IJSEcdConfig<I>; overload;
-    function DataFinal(Value: TDateTime): IJSEcdConfig<I>; overload;
+    function Exercicio(Value: Integer): IJSEcdServiceConfig<I>; overload;
+    function PeriodoInicial(Value: Integer): IJSEcdServiceConfig<I>; overload;
+    function PeriodoFinal(Value: Integer): IJSEcdServiceConfig<I>; overload;
+    function DataInicial(Value: TDateTime): IJSEcdServiceConfig<I>; overload;
+    function DataFinal(Value: TDateTime): IJSEcdServiceConfig<I>; overload;
 
     function Exercicio: Integer; overload;
     function PeriodoInicial: Integer; overload;
@@ -34,17 +39,17 @@ type
     function DataInicial: TDateTime; overload;
     function DataFinal: TDateTime; overload;
 
-    function AssociacaoPlanoGoverno: IJSEcdConfigAssociacaoPlanoGoverno<IJSEcdConfig<I>>;
-    function Geral: IJSEcdConfigGeral<IJSEcdConfig<I>>;
-    function Fiscal: IJSEcdConfigFiscal<IJSEcdConfig<I>>;
-    function Signatario: IJSEcdConfigSignatario<IJSEcdConfig<I>>;
-    function DemonstracoesContabeis: IJSEcdConfigDemonstracoesContabeis<IJSEcdConfig<I>>;
-    function InfoFiliaisLivroAuxiliar: IJSEcdConfigInfoFiliaisLivroAuxiliar<IJSEcdConfig<I>>;
-    function InfoCadastroParticipante: IJSEcdConfigInfoCadastroParticipante<IJSEcdConfig<I>>;
-    function InfoPlanoAnteriorSaldos: IJSEcdConfigInfoPlanoAnteriorSaldos<IJSEcdConfig<I>>;
-    function ConglomeradoEconomicos: IJSEcdConfigConglomeradoEconomicos<IJSEcdConfig<I>>;
+    function AssociacaoPlanoGoverno: IJSEcdServiceConfigAssociacaoPlanoGoverno<IJSEcdServiceConfig<I>>;
+    function Geral: IJSEcdServiceConfigGeral<IJSEcdServiceConfig<I>>;
+    function Fiscal: IJSEcdServiceConfigFiscal<IJSEcdServiceConfig<I>>;
+    function Signatario: IJSEcdServiceConfigSignatario<IJSEcdServiceConfig<I>>;
+    function DemonstracoesContabeis: IJSEcdServiceConfigDemonstracoesContabeis<IJSEcdServiceConfig<I>>;
+    function InfoFiliaisLivroAuxiliar: IJSEcdServiceConfigInfoFiliaisLivroAuxiliar<IJSEcdServiceConfig<I>>;
+    function InfoCadastroParticipante: IJSEcdServiceConfigInfoCadastroParticipante<IJSEcdServiceConfig<I>>;
+    function InfoPlanoAnteriorSaldos: IJSEcdServiceConfigInfoPlanoAnteriorSaldos<IJSEcdServiceConfig<I>>;
+    function ConglomeradoEconomicos: IJSEcdServiceConfigConglomeradoEconomicos<IJSEcdServiceConfig<I>>;
 
-    function &Begin: IJSEcdConfig<I>;
+    function &Begin: IJSEcdServiceConfig<I>;
     function &End: I;
   end;
 
@@ -188,46 +193,48 @@ type
 //    property Empresa: Extended read FEmpresa write SetEmpresa;
 
 
-  IJSEcdConfigAssociacaoPlanoGoverno<I: IInterface> = interface
+  IJSEcdServiceConfigAssociacaoPlanoGoverno<I: IInterface> = interface
     ['{E392A08B-64B3-4898-849E-D01D6D4E4C08}']
+
+    function &End: I;
   end;
 
-  IJSEcdConfigGeral<I: IInterface> = interface
+  IJSEcdServiceConfigGeral<I: IInterface> = interface
     ['{E39B7745-F32A-43E7-9D2D-46629F20BE27}']
-    function TipoEscrituracao(Value: string): IJSEcdConfigGeral<I>; overload;
-    function IndicadorFinalidadeEscrturacao(Value: string): IJSEcdConfigGeral<I>; overload;
-    function IndicadorSituacaoIni(Value: string): IJSEcdConfigGeral<I>; overload;
-    function CodigoInstituicaoResponsavelAdministracaoCadastro(Value: string): IJSEcdConfigGeral<I>; overload;
-    function IndicadorEmpresaGrandePorte(Value: string): IJSEcdConfigGeral<I>; overload;
-    function TipoECD(Value: string): IJSEcdConfigGeral<I>; overload;
-    function IndicadorSituacaoEspecial(Value: string): IJSEcdConfigGeral<I>; overload;
-    function IndicadorExisteNIRE(Value: string): IJSEcdConfigGeral<I>; overload;
-    function CodigoEntidadeResponsavelManutencaoPlanoContasReferencial(Value: string): IJSEcdConfigGeral<I>; overload;
-    function IndicaContabCentralizada(Value: Integer): IJSEcdConfigGeral<I>; overload;
+    function TipoEscrituracao(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorFinalidadeEscrturacao(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorSituacaoIni(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function CodigoInstituicaoResponsavelAdministracaoCadastro(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorEmpresaGrandePorte(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function TipoECD(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorSituacaoEspecial(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorExisteNIRE(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function CodigoEntidadeResponsavelManutencaoPlanoContasReferencial(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicaContabCentralizada(Value: Integer): IJSEcdServiceConfigGeral<I>; overload;
 
     function TipoEscrituracao: string; overload;
     function IndicadorFinalidadeEscrturacao: string; overload;
     function IndicadorSituacaoIni: string; overload;
     function CodigoInstituicaoResponsavelAdministracaoCadastro: string; overload;
-    function IndicadorEmpresaGrandePorteValue: string; overload;
+    function IndicadorEmpresaGrandePorte: string; overload;
     function TipoECD: string; overload;
     function IndicadorSituacaoEspecial: string; overload;
     function IndicadorExisteNIRE: string; overload;
     function CodigoEntidadeResponsavelManutencaoPlanoContasReferencial: string; overload;
     function IndicaContabCentralizada: Integer; overload;
 
-    function IndicadorSubgrupo(Value: string): IJSEcdConfigGeral<I>; overload;
-    function Consolidado(Value: string): IJSEcdConfigGeral<I>; overload;
-    function ConsolidadoSCP(Value: string): IJSEcdConfigGeral<I>; overload;
-    function EmpresaMatriz(Value: Integer): IJSEcdConfigGeral<I>; overload;
+    function IndicadorSubgrupo(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function Consolidado(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function ConsolidadoSCP(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function EmpresaMatriz(Value: Integer): IJSEcdServiceConfigGeral<I>; overload;
 
     function IndicadorSubgrupo: string; overload;
     function Consolidado: string; overload;
     function ConsolidadoSCP: string; overload;
     function EmpresaMatriz: Integer; overload;
 
-    function HashEscrituracaoSubstituida(Value: string): IJSEcdConfigGeral<I>; overload;
-    function NIREEscrituracaoSubst(Value: string): IJSEcdConfigGeral<I>; overload;
+    function HashEscrituracaoSubstituida(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function NIREEscrituracaoSubst(Value: string): IJSEcdServiceConfigGeral<I>; overload;
 
     function HashEscrituracaoSubstituida: string; overload;
     function NIREEscrituracaoSubst: string; overload;
@@ -235,13 +242,13 @@ type
     function &End: I;
   end;
 
-  IJSEcdConfigFiscal<I: IInterface> = interface
+  IJSEcdServiceConfigFiscal<I: IInterface> = interface
     ['{AD910218-D340-4B33-ACF9-8E11F9809CB1}']
-    function NumeroOrdemInstrumentoEscrituracao(Value: string): IJSEcdConfigFiscal<I>; overload;
-    function NaturezaLivro(Value: string): IJSEcdConfigFiscal<I>; overload;
-    function TipoDocNIRE(Value:  Integer): IJSEcdConfigFiscal<I>; overload;
-    function DataArquivamentoAtosConstituitivos(Value: string): IJSEcdConfigFiscal<I>; overload;
-    function DataArquivamentoAtoConversao(Value: string): IJSEcdConfigFiscal<I>; overload;
+    function NumeroOrdemInstrumentoEscrituracao(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
+    function NaturezaLivro(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
+    function TipoDocNIRE(Value:  Integer): IJSEcdServiceConfigFiscal<I>; overload;
+    function DataArquivamentoAtosConstituitivos(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
+    function DataArquivamentoAtoConversao(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
 
     function NumeroOrdemInstrumentoEscrituracao: string; overload;
     function NaturezaLivro: string; overload;
@@ -252,16 +259,16 @@ type
     function &End: I;
   end;
 
-  IJSEcdConfigSignatario<I: IInterface> = interface
+  IJSEcdServiceConfigSignatario<I: IInterface> = interface
     ['{DB15EF59-2846-405B-9622-E08D2B85A885}']
-    function CodigoAssinanteContador(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function NomeSignatarioContador(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function CPFSignatarioContador(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function EmailContador(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function TelefoneContador(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function CRCSignatarioContador(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function EstadoCRCContador(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function DataValidadeCRCContador(Value: string): IJSEcdConfigSignatario<I>; overload;
+    function CodigoAssinanteContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function NomeSignatarioContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CPFSignatarioContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function EmailContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function TelefoneContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CRCSignatarioContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function EstadoCRCContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function DataValidadeCRCContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
 
     function CodigoAssinanteContador: string; overload;
     function NomeSignatarioContador: string; overload;
@@ -272,14 +279,14 @@ type
     function EstadoCRCContador: string; overload;
     function DataValidadeCRCContador: string; overload;
 
-    function CodigoAssinanteLegal(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function NomeSignatarioLegal(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function CPFSignatarioLegal(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function EmailSignatarioLegal(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function TelefoneSignatarioLegal(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function CRCSignatarioLegal(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function UFCRCSignatarioLegal(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function DataValidadeCRCSignatarioLegal(Value: string): IJSEcdConfigSignatario<I>; overload;
+    function CodigoAssinanteLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function NomeSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CPFSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function EmailSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function TelefoneSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CRCSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function UFCRCSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function DataValidadeCRCSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
 
     function CodigoAssinanteLegal: string; overload;
     function NomeSignatarioLegal: string; overload;
@@ -290,20 +297,20 @@ type
     function UFCRCSignatarioLegal: string; overload;
     function DataValidadeCRCSignatarioLegal: string; overload;
 
-    function NomeAuditorIndependente(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function RegistroAuditorIndependenteCVM(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function Doc(Value: string): IJSEcdConfigSignatario<I>; overload;
+    function NomeAuditorIndependente(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function RegistroAuditorIndependenteCVM(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function Doc(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
 
     function NomeAuditorIndependente: string; overload;
     function RegistroAuditorIndependenteCVM: string; overload;
     function Doc: string; overload;
 
-    function CodigoAssinanteCertificado(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function NomeSignatarioCertificado(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function CNPJSignatarioCertificado(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function EmailSignatarioCertificado(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function TelefoneSignatarioCertificado(Value: string): IJSEcdConfigSignatario<I>; overload;
-    function ResponsavelLegalCertificado(Value: string): IJSEcdConfigSignatario<I>; overload;
+    function CodigoAssinanteCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function NomeSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CNPJSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function EmailSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function TelefoneSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function ResponsavelLegalCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
 
     function CodigoAssinanteCertificado: string; overload;
     function NomeSignatarioCertificado: string; overload;
@@ -315,16 +322,16 @@ type
     function &End: I;
   end;
 
-  IJSEcdConfigDemonstracoesContabeis<I: IInterface> = interface
+  IJSEcdServiceConfigDemonstracoesContabeis<I: IInterface> = interface
     ['{376B6010-06DE-42F8-9C3F-AD3BC4C02BE9}']
-    function DemonstrativoBaseBalancoDescr(Value: string): IJSEcdConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoBaseBalanco(Value: Double): IJSEcdConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoBaseDRE(Value: Double): IJSEcdConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoDLPA(Value: Integer): IJSEcdConfigDemonstracoesContabeis<I>; overload;
-    function LancContabil(Value: Boolean): IJSEcdConfigDemonstracoesContabeis<I>; overload;
-    function IndicaDLPADMPL(Value: Integer): IJSEcdConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoDFC(Value: Integer): IJSEcdConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoDVA(Value: Integer): IJSEcdConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoBaseBalancoDescr(Value: string): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoBaseBalanco(Value: Double): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoBaseDRE(Value: Double): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoDLPA(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function LancContabil(Value: Boolean): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function IndicaDLPADMPL(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoDFC(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoDVA(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
 
     function DemonstrativoBaseBalancoDescr: string; overload;
     function DemonstrativoBaseBalanco: Double; overload;
@@ -338,18 +345,20 @@ type
     function &End: I;
   end;
 
-  IJSEcdConfigInfoFiliaisLivroAuxiliar<I: IInterface> = interface
+  IJSEcdServiceConfigInfoFiliaisLivroAuxiliar<I: IInterface> = interface
     ['{4E4B2F47-BE4C-480B-9D8B-848FD0D10C55}']
+
+    function &End: I;
   end;
 
-  IJSEcdConfigInfoCadastroParticipante<I: IInterface> = interface
+  IJSEcdServiceConfigInfoCadastroParticipante<I: IInterface> = interface
     ['{B255B5FE-194E-4408-95E7-F0B7306C53BF}']
-    function AtributoTipoRelacionamento(Value: Integer): IJSEcdConfigInfoCadastroParticipante<I>; overload;
-    function AtributoDataInicioRelacionamento(Value: Integer): IJSEcdConfigInfoCadastroParticipante<I>; overload;
-    function AtributoDataFimRelacionamento(Value: Integer): IJSEcdConfigInfoCadastroParticipante<I>; overload;
-    function TipoDocSUFRAMA(Value: Integer): IJSEcdConfigInfoCadastroParticipante<I>; overload;
-    function IdentificadorTrabalhador(Value: Integer): IJSEcdConfigInfoCadastroParticipante<I>; overload;
-    function InscricaoEstadualContribuinteSubstituto(Value: Integer): IJSEcdConfigInfoCadastroParticipante<I>; overload;
+    function AtributoTipoRelacionamento(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function AtributoDataInicioRelacionamento(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function AtributoDataFimRelacionamento(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function TipoDocSUFRAMA(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function IdentificadorTrabalhador(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function InscricaoEstadualContribuinteSubstituto(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
 
     function AtributoTipoRelacionamento: Integer; overload;
     function AtributoDataInicioRelacionamento: Integer; overload;
@@ -366,14 +375,34 @@ type
 //    property sPeriodoApuracao : String read FsPeriodoApuracao write SetsPeriodoApuracao;
 //    property sFormaTributacao : String read FsFormaTributacao write SetsFormaTributacao;
 
-  IJSEcdConfigInfoPlanoAnteriorSaldos<I: IInterface> = interface
+  IJSEcdServiceConfigInfoPlanoAnteriorSaldos<I: IInterface> = interface
     ['{396079DD-4A94-448C-A593-62B8FAC0A712}']
+
+    function &End: I;
   end;
 
-  IJSEcdConfigConglomeradoEconomicos<I: IInterface> = interface
+  IJSEcdServiceConfigConglomeradoEconomicos<I: IInterface> = interface
     ['{34ECFAC7-753F-464B-8934-1B6641A5CF72}']
+
+    function &End: I;
   end;
+
+function EcdServiceFactory: IJSEcdServiceFactory;
+function EcdService: IJSEcdService;
 
 implementation
+
+uses
+  JSEcd.Service.Factory;
+
+function EcdService: IJSEcdService;
+begin
+  result := EcdServiceFactory.createService;
+end;
+
+function EcdServiceFactory: IJSEcdServiceFactory;
+begin
+  Result := TJSEcdServiceFactory.New;
+end;
 
 end.
