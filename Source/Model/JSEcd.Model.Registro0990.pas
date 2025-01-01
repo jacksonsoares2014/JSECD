@@ -23,7 +23,7 @@ constructor TJSEcdModelRegistro0990.create;
 begin
   inherited;
   reg := '0990';
-  qtdlin0 := 1;
+  qtdlin0 := 0;
 end;
 
 end.
