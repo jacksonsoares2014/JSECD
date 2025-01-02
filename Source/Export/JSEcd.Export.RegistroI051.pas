@@ -9,7 +9,7 @@ uses
   System.SysUtils;
 
 const
-  cI051 = '|I051|';
+  cI051 = '|I051|%s|%s|';
 
 type
   TJSEcdExportRegistroI051 = class(TJSEcdExportBase, IJSEcdExport)
@@ -28,7 +28,8 @@ begin
   validateInstance<TJSEcdModelRegistroI051>(AModel, FRegI051);
 
   result := Format(cI051,
-                   [FRegI051.);
+                   [FRegI051.codCcus,
+                    FRegI051.codCtaRef]);
 end;
 
 end.

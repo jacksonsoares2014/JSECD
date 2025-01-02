@@ -9,7 +9,7 @@ uses
   System.SysUtils;
 
 const
-  cK210 = '|K210|';
+  cK210 = '|K210|%s|%s|';
 
 type
   TJSEcdExportRegistroK210 = class(TJSEcdExportBase, IJSEcdExport)
@@ -28,7 +28,8 @@ begin
   validateInstance<TJSEcdModelRegistroK210>(AModel, FRegK210);
 
   result := Format(cK210,
-                   [FRegK210.);
+                   [FRegK210.codEmp,
+                    FRegK210.codCtaEmp]);
 end;
 
 end.

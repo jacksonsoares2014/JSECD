@@ -4,6 +4,7 @@ interface
 
 uses
   JSEcd.Export.Interfaces,
+  JSEcd.Export.Classes,
   JSEcd.Service.Interfaces,
   JSEcd.Model.Classes,
   System.Generics.Collections,
@@ -54,22 +55,66 @@ end;
 
 procedure TJSEcdExportFacade.createExportsBloco0;
 begin
-
+  FExports.Add('0000', TJSEcdExportRegistro0000.New(FConfig));
+  FExports.Add('0001', TJSEcdExportRegistro0001.New(FConfig));
+  FExports.Add('0007', TJSEcdExportRegistro0007.New(FConfig));
+  FExports.Add('0020', TJSEcdExportRegistro0020.New(FConfig));
+  FExports.Add('0035', TJSEcdExportRegistro0035.New(FConfig));
+  FExports.Add('0150', TJSEcdExportRegistro0150.New(FConfig));
+  FExports.Add('0180', TJSEcdExportRegistro0180.New(FConfig));
+  FExports.Add('0990', TJSEcdExportRegistro0990.New(FConfig));
 end;
 
 procedure TJSEcdExportFacade.createExportsBlocoI;
 begin
-
+  FExports.Add('I001', TJSEcdExportRegistroI001.New(FConfig));
+  FExports.Add('I010', TJSEcdExportRegistroI010.New(FConfig));
+  FExports.Add('I012', TJSEcdExportRegistroI012.New(FConfig));
+  FExports.Add('I015', TJSEcdExportRegistroI015.New(FConfig));
+  FExports.Add('I030', TJSEcdExportRegistroI030.New(FConfig));
+  FExports.Add('I050', TJSEcdExportRegistroI050.New(FConfig));
+  FExports.Add('I051', TJSEcdExportRegistroI051.New(FConfig));
+  FExports.Add('I052', TJSEcdExportRegistroI052.New(FConfig));
+  FExports.Add('I053', TJSEcdExportRegistroI053.New(FConfig));
+  FExports.Add('I075', TJSEcdExportRegistroI075.New(FConfig));
+  FExports.Add('I100', TJSEcdExportRegistroI100.New(FConfig));
+  FExports.Add('I150', TJSEcdExportRegistroI150.New(FConfig));
+  FExports.Add('I155', TJSEcdExportRegistroI155.New(FConfig));
+  FExports.Add('I157', TJSEcdExportRegistroI157.New(FConfig));
+  FExports.Add('I200', TJSEcdExportRegistroI200.New(FConfig));
+  FExports.Add('I250', TJSEcdExportRegistroI250.New(FConfig));
+  FExports.Add('I350', TJSEcdExportRegistroI350.New(FConfig));
+  FExports.Add('I355', TJSEcdExportRegistroI355.New(FConfig));
+  FExports.Add('I500', TJSEcdExportRegistroI500.New(FConfig));
+  FExports.Add('I510', TJSEcdExportRegistroI510.New(FConfig));
+  FExports.Add('I550', TJSEcdExportRegistroI550.New(FConfig));
+  FExports.Add('I555', TJSEcdExportRegistroI555.New(FConfig));
+  FExports.Add('I990', TJSEcdExportRegistroI990.New(FConfig));
 end;
 
 procedure TJSEcdExportFacade.createExportsBlocoJ;
 begin
-
+  FExports.Add('J001', TJSEcdExportRegistroJ001.New(FConfig));
+  FExports.Add('J005', TJSEcdExportRegistroJ005.New(FConfig));
+  FExports.Add('J100', TJSEcdExportRegistroJ100.New(FConfig));
+  FExports.Add('J150', TJSEcdExportRegistroJ150.New(FConfig));
+  FExports.Add('J210', TJSEcdExportRegistroJ210.New(FConfig));
+  FExports.Add('J215', TJSEcdExportRegistroJ215.New(FConfig));
+  FExports.Add('J800', TJSEcdExportRegistroJ800.New(FConfig));
+  FExports.Add('J900', TJSEcdExportRegistroJ900.New(FConfig));
+  FExports.Add('J930', TJSEcdExportRegistroJ930.New(FConfig));
+  FExports.Add('J935', TJSEcdExportRegistroJ935.New(FConfig));
+  FExports.Add('J990', TJSEcdExportRegistroJ990.New(FConfig));
 end;
 
 procedure TJSEcdExportFacade.createExportsBlocoK;
 begin
-
+  FExports.Add('K001', TJSEcdExportRegistroK001.New(FConfig));
+  FExports.Add('K030', TJSEcdExportRegistroK030.New(FConfig));
+  FExports.Add('K100', TJSEcdExportRegistroK100.New(FConfig));
+  FExports.Add('K200', TJSEcdExportRegistroK200.New(FConfig));
+  FExports.Add('K210', TJSEcdExportRegistroK210.New(FConfig));
+  FExports.Add('K990', TJSEcdExportRegistroK990.New(FConfig));
 end;
 
 destructor TJSEcdExportFacade.Destroy;

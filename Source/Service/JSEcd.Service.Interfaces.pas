@@ -2,6 +2,10 @@ unit JSEcd.Service.Interfaces;
 
 interface
 
+uses
+  JSEcd.DAO.Interfaces;
+
+
 type
   IJSEcdServiceConfig<I: IInterface> = interface;
   IJSEcdServiceConfigAssociacaoPlanoGoverno<I: IInterface> = interface;
@@ -13,10 +17,16 @@ type
   IJSEcdServiceConfigInfoCadastroParticipante<I: IInterface> = interface;
   IJSEcdServiceConfigInfoPlanoAnteriorSaldos<I: IInterface> = interface;
   IJSEcdServiceConfigConglomeradoEconomicos<I: IInterface> = interface;
+  IJSEcdDAOCollection = interface;
+  IJSEcdDAOCollectionBloco0 = interface;
+  IJSEcdDAOCollectionBlocoI = interface;
+  IJSEcdDAOCollectionBlocoJ = interface;
+  IJSEcdDAOCollectionBlocoK = interface;
 
   IJSEcdService = interface
     ['{EADF2DEB-7ED2-4BB9-9AC0-BD8EE28703EA}']
     function Config: IJSEcdServiceConfig<IJSEcdService>;
+    function DAO: IJSEcdDAOCollection;
     function Execute: IJSEcdService;
   end;
 
@@ -27,12 +37,14 @@ type
 
   IJSEcdServiceConfig<I: IInterface> = interface
     ['{2EF6489D-FBDD-4B86-82F2-EC8FE0B9D75D}']
+    function Empresa(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function Exercicio(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function PeriodoInicial(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function PeriodoFinal(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function DataInicial(Value: TDateTime): IJSEcdServiceConfig<I>; overload;
     function DataFinal(Value: TDateTime): IJSEcdServiceConfig<I>; overload;
 
+    function Empresa: Integer; overload;
     function Exercicio: Integer; overload;
     function PeriodoInicial: Integer; overload;
     function PeriodoFinal: Integer; overload;
@@ -385,6 +397,129 @@ type
     ['{34ECFAC7-753F-464B-8934-1B6641A5CF72}']
 
     function &End: I;
+  end;
+
+  IJSEcdDAOCollection = interface
+    ['{9AE74B34-03FC-4B41-B870-7F3F895F0DD3}']
+    function Bloco0: IJSEcdDAOCollectionBloco0;
+    function BlocoI: IJSEcdDAOCollectionBlocoI;
+    function BlocoJ: IJSEcdDAOCollectionBlocoJ;
+    function BlocoK: IJSEcdDAOCollectionBlocoK;
+
+    function &Begin: IJSEcdDAOCollection;
+    function &End: IJSEcdService;
+  end;
+
+  IJSEcdDAOCollectionBloco0 = interface
+    ['{CD680FDF-0F05-45FD-826A-6E7FC4EB43FA}']
+    function Add0000(Value: IJSEcdDAO0000): IJSEcdDAOCollectionBloco0;
+    function Add0007(Value: IJSEcdDAO0007): IJSEcdDAOCollectionBloco0;
+    function Add0020(Value: IJSEcdDAO0020): IJSEcdDAOCollectionBloco0;
+    function Add0035(Value: IJSEcdDAO0035): IJSEcdDAOCollectionBloco0;
+    function Add0150(Value: IJSEcdDAO0150): IJSEcdDAOCollectionBloco0;
+    function Add0180(Value: IJSEcdDAO0180): IJSEcdDAOCollectionBloco0;
+
+    function DAO0000: IJSEcdDAO0000;
+    function DAO0007: IJSEcdDAO0007;
+    function DAO0020: IJSEcdDAO0020;
+    function DAO0035: IJSEcdDAO0035;
+    function DAO0150: IJSEcdDAO0150;
+    function DAO0180: IJSEcdDAO0180;
+
+    function &Begin: IJSEcdDAOCollectionBloco0;
+    function &End: IJSEcdDAOCollection;
+  end;
+
+  IJSEcdDAOCollectionBlocoI = interface
+    ['{4AA323A8-A6C8-44C7-9859-5E459C28B96D}']
+    function AddI010(Value: IJSEcdDAOI010): IJSEcdDAOCollectionBlocoI;
+    function AddI012(Value: IJSEcdDAOI012): IJSEcdDAOCollectionBlocoI;
+    function AddI015(Value: IJSEcdDAOI015): IJSEcdDAOCollectionBlocoI;
+    function AddI030(Value: IJSEcdDAOI030): IJSEcdDAOCollectionBlocoI;
+    function AddI050(Value: IJSEcdDAOI050): IJSEcdDAOCollectionBlocoI;
+    function AddI051(Value: IJSEcdDAOI051): IJSEcdDAOCollectionBlocoI;
+    function AddI052(Value: IJSEcdDAOI052): IJSEcdDAOCollectionBlocoI;
+    function AddI053(Value: IJSEcdDAOI053): IJSEcdDAOCollectionBlocoI;
+    function AddI075(Value: IJSEcdDAOI075): IJSEcdDAOCollectionBlocoI;
+    function AddI100(Value: IJSEcdDAOI100): IJSEcdDAOCollectionBlocoI;
+    function AddI150(Value: IJSEcdDAOI150): IJSEcdDAOCollectionBlocoI;
+    function AddI155(Value: IJSEcdDAOI155): IJSEcdDAOCollectionBlocoI;
+    function AddI157(Value: IJSEcdDAOI157): IJSEcdDAOCollectionBlocoI;
+    function AddI200(Value: IJSEcdDAOI200): IJSEcdDAOCollectionBlocoI;
+    function AddI250(Value: IJSEcdDAOI250): IJSEcdDAOCollectionBlocoI;
+    function AddI350(Value: IJSEcdDAOI350): IJSEcdDAOCollectionBlocoI;
+    function AddI355(Value: IJSEcdDAOI355): IJSEcdDAOCollectionBlocoI;
+    function AddI500(Value: IJSEcdDAOI500): IJSEcdDAOCollectionBlocoI;
+    function AddI510(Value: IJSEcdDAOI510): IJSEcdDAOCollectionBlocoI;
+    function AddI550(Value: IJSEcdDAOI550): IJSEcdDAOCollectionBlocoI;
+    function AddI555(Value: IJSEcdDAOI555): IJSEcdDAOCollectionBlocoI;
+
+    function DAOI010: IJSEcdDAOI010;
+    function DAOI012: IJSEcdDAOI012;
+    function DAOI015: IJSEcdDAOI015;
+    function DAOI030: IJSEcdDAOI030;
+    function DAOI050: IJSEcdDAOI050;
+    function DAOI051: IJSEcdDAOI051;
+    function DAOI052: IJSEcdDAOI052;
+    function DAOI053: IJSEcdDAOI053;
+    function DAOI075: IJSEcdDAOI075;
+    function DAOI100: IJSEcdDAOI100;
+    function DAOI150: IJSEcdDAOI150;
+    function DAOI155: IJSEcdDAOI155;
+    function DAOI157: IJSEcdDAOI157;
+    function DAOI200: IJSEcdDAOI200;
+    function DAOI250: IJSEcdDAOI250;
+    function DAOI350: IJSEcdDAOI350;
+    function DAOI355: IJSEcdDAOI355;
+    function DAOI500: IJSEcdDAOI500;
+    function DAOI510: IJSEcdDAOI510;
+    function DAOI550: IJSEcdDAOI550;
+    function DAOI555: IJSEcdDAOI555;
+
+    function &Begin: IJSEcdDAOCollectionBlocoI;
+    function &End: IJSEcdDAOCollection;
+  end;
+
+  IJSEcdDAOCollectionBlocoJ = interface
+    ['{94B262D7-99F8-4E7F-AC90-A673E7623A6E}']
+    function AddJ005(Value: IJSEcdDAOJ005): IJSEcdDAOCollectionBlocoJ;
+    function AddJ100(Value: IJSEcdDAOJ100): IJSEcdDAOCollectionBlocoJ;
+    function AddJ150(Value: IJSEcdDAOJ150): IJSEcdDAOCollectionBlocoJ;
+    function AddJ210(Value: IJSEcdDAOJ210): IJSEcdDAOCollectionBlocoJ;
+    function AddJ215(Value: IJSEcdDAOJ215): IJSEcdDAOCollectionBlocoJ;
+    function AddJ800(Value: IJSEcdDAOJ800): IJSEcdDAOCollectionBlocoJ;
+    function AddJ900(Value: IJSEcdDAOJ900): IJSEcdDAOCollectionBlocoJ;
+    function AddJ930(Value: IJSEcdDAOJ930): IJSEcdDAOCollectionBlocoJ;
+    function AddJ935(Value: IJSEcdDAOJ935): IJSEcdDAOCollectionBlocoJ;
+
+    function DAOJ005: IJSEcdDAOJ005;
+    function DAOJ100: IJSEcdDAOJ100;
+    function DAOJ150: IJSEcdDAOJ150;
+    function DAOJ210: IJSEcdDAOJ210;
+    function DAOJ215: IJSEcdDAOJ215;
+    function DAOJ800: IJSEcdDAOJ800;
+    function DAOJ900: IJSEcdDAOJ900;
+    function DAOJ930: IJSEcdDAOJ930;
+    function DAOJ935: IJSEcdDAOJ935;
+
+    function &Begin: IJSEcdDAOCollectionBlocoJ;
+    function &End: IJSEcdDAOCollection;
+  end;
+
+  IJSEcdDAOCollectionBlocoK = interface
+    ['{3BA7AC43-29EA-4B3A-A3E6-42D69AA36B62}']
+    function AddK030(Value: IJSEcdDAOK030): IJSEcdDAOCollectionBlocoK;
+    function AddK100(Value: IJSEcdDAOK100): IJSEcdDAOCollectionBlocoK;
+    function AddK200(Value: IJSEcdDAOK200): IJSEcdDAOCollectionBlocoK;
+    function AddK210(Value: IJSEcdDAOK210): IJSEcdDAOCollectionBlocoK;
+
+    function DAOK030: IJSEcdDAOK030;
+    function DAOK100: IJSEcdDAOK100;
+    function DAOK200: IJSEcdDAOK200;
+    function DAOK210: IJSEcdDAOK210;
+
+    function &Begin: IJSEcdDAOCollectionBlocoK;
+    function &End: IJSEcdDAOCollection;
   end;
 
 function EcdServiceFactory: IJSEcdServiceFactory;

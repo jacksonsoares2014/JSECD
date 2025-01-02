@@ -6,10 +6,8 @@ uses
   JSEcd.Export.Interfaces,
   JSEcd.Export.Base,
   JSEcd.Model.Classes,
+  JSEcd.Model.Format,
   System.SysUtils;
-
-const
-  cI350 = '|I350|';
 
 type
   TJSEcdExportRegistroI350 = class(TJSEcdExportBase, IJSEcdExport)
@@ -27,8 +25,7 @@ function TJSEcdExportRegistroI350.LinhaEcd(AModel: TJSEcdModelRegistro): string;
 begin
   validateInstance<TJSEcdModelRegistroI350>(AModel, FRegI350);
 
-  result := Format(cI350,
-                   [FRegI350.);
+  result := Format('|I350|%s|', [JSEF.FormatData(FRegI350.dtRes)]);
 end;
 
 end.

@@ -9,7 +9,7 @@ uses
   System.SysUtils;
 
 const
-  cJ935 = '|J935|';
+  cJ935 = '|J935|%s|%s|%s|';
 
 type
   TJSEcdExportRegistroJ935 = class(TJSEcdExportBase, IJSEcdExport)
@@ -28,7 +28,9 @@ begin
   validateInstance<TJSEcdModelRegistroJ935>(AModel, FRegJ935);
 
   result := Format(cJ935,
-                   [FRegJ935.);
+                   [FRegJ935.niCpfCnpj,
+                    FRegJ935.nomeAuditorFirma,
+                    FRegJ935.codCvmAuditor]);
 end;
 
 end.

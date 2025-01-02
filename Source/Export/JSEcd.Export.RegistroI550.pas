@@ -8,9 +8,6 @@ uses
   JSEcd.Model.Classes,
   System.SysUtils;
 
-const
-  cI550 = '|I550|';
-
 type
   TJSEcdExportRegistroI550 = class(TJSEcdExportBase, IJSEcdExport)
   private
@@ -27,8 +24,7 @@ function TJSEcdExportRegistroI550.LinhaEcd(AModel: TJSEcdModelRegistro): string;
 begin
   validateInstance<TJSEcdModelRegistroI550>(AModel, FRegI550);
 
-  result := Format(cI550,
-                   [FRegI550.);
+  result := Format('|I550|%s|', [FRegI550.rzCont]);
 end;
 
 end.

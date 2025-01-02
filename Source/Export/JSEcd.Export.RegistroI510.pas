@@ -9,7 +9,7 @@ uses
   System.SysUtils;
 
 const
-  cI510 = '|I510|';
+  cI510 = '|I510|%s|%s|%s|%s|%s|%s|';
 
 type
   TJSEcdExportRegistroI510 = class(TJSEcdExportBase, IJSEcdExport)
@@ -28,7 +28,12 @@ begin
   validateInstance<TJSEcdModelRegistroI510>(AModel, FRegI510);
 
   result := Format(cI510,
-                   [FRegI510.);
+                   [FRegI510.nmCampo,
+                    FRegI510.descCampo,
+                    FRegI510.tipoCampo,
+                    FRegI510.tamCampo,
+                    FRegI510.decCampo,
+                    FRegI510.colCampo]);
 end;
 
 end.

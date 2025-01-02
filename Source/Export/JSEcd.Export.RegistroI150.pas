@@ -6,10 +6,11 @@ uses
   JSEcd.Export.Interfaces,
   JSEcd.Export.Base,
   JSEcd.Model.Classes,
+  JSEcd.Model.Format,
   System.SysUtils;
 
 const
-  cI150 = '|I150|';
+  cI150 = '|I150|%s|%s|';
 
 type
   TJSEcdExportRegistroI150 = class(TJSEcdExportBase, IJSEcdExport)
@@ -28,7 +29,8 @@ begin
   validateInstance<TJSEcdModelRegistroI150>(AModel, FRegI150);
 
   result := Format(cI150,
-                   [FRegI150.);
+                   [JSEF.FormatData(FRegI150.dtIni),
+                    JSEF.FormatData(FRegI150.dtFin)]);
 end;
 
 end.

@@ -15,10 +15,10 @@ type
     Fuf: string;
     Fnire: string;
     Fie: string;
-    FindRec: TJSEcdIndRec;
+    FindDec: TJSEcdIndDec;
 
   public
-    property indRec: TJSEcdIndRec read FindRec write FindRec;
+    property indDec: TJSEcdIndDec read FindDec write FindDec;
     property cnpj: string read Fcnpj write Fcnpj;
     property uf: string read Fuf write Fuf;
     property ie: string read Fie write Fie;

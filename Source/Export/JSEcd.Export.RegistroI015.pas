@@ -27,8 +27,7 @@ function TJSEcdExportRegistroI015.LinhaEcd(AModel: TJSEcdModelRegistro): string;
 begin
   validateInstance<TJSEcdModelRegistroI015>(AModel, FRegI015);
 
-  result := Format(cI015,
-                   [FRegI015.);
+  result := Format('|I015|%s|', [FRegI015.codCtaRes]);
 end;
 
 end.

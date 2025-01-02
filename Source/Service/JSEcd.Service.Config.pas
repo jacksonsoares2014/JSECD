@@ -20,6 +20,7 @@ type
     [Weak]
     FParent: I;
 
+    FEmpresa: Integer;
     FExercicio: Integer;
     FPeriodoInicial: Integer;
     FPeriodoFinal: Integer;
@@ -36,12 +37,14 @@ type
     FInfoPlanoAnteriorSaldos: IJSEcdServiceConfigInfoPlanoAnteriorSaldos<IJSEcdServiceConfig<I>>;
     FConglomeradoEconomicos: IJSEcdServiceConfigConglomeradoEconomicos<IJSEcdServiceConfig<I>>;
   public
+    function Empresa(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function Exercicio(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function PeriodoInicial(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function PeriodoFinal(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function DataInicial(Value: TDateTime): IJSEcdServiceConfig<I>; overload;
     function DataFinal(Value: TDateTime): IJSEcdServiceConfig<I>; overload;
 
+    function Empresa: Integer; overload;
     function Exercicio: Integer; overload;
     function PeriodoInicial: Integer; overload;
     function PeriodoFinal: Integer; overload;
@@ -80,6 +83,17 @@ end;
 function TJSEcdServiceConfig<I>.&Begin: IJSEcdServiceConfig<I>;
 begin
   Result := Self;
+end;
+
+function TJSEcdServiceConfig<I>.Empresa: Integer;
+begin
+  Result := FEmpresa;
+end;
+
+function TJSEcdServiceConfig<I>.Empresa(Value: Integer): IJSEcdServiceConfig<I>;
+begin
+  Result := Self;
+  FEmpresa := Value;
 end;
 
 function TJSEcdServiceConfig<I>.&End: I;

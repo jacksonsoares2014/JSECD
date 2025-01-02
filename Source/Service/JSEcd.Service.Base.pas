@@ -9,6 +9,7 @@ uses
 type
   TJSEcdService = class(TInterfacedObject, IJSEcdService)
   private
+    //FBloco0: IJSEcdServiceBloco0;
     FConfig: IJSEcdServiceConfig<IJSEcdService>;
   public
     function Config: IJSEcdServiceConfig<IJSEcdService>;
@@ -32,7 +33,7 @@ end;
 
 constructor TJSEcdService.Create;
 begin
-
+  //FBloco0 := TJSEcdServiceBloco0.New(Self);
 end;
 
 destructor TJSEcdService.Destroy;
@@ -43,7 +44,7 @@ end;
 
 function TJSEcdService.Execute: IJSEcdService;
 begin
-
+  Result := Self;
 end;
 
 class function TJSEcdService.New: IJSEcdService;

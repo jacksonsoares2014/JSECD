@@ -6,10 +6,11 @@ uses
   JSEcd.Export.Interfaces,
   JSEcd.Export.Base,
   JSEcd.Model.Classes,
+  JSEcd.Model.Format,
   System.SysUtils;
 
 const
-  cJ005 = '|J005|';
+  cJ005 = '|J005|%s|%s|%s|%s|';
 
 type
   TJSEcdExportRegistroJ005 = class(TJSEcdExportBase, IJSEcdExport)
@@ -28,7 +29,10 @@ begin
   validateInstance<TJSEcdModelRegistroJ005>(AModel, FRegJ005);
 
   result := Format(cJ005,
-                   [FRegJ005.);
+                   [JSEF.FormatData(FRegJ005.dtIni),
+                    JSEF.FormatData(FRegJ005.dtFin),
+                    FRegJ005.idDem.ToString,
+                    FRegJ005.cadDem]);
 end;
 
 end.

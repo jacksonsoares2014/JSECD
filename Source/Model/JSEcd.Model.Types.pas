@@ -43,7 +43,7 @@ type
                    crVinculada,
                    crrLocalizadaPaisTribFavorecido);
 
-  TJSEcdIndRec = (irEscritruracaoMatriz, irEscritruracaoFilial);
+  TJSEcdIndDec = (idEscritruracaoMatriz, idEscritruracaoFilial);
 
   TJSEcdCodEntRef = (cerNenhuma, cerBCB, cerSusep, cerCVM, cerANTT, cerTSE,
                      cerSEFAZAC, cerSEFAZAL, cerSEFAZAM, cerSEFAZAP,
@@ -56,11 +56,11 @@ type
 
   TJSEcdIndicadorMovimento = (imComDadosInformados, imSemDadosInformados);
 
-  TJSEcdIndEsc = (ieLivroDiarioCompleto, //G
-                  ieLivroDiarioResumido, //R
-                  ieLivroDiarioAuxiliar, //A
-                  ieLivroBalancetesDiariosBalancos, //B
-                  ieRazaoAuxiliar); //Z
+  TJSEcdIndEsc = (ieLivroDiarioCompleto,
+                  ieLivroDiarioResumido,
+                  ieLivroDiarioAuxiliar,
+                  ieLivroBalancetesDiariosBalancos,
+                  ieRazaoAuxiliar);
 
   TJSEcdTipoLivroAssoc = (tlaDigital, tlaOutros);
 
@@ -72,131 +72,110 @@ type
                    tdParecerAuditores,
                    tdOutros);
 
+  TJSEcdIndLcto = (ilNormal, ilEncerramento, ilExtemporaneo);
+
   TJSEcdIndCentralizadaHelper = record helper for TJSEcdIndCentralizada
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
 //    function Caption: string;
   end;
 
   TJSEcdIndSitEspHelper = record helper for TJSEcdIndSitEsp
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
 
   TJSEcdIndSitIniPerHelper = record helper for TJSEcdIndSitIniPer
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
 
   TJSEcdIndFinEscHelper = record helper for TJSEcdIndFinEsc
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
 
   TJSEcdCodPlanRefHelper = record helper for TJSEcdCodPlanRef
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
 
   TJSEcdIndMudancPcHelper = record helper for TJSEcdIndMudancPc
     public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
 
   TJSEcdTipEcdHelper = record helper for TJSEcdTipEcd
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
-//  = (tpeEmpresaNaoParticipanteSCP, tpeEmpresaParticipanteSCP, tpeSCP);
 
   TJSEcdIndGrandePorteHelper = record helper for TJSEcdIndGrandePorte
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
-//   = (igpNao, igpSim);
 
   TJSEcdIndNireHelper = record helper for TJSEcdIndNire
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
-//   = (inNaoPossuiNIRE, inPossuiNIRE);
 
   TJSEcdsCodRelHelper = record helper for TJSEcdsCodRel
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
-//   = (crMatrizExterior,
-//                   crFilialExterior,
-//                   crColigada,
-//                   crControladora,
-//                   crControlada,
-//                   crSubsidiariaIntegral,
-//                   crControladaEmConjunto,
-//                   crEntidadePropositoEspecifico,
-//                   crConglomerado,
-//                   crVinculada,
-//                   crrLocalizadaPaisTribFavorecido);
 
-  TJSEcdIndRecHelper = record helper for TJSEcdIndRec
+  TJSEcdIndDecHelper = record helper for TJSEcdIndDec
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
-//   = (irEscritruracaoMatriz, irEscritruracaoFilial);
 
   TJSEcdCodEntRefHelper = record helper for TJSEcdCodEntRef
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
 
   TJSEcdIndicadorMovimentoHelper = record helper for TJSEcdIndicadorMovimento
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
-//   = (imComDadosInformados, imSemDadosInformados);
 
   TJSEcdIndEscHelper = record helper for TJSEcdIndEsc
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
-//   = (ieLivroDiarioCompleto, //G
-//                  ieLivroDiarioResumido, //R
-//                  ieLivroDiarioAuxiliar, //A
-//                  ieLivroBalancetesDiariosBalancos, //B
-//                  ieRazaoAuxiliar); //Z
 
   TJSEcdTipoLivroAssocHelper = record helper for TJSEcdTipoLivroAssoc
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
-//   = (tlaDigital, tlaOutros);
 
   TJSEcdTipoDocHelper = record helper for TJSEcdTipoDoc
   public
-    function toString: string;
-    procedure fromString(Value: string);
+    function ToString: string;
+    procedure FromString(Value: string);
   end;
-//   = (tdDemonstracaoResultadoAbrangentePeriodo,
-//                   tdDemonstracaoFluxosCaixa,
-//                   tdDemonstracaoValorAdicionado,
-//                   tdNotasExplicativas,
-//                   tdRelatorioAdministracao,
-//                   tdParecerAuditores,
-//                   tdOutros);
+
+  TJSEcdIndLctoHelper = record helper for TJSEcdIndLcto
+  public
+    function ToString: string;
+    procedure FromString(Value: string);
+  end;
 
 
 implementation
@@ -210,9 +189,17 @@ var
                                     'MT','MS','MG','PA','PB','PE','PR','PI',
                                     'RJ','RN','RS','RR','RO','SC','SP','SE','TO'];
 
+  aStrCodRel: array of string = ['01','02','03','04','05','06','07','08','09','10','11'];
+
+  aStrIndEsc: array of string = ['G','R','A','B','Z'];
+
+  aStrTipoDoc: array of string = ['001','002','003','010','011','012','099'];
+
+  aStrIndLcto: array of string = ['N','E','X'];
+
 { TJSEcdIndSitEspHelper }
 
-procedure TJSEcdIndSitEspHelper.fromString(Value: string);
+procedure TJSEcdIndSitEspHelper.FromString(Value: string);
 var
   I: Integer;
 begin
@@ -222,9 +209,9 @@ begin
       Self := TJSEcdIndSitEsp(I);
 end;
 
-function TJSEcdIndSitEspHelper.toString: string;
+function TJSEcdIndSitEspHelper.ToString: string;
 begin
-  case self of
+  case Self of
     iseCisao: Result := '1';
     iseFusao: Result := '2';
     iseIncorporacao: Result := '3';
@@ -236,7 +223,7 @@ end;
 
 { TJSEcdIndSitIniPerHelper }
 
-procedure TJSEcdIndSitIniPerHelper.fromString(Value: string);
+procedure TJSEcdIndSitIniPerHelper.FromString(Value: string);
 var
   I: Integer;
 begin
@@ -246,9 +233,9 @@ begin
       Self := TJSEcdIndSitIniPer(I);
 end;
 
-function TJSEcdIndSitIniPerHelper.toString: string;
+function TJSEcdIndSitIniPerHelper.ToString: string;
 begin
-  case self of
+  case Self of
     isipNormal: Result := '0';
     isipAbertura: Result := '1';
     isipCisaoFusao: Result := '2';
@@ -258,7 +245,7 @@ end;
 
 { TJSEcdIndCentralizadaHelper }
 
-procedure TJSEcdIndCentralizadaHelper.fromString(Value: string);
+procedure TJSEcdIndCentralizadaHelper.FromString(Value: string);
 var
   I: Integer;
 begin
@@ -268,9 +255,9 @@ begin
       Self := TJSEcdIndCentralizada(I);
 end;
 
-function TJSEcdIndCentralizadaHelper.toString: string;
+function TJSEcdIndCentralizadaHelper.ToString: string;
 begin
-  case self of
+  case Self of
     icCentralizada: Result := '0';
     icDescentralizada: Result := '1';
   end;
@@ -278,7 +265,7 @@ end;
 
 { TJSEcdIndFinEscHelper }
 
-procedure TJSEcdIndFinEscHelper.fromString(Value: string);
+procedure TJSEcdIndFinEscHelper.FromString(Value: string);
 var
   I: Integer;
 begin
@@ -288,9 +275,9 @@ begin
       Self := TJSEcdIndFinEsc(I);
 end;
 
-function TJSEcdIndFinEscHelper.toString: string;
+function TJSEcdIndFinEscHelper.ToString: string;
 begin
-  case self of
+  case Self of
     ifeOriginal: Result := '0';
     ifeSubstituta: Result := '1';
   end;
@@ -298,7 +285,7 @@ end;
 
 { TJSEcdCodPlanRefHelper }
 
-procedure TJSEcdCodPlanRefHelper.fromString(Value: string);
+procedure TJSEcdCodPlanRefHelper.FromString(Value: string);
 var
   I: Integer;
 begin
@@ -308,9 +295,9 @@ begin
       Self := TJSEcdCodPlanRef(I);
 end;
 
-function TJSEcdCodPlanRefHelper.toString: string;
+function TJSEcdCodPlanRefHelper.ToString: string;
 begin
-  case self of
+  case Self of
     cprVazio: Result := EmptyStr;
     cprPJLucroReal: Result := '1';
     cprPJLucroPresumido: Result := '2';
@@ -327,16 +314,16 @@ end;
 
 { TJSEcdIndMudancPcHelper }
 
-procedure TJSEcdIndMudancPcHelper.fromString(Value: string);
+procedure TJSEcdIndMudancPcHelper.FromString(Value: string);
 begin
   Self := impNaoHouveMudanca;
   if AnsiSameText(Value, '1') then
     Self := impHouveMudanca;
 end;
 
-function TJSEcdIndMudancPcHelper.toString: string;
+function TJSEcdIndMudancPcHelper.ToString: string;
 begin
-  case self of
+  case Self of
     impNaoHouveMudanca: Result := '0';
     impHouveMudanca: Result := '1';
   end;
@@ -344,19 +331,19 @@ end;
 
 { TJSEcdCodEntRefHelper }
 
-procedure TJSEcdCodEntRefHelper.fromString(Value: string);
+procedure TJSEcdCodEntRefHelper.FromString(Value: string);
 var
   I: Integer;
 begin
   Self := cerNenhuma;
-  for I := 1 to 33 do
-    if AnsiSameText(Value, aStrCodEntRef(I)) then
+  for I := Low(aStrCodEntRef) to High(aStrCodEntRef) do
+    if AnsiSameText(Value, aStrCodEntRef[I]) then
       Self := TJSEcdCodEntRef(I);
 end;
 
-function TJSEcdCodEntRefHelper.toString: string;
+function TJSEcdCodEntRefHelper.ToString: string;
 begin
-  case self of
+  case Self of
     cerNenhuma: Result := '00';
     cerBCB: Result := '01';
     cerSusep: Result := '02';
@@ -390,6 +377,210 @@ begin
     cerSEFAZSP: Result := 'SP';
     cerSEFAZSE: Result := 'SE';
     cerSEFAZTO: Result := 'TO';
+  end;
+end;
+
+{ TJSEcdTipEcdHelper }
+
+procedure TJSEcdTipEcdHelper.FromString(Value: string);
+var
+  I: Integer;
+begin
+  Self := tpeEmpresaNaoParticipanteSCP;
+  for I := 0 to 2 do
+    if AnsiSameText(Value, IntToStr(I)) then
+      Self := TJSEcdTipEcd(I);
+end;
+
+function TJSEcdTipEcdHelper.ToString: string;
+begin
+  case Self of
+    tpeEmpresaNaoParticipanteSCP: Result := '0';
+    tpeEmpresaParticipanteSCP: Result := '1';
+    tpeSCP: Result := '2';
+  end;
+end;
+
+{ TJSEcdIndGrandePorteHelper }
+
+procedure TJSEcdIndGrandePorteHelper.FromString(Value: string);
+begin
+  Self := igpNao;
+  if AnsiSameText(Value, '1') then
+    Self := igpSim;
+end;
+
+function TJSEcdIndGrandePorteHelper.ToString: string;
+begin
+  case Self of
+    igpNao: Result := '0';
+    igpSim: Result := '1';
+  end;
+end;
+
+{ TJSEcdIndNireHelper }
+
+procedure TJSEcdIndNireHelper.FromString(Value: string);
+begin
+  Self := inNaoPossuiNIRE;
+  if AnsiSameText(Value, '1') then
+    Self := inPossuiNIRE;
+end;
+
+function TJSEcdIndNireHelper.ToString: string;
+begin
+  case Self of
+    inNaoPossuiNIRE: Result := '0';
+    inPossuiNIRE: Result := '0';
+  end;
+end;
+
+{ TJSEcdsCodRelHelper }
+
+procedure TJSEcdsCodRelHelper.FromString(Value: string);
+var
+  I: Integer;
+begin
+  Self := crMatrizExterior;
+  for I := Low(aStrCodRel) to High(aStrCodRel) do
+    if AnsiSameText(Value, aStrCodRel[I]) then
+      Self := TJSEcdsCodRel(I);
+end;
+
+function TJSEcdsCodRelHelper.ToString: string;
+begin
+  case Self of
+    crMatrizExterior: Result := '01';
+    crFilialExterior: Result := '02';
+    crColigada: Result := '03';
+    crControladora: Result := '04';
+    crControlada: Result := '05';
+    crSubsidiariaIntegral: Result := '06';
+    crControladaEmConjunto: Result := '07';
+    crEntidadePropositoEspecifico: Result := '08';
+    crConglomerado: Result := '09';
+    crVinculada: Result := '10';
+    crrLocalizadaPaisTribFavorecido: Result := '11';
+  end;
+end;
+
+{ TJSEcdIndDecHelper }
+
+procedure TJSEcdIndDecHelper.FromString(Value: string);
+begin
+  Self := idEscritruracaoMatriz;
+  if AnsiSameText(Value, '1') then
+    Self := idEscritruracaoFilial;
+end;
+
+function TJSEcdIndDecHelper.ToString: string;
+begin
+  case Self of
+    idEscritruracaoMatriz: Result := '0';
+    idEscritruracaoFilial: Result := '1';
+  end;
+end;
+
+{ TJSEcdIndicadorMovimentoHelper }
+
+procedure TJSEcdIndicadorMovimentoHelper.FromString(Value: string);
+begin
+  Self := imComDadosInformados;
+  if AnsiSameText(Value, '1') then
+    Self := imSemDadosInformados;
+end;
+
+function TJSEcdIndicadorMovimentoHelper.ToString: string;
+begin
+  case Self of
+    imComDadosInformados: Result := '0';
+    imSemDadosInformados: Result := '1';
+  end;
+end;
+
+{ TJSEcdIndEscHelper }
+
+procedure TJSEcdIndEscHelper.FromString(Value: string);
+var
+  I: Integer;
+begin
+  Self := ieLivroDiarioCompleto;
+  for I := Low(aStrIndEsc) to High(aStrIndEsc) do
+    if AnsiSameText(Value, aStrIndEsc[I]) then
+      Self := TJSEcdIndEsc(I);
+end;
+
+function TJSEcdIndEscHelper.ToString: string;
+begin
+  case Self of
+    ieLivroDiarioCompleto: Result := 'G';
+    ieLivroDiarioResumido: Result := 'R';
+    ieLivroDiarioAuxiliar: Result := 'A';
+    ieLivroBalancetesDiariosBalancos: Result := 'B';
+    ieRazaoAuxiliar: Result := 'Z';
+  end;
+end;
+
+{ TJSEcdTipoLivroAssocHelper }
+
+procedure TJSEcdTipoLivroAssocHelper.FromString(Value: string);
+begin
+  Self := tlaDigital;
+  if AnsiSameText(Value, '1') then
+    Self := tlaOutros;
+end;
+
+function TJSEcdTipoLivroAssocHelper.ToString: string;
+begin
+  case Self of
+    tlaDigital: Result := '0';
+    tlaOutros: Result := '1';
+  end;
+end;
+
+{ TJSEcdTipoDocHelper }
+
+procedure TJSEcdTipoDocHelper.FromString(Value: string);
+var
+  I: Integer;
+begin
+  Self := tdDemonstracaoResultadoAbrangentePeriodo;
+  for I := Low(aStrTipoDoc) to High(aStrTipoDoc) do
+    if AnsiSameText(Value, aStrTipoDoc[I]) then
+      Self := TJSEcdTipoDoc(I);
+end;
+
+function TJSEcdTipoDocHelper.ToString: string;
+begin
+  case Self of
+    tdDemonstracaoResultadoAbrangentePeriodo: Result := '001';
+    tdDemonstracaoFluxosCaixa: Result := '002';
+    tdDemonstracaoValorAdicionado: Result := '003';
+    tdNotasExplicativas: Result := '010';
+    tdRelatorioAdministracao: Result := '011';
+    tdParecerAuditores: Result := '012';
+    tdOutros: Result := '099';
+  end;
+end;
+
+{ TJSEcdIndLctoHelper }
+
+procedure TJSEcdIndLctoHelper.FromString(Value: string);
+var
+  I: Integer;
+begin
+  Self := ilNormal;
+  for I := Low(aStrIndLcto) to High(aStrIndLcto) do
+    if AnsiSameText(Value, aStrIndLcto[I]) then
+      Self := TJSEcdIndLcto(I);
+end;
+
+function TJSEcdIndLctoHelper.ToString: string;
+begin
+  case Self of
+    ilNormal: Result := 'N';
+    ilEncerramento: Result := 'E';
+    ilExtemporaneo: Result := 'X';
   end;
 end;
 

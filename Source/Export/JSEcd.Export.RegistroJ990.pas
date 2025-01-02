@@ -8,9 +8,6 @@ uses
   JSEcd.Model.Classes,
   System.SysUtils;
 
-const
-  cJ990 = '|J990|';
-
 type
   TJSEcdExportRegistroJ990 = class(TJSEcdExportBase, IJSEcdExport)
   private
@@ -27,8 +24,7 @@ function TJSEcdExportRegistroJ990.LinhaEcd(AModel: TJSEcdModelRegistro): string;
 begin
   validateInstance<TJSEcdModelRegistroJ990>(AModel, FRegJ990);
 
-  result := Format(cJ990,
-                   [FRegJ990.);
+  result := Format('|J990|%d|', [FRegJ990.qtdLinJ]);
 end;
 
 end.

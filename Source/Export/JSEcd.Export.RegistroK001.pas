@@ -6,10 +6,8 @@ uses
   JSEcd.Export.Interfaces,
   JSEcd.Export.Base,
   JSEcd.Model.Classes,
+  JSEcd.Model.Types,
   System.SysUtils;
-
-const
-  cK001 = '|K001|';
 
 type
   TJSEcdExportRegistroK001 = class(TJSEcdExportBase, IJSEcdExport)
@@ -27,8 +25,7 @@ function TJSEcdExportRegistroK001.LinhaEcd(AModel: TJSEcdModelRegistro): string;
 begin
   validateInstance<TJSEcdModelRegistroK001>(AModel, FRegK001);
 
-  result := Format(cK001,
-                   [FRegK001.);
+  result := Format('|K001|%s|', [FRegK001.indDad.ToString]);
 end;
 
 end.
