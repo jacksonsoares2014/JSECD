@@ -1,4 +1,4 @@
-unit JSEcd.Export.Registro0000;
+unit JSEcd.Export.RegistroI350;
 
 interface
 
@@ -9,26 +9,26 @@ uses
   System.SysUtils;
 
 const
-  c0000 = '|0000|';
+  cI350 = '|I350|';
 
 type
-  TJSEcdExportRegistro0000 = class(TJSEcdExportBase, IJSEcdExport)
+  TJSEcdExportRegistroI350 = class(TJSEcdExportBase, IJSEcdExport)
   private
-    FReg0000: TJSEcdModelRegistro0000;
+    FRegI350: TJSEcdModelRegistroI350;
   protected
     function LinhaEcd(AModel: TJSEcdModelRegistro): string; override;
   end;
 
 implementation
 
-{ TJSEcdExportRegistro0000 }
+{ TJSEcdExportRegistroI350 }
 
-function TJSEcdExportRegistro0000.LinhaEcd(AModel: TJSEcdModelRegistro): string;
+function TJSEcdExportRegistroI350.LinhaEcd(AModel: TJSEcdModelRegistro): string;
 begin
-  validateInstance<TJSEcdModelRegistro0000>(AModel, FReg0000);
+  validateInstance<TJSEcdModelRegistroI350>(AModel, FRegI350);
 
-  result := Format(c0000,
-                   [FReg0000.);
+  result := Format(cI350,
+                   [FRegI350.);
 end;
 
 end.
