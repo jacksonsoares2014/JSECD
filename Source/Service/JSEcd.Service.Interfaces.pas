@@ -19,7 +19,11 @@ type
   IJSEcdServiceConfigConglomeradoEconomicos<I: IInterface> = interface;
   IJSEcdDAOCollection = interface;
   IJSEcdDAOCollectionBloco0 = interface;
-  IJSEcdDAOCollectionBlocoI = interface;
+  IJSEcdDAOCollectionBlocoIParte1 = interface;
+  IJSEcdDAOCollectionBlocoIParte2 = interface;
+  IJSEcdDAOCollectionBlocoIParte3 = interface;
+  IJSEcdDAOCollectionBlocoIParte4 = interface;
+  IJSEcdDAOCollectionBlocoIParte5 = interface;
   IJSEcdDAOCollectionBlocoJ = interface;
   IJSEcdDAOCollectionBlocoK = interface;
 
@@ -37,19 +41,41 @@ type
 
   IJSEcdServiceConfig<I: IInterface> = interface
     ['{2EF6489D-FBDD-4B86-82F2-EC8FE0B9D75D}']
-    function Empresa(Value: Integer): IJSEcdServiceConfig<I>; overload;
+    function Empresa(Value: Extended): IJSEcdServiceConfig<I>; overload;
     function Exercicio(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function PeriodoInicial(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function PeriodoFinal(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function DataInicial(Value: TDateTime): IJSEcdServiceConfig<I>; overload;
     function DataFinal(Value: TDateTime): IJSEcdServiceConfig<I>; overload;
+    function NomeDiretorio(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeChave(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivo(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoParte1(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoParte2(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoParte3(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoParte4(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoI200_1Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoI200_2Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoI200_3Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoI200_4Tri(Value: string): IJSEcdServiceConfig<I>; overload;
 
-    function Empresa: Integer; overload;
+    function Empresa: Extended; overload;
     function Exercicio: Integer; overload;
     function PeriodoInicial: Integer; overload;
     function PeriodoFinal: Integer; overload;
     function DataInicial: TDateTime; overload;
     function DataFinal: TDateTime; overload;
+    function NomeDiretorio: string; overload;
+    function NomeChave: string; overload;
+    function NomeArquivo: string; overload;
+    function NomeArquivoParte1: string; overload;
+    function NomeArquivoParte2: string; overload;
+    function NomeArquivoParte3: string; overload;
+    function NomeArquivoParte4: string; overload;
+    function NomeArquivoI200_1Tri: string; overload;
+    function NomeArquivoI200_2Tri: string; overload;
+    function NomeArquivoI200_3Tri: string; overload;
+    function NomeArquivoI200_4Tri: string; overload;
 
     function AssociacaoPlanoGoverno: IJSEcdServiceConfigAssociacaoPlanoGoverno<IJSEcdServiceConfig<I>>;
     function Geral: IJSEcdServiceConfigGeral<IJSEcdServiceConfig<I>>;
@@ -69,17 +95,7 @@ type
 //    property cdsRegistroI157: TClientDataSet read FcdsRegistroI157 write SetcdsRegistroI157;
 //    property CdsDemonstrativo: TClientDataSet read FCdsDemonstrativo write SetCdsDemonstrativo;
 //    property GeraFCont: boolean read FGeraFCont write SetGeraFCont;
-//ok    property dtInicial: String read FdtInicial write SetdtInicial;
-//ok    property dtFinal: String read FdtFinal write SetdtFinal;
-//ok    property IndicadorSituacaoEspecial: String read FIndicadorSituacaoEspecial write SetIndicadorSituacaoEspecial;
-//ok    property sIndicadorSubgrupo: String read FsIndicadorSubgrupo write SetsIndicadorSubgrupo;
-//ok    property nExercicio : Extended read FnExercicio write SetnExercicio;
-//ok    property iPeriodoIni : Integer read FiPeriodoIni write SetiPeriodoIni;
-//ok    property iPeriodoFim : Integer read FiPeriodoFim write SetiPeriodoFim;
-//ok    property iTipoDocNIRE : Integer read FiTipoDocNIRE write SetiTipoDocNIRE;
 //    property cds : TClientDataSet read Fcds write Setcds;
-//ok    property sCodigoInstituicaoResponsavelAdministracaoCadastro : String read FsCodigoInstituicaoResponsavelAdministracaoCadastro write SetsCodigoInstituicaoResponsavelAdministracaoCadastro;
-//ok    property sTipoEscrituracao : string read FsTipoEscrituracao write SetsTipoEscrituracao;
 //    property cdsListaMatrizFilial : TClientDataSet read FcdsListaMatrizFilial write SetcdsListaMatrizFilial;
 //ok    property iAtributoTipoRelacionamento : Integer read FiAtributoTipoRelacionamento write SetiAtributoTipoRelacionamento;
 //ok    property iInscricaoEstadualContribuinteSubstituto : Integer read FiInscricaoEstadualContribuinteSubstituto write SetiInscricaoEstadualContribuinteSubstituto;
@@ -90,8 +106,8 @@ type
 //    property iTipoEscrituracao : Integer read FiTipoEscrituracao write SetiTipoEscrituracao;
 //ok    property sNumeroOrdemInstrumentoEscrituracao : string read FsNumeroOrdemInstrumentoEscrituracao write SetsNumeroOrdemInstrumentoEscrituracao;
 //ok    property sNaturezaLivro : string read FsNaturezaLivro write SetsNaturezaLivro;
-//    property sPeriodoIni : String read FsPeriodoIni write SetsPeriodoIni;
-//    property sPeriodoFim : String read FsPeriodoFim write SetsPeriodoFim;
+//ok    property sPeriodoIni : String read FsPeriodoIni write SetsPeriodoIni;
+//ok    property sPeriodoFim : String read FsPeriodoFim write SetsPeriodoFim;
 //ok    property sDataArquivamentoAtosConstituitivos : String read FsDataArquivamentoAtosConstituitivos write SetsDataArquivamentoAtosConstituitivos;
 //ok    property sDataArquivamentoAtoConversao : String read FsDataArquivamentoAtoConversao write SetsDataArquivamentoAtoConversao;
 //ok    property sCodigoEntidadeResponsavelManutencaoPlanoContasReferencial : String read FsCodigoEntidadeResponsavelManutencaoPlanoContasReferencial write SetsCodigoEntidadeResponsavelManutencaoPlanoContasReferencial;
@@ -155,13 +171,13 @@ type
 //    property MemLogI200_4Tri : TStrings read FMemLogI200_4Tri write SetMemLogI200_4Tri;
 //    property MemLog4 : TStrings read FMemLog4 write SetMemLog4;
 //    property MemLog3 : TStrings read FMemLog3 write SetMemLog3;
-//    property sNomeArquivo : String read FsNomeArquivo write SetsNomeArquivo;
+//of    property sNomeArquivo : String read FsNomeArquivo write SetsNomeArquivo;
 //    property DriverOracle : Boolean read FDriverOracle write SetDriverOracle;
 //ok    property iIndicaContabCentralizada  : Integer read FIndicaContabCentralizada write SetIndicaContabCentralizada;
 //
 //
-//    property sNomeDiretorio : String read FsNomeDiretorio write SetsNomeDiretorio;
-//    property sNomeChave : String read FsNomeChave write SetsNomeChave;
+//ok    property sNomeDiretorio : String read FsNomeDiretorio write SetsNomeDiretorio;
+//ok    property sNomeChave : String read FsNomeChave write SetsNomeChave;
 //
 //
 //ok    property TipoECD   : String read FTipoECD write SetTipoECD;
@@ -202,7 +218,7 @@ type
 //    property dPlanoRefAtivo: Double read FdPlanoRefAtivo write SetdPlanoRefAtivo;
 //    property CdsCompConsolEmp: TClientDataSet read FCdsCompConsolEmp write FCdsCompConsolEmp;
 //    property CdsConglomeradoEconomico: TClientDataSet read FCdsConglomeradoEconomico write FCdsConglomeradoEconomico;
-//    property Empresa: Extended read FEmpresa write SetEmpresa;
+//ok    property Empresa: Extended read FEmpresa write SetEmpresa;
 
 
   IJSEcdServiceConfigAssociacaoPlanoGoverno<I: IInterface> = interface
@@ -402,7 +418,11 @@ type
   IJSEcdDAOCollection = interface
     ['{9AE74B34-03FC-4B41-B870-7F3F895F0DD3}']
     function Bloco0: IJSEcdDAOCollectionBloco0;
-    function BlocoI: IJSEcdDAOCollectionBlocoI;
+    function BlocoIParte1: IJSEcdDAOCollectionBlocoIParte1; //I001, I010, I030, I050, I051, I052, I075
+    function BlocoIParte2: IJSEcdDAOCollectionBlocoIParte2; //I100, I150, I155, I157
+    function BlocoIParte3: IJSEcdDAOCollectionBlocoIParte3; //I200, I250
+    function BlocoIParte4: IJSEcdDAOCollectionBlocoIParte4; //I300, I350, I355,
+    function BlocoIParte5: IJSEcdDAOCollectionBlocoIParte5; //I500, I510, I555, I990
     function BlocoJ: IJSEcdDAOCollectionBlocoJ;
     function BlocoK: IJSEcdDAOCollectionBlocoK;
 
@@ -430,29 +450,17 @@ type
     function &End: IJSEcdDAOCollection;
   end;
 
-  IJSEcdDAOCollectionBlocoI = interface
+  IJSEcdDAOCollectionBlocoIParte1 = interface
     ['{4AA323A8-A6C8-44C7-9859-5E459C28B96D}']
-    function AddI010(Value: IJSEcdDAOI010): IJSEcdDAOCollectionBlocoI;
-    function AddI012(Value: IJSEcdDAOI012): IJSEcdDAOCollectionBlocoI;
-    function AddI015(Value: IJSEcdDAOI015): IJSEcdDAOCollectionBlocoI;
-    function AddI030(Value: IJSEcdDAOI030): IJSEcdDAOCollectionBlocoI;
-    function AddI050(Value: IJSEcdDAOI050): IJSEcdDAOCollectionBlocoI;
-    function AddI051(Value: IJSEcdDAOI051): IJSEcdDAOCollectionBlocoI;
-    function AddI052(Value: IJSEcdDAOI052): IJSEcdDAOCollectionBlocoI;
-    function AddI053(Value: IJSEcdDAOI053): IJSEcdDAOCollectionBlocoI;
-    function AddI075(Value: IJSEcdDAOI075): IJSEcdDAOCollectionBlocoI;
-    function AddI100(Value: IJSEcdDAOI100): IJSEcdDAOCollectionBlocoI;
-    function AddI150(Value: IJSEcdDAOI150): IJSEcdDAOCollectionBlocoI;
-    function AddI155(Value: IJSEcdDAOI155): IJSEcdDAOCollectionBlocoI;
-    function AddI157(Value: IJSEcdDAOI157): IJSEcdDAOCollectionBlocoI;
-    function AddI200(Value: IJSEcdDAOI200): IJSEcdDAOCollectionBlocoI;
-    function AddI250(Value: IJSEcdDAOI250): IJSEcdDAOCollectionBlocoI;
-    function AddI350(Value: IJSEcdDAOI350): IJSEcdDAOCollectionBlocoI;
-    function AddI355(Value: IJSEcdDAOI355): IJSEcdDAOCollectionBlocoI;
-    function AddI500(Value: IJSEcdDAOI500): IJSEcdDAOCollectionBlocoI;
-    function AddI510(Value: IJSEcdDAOI510): IJSEcdDAOCollectionBlocoI;
-    function AddI550(Value: IJSEcdDAOI550): IJSEcdDAOCollectionBlocoI;
-    function AddI555(Value: IJSEcdDAOI555): IJSEcdDAOCollectionBlocoI;
+    function AddI010(Value: IJSEcdDAOI010): IJSEcdDAOCollectionBlocoIParte1;
+    function AddI012(Value: IJSEcdDAOI012): IJSEcdDAOCollectionBlocoIParte1;
+    function AddI015(Value: IJSEcdDAOI015): IJSEcdDAOCollectionBlocoIParte1;
+    function AddI030(Value: IJSEcdDAOI030): IJSEcdDAOCollectionBlocoIParte1;
+    function AddI050(Value: IJSEcdDAOI050): IJSEcdDAOCollectionBlocoIParte1;
+    function AddI051(Value: IJSEcdDAOI051): IJSEcdDAOCollectionBlocoIParte1;
+    function AddI052(Value: IJSEcdDAOI052): IJSEcdDAOCollectionBlocoIParte1;
+    function AddI053(Value: IJSEcdDAOI053): IJSEcdDAOCollectionBlocoIParte1;
+    function AddI075(Value: IJSEcdDAOI075): IJSEcdDAOCollectionBlocoIParte1;
 
     function DAOI010: IJSEcdDAOI010;
     function DAOI012: IJSEcdDAOI012;
@@ -463,20 +471,64 @@ type
     function DAOI052: IJSEcdDAOI052;
     function DAOI053: IJSEcdDAOI053;
     function DAOI075: IJSEcdDAOI075;
+
+    function &Begin: IJSEcdDAOCollectionBlocoIParte1;
+    function &End: IJSEcdDAOCollection;
+  end;
+
+  IJSEcdDAOCollectionBlocoIParte2 = interface
+    ['{16D8CC12-1843-41F3-82B4-E916F5F35D43}']
+    function AddI100(Value: IJSEcdDAOI100): IJSEcdDAOCollectionBlocoIParte2;
+    function AddI150(Value: IJSEcdDAOI150): IJSEcdDAOCollectionBlocoIParte2;
+    function AddI155(Value: IJSEcdDAOI155): IJSEcdDAOCollectionBlocoIParte2;
+    function AddI157(Value: IJSEcdDAOI157): IJSEcdDAOCollectionBlocoIParte2;
+
     function DAOI100: IJSEcdDAOI100;
     function DAOI150: IJSEcdDAOI150;
     function DAOI155: IJSEcdDAOI155;
     function DAOI157: IJSEcdDAOI157;
+
+    function &Begin: IJSEcdDAOCollectionBlocoIParte2;
+    function &End: IJSEcdDAOCollection;
+  end;
+
+  IJSEcdDAOCollectionBlocoIParte3 = interface
+    ['{7E0D1B5F-39FC-4471-A42C-79A406F5417E}']
+    function AddI200(Value: IJSEcdDAOI200): IJSEcdDAOCollectionBlocoIParte3;
+    function AddI250(Value: IJSEcdDAOI250): IJSEcdDAOCollectionBlocoIParte3;
+
     function DAOI200: IJSEcdDAOI200;
     function DAOI250: IJSEcdDAOI250;
+
+    function &Begin: IJSEcdDAOCollectionBlocoIParte3;
+    function &End: IJSEcdDAOCollection;
+  end;
+
+  IJSEcdDAOCollectionBlocoIParte4 = interface
+    ['{6F3C1EDD-50FC-4FAA-B464-BB19D15943BE}']
+    function AddI350(Value: IJSEcdDAOI350): IJSEcdDAOCollectionBlocoIParte4;
+    function AddI355(Value: IJSEcdDAOI355): IJSEcdDAOCollectionBlocoIParte4;
+
     function DAOI350: IJSEcdDAOI350;
     function DAOI355: IJSEcdDAOI355;
+
+    function &Begin: IJSEcdDAOCollectionBlocoIParte4;
+    function &End: IJSEcdDAOCollection;
+  end;
+
+  IJSEcdDAOCollectionBlocoIParte5 = interface
+    ['{DEE0FC97-12E5-49E7-BC1A-9FFD201BCA99}']
+    function AddI500(Value: IJSEcdDAOI500): IJSEcdDAOCollectionBlocoIParte5;
+    function AddI510(Value: IJSEcdDAOI510): IJSEcdDAOCollectionBlocoIParte5;
+    function AddI550(Value: IJSEcdDAOI550): IJSEcdDAOCollectionBlocoIParte5;
+    function AddI555(Value: IJSEcdDAOI555): IJSEcdDAOCollectionBlocoIParte5;
+
     function DAOI500: IJSEcdDAOI500;
     function DAOI510: IJSEcdDAOI510;
     function DAOI550: IJSEcdDAOI550;
     function DAOI555: IJSEcdDAOI555;
 
-    function &Begin: IJSEcdDAOCollectionBlocoI;
+    function &Begin: IJSEcdDAOCollectionBlocoIParte5;
     function &End: IJSEcdDAOCollection;
   end;
 
