@@ -20,7 +20,7 @@ type
     FIndicadorSituacaoEspecial: string;
     FIndicadorExisteNIRE: string;
     FCodigoEntidadeResponsavelManutencaoPlanoContasReferencial: string;
-    FIndicaContabCentralizada: Integer;
+    FIndicaContabCentralizada: string;
 
     FIndicadorSubgrupo: string;
     FConsolidado: string;
@@ -39,7 +39,7 @@ type
     function IndicadorSituacaoEspecial(Value: string): IJSEcdServiceConfigGeral<I>; overload;
     function IndicadorExisteNIRE(Value: string): IJSEcdServiceConfigGeral<I>; overload;
     function CodigoEntidadeResponsavelManutencaoPlanoContasReferencial(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function IndicaContabCentralizada(Value: Integer): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicaContabCentralizada(Value: string): IJSEcdServiceConfigGeral<I>; overload;
 
     function TipoEscrituracao: string; overload;
     function IndicadorFinalidadeEscrturacao: string; overload;
@@ -50,7 +50,7 @@ type
     function IndicadorSituacaoEspecial: string; overload;
     function IndicadorExisteNIRE: string; overload;
     function CodigoEntidadeResponsavelManutencaoPlanoContasReferencial: string; overload;
-    function IndicaContabCentralizada: Integer; overload;
+    function IndicaContabCentralizada: string; overload;
 
     function IndicadorSubgrupo(Value: string): IJSEcdServiceConfigGeral<I>; overload;
     function Consolidado(Value: string): IJSEcdServiceConfigGeral<I>; overload;
@@ -156,13 +156,13 @@ begin
   Result := FHashEscrituracaoSubstituida;
 end;
 
-function TJSEcdServiceConfigGeral<I>.IndicaContabCentralizada: Integer;
+function TJSEcdServiceConfigGeral<I>.IndicaContabCentralizada: string;
 begin
   Result := FIndicaContabCentralizada;
 end;
 
 function TJSEcdServiceConfigGeral<I>.IndicaContabCentralizada(
-  Value: Integer): IJSEcdServiceConfigGeral<I>;
+  Value: string): IJSEcdServiceConfigGeral<I>;
 begin
   Result := Self;
   FIndicaContabCentralizada := Value;

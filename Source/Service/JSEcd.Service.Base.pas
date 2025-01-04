@@ -5,19 +5,26 @@ interface
 uses
   JSEcd.Service.Interfaces,
   JSEcd.Service.Config,
-  JSEcd.Service.Collection,
+  JSEcd.Service.DAO.Collection,
+  JSEcd.Service.Counter,
   System.Classes,
   System.SysUtils;
 
 type
   TJSEcdService = class(TInterfacedObject, IJSEcdService)
   private
-    //FBloco0: IJSEcdServiceBloco0;
+    FBloco0: IJSEcdServiceBloco0;
+    FBloco9: IJSEcdServiceBloco9;
     FConfig: IJSEcdServiceConfig<IJSEcdService>;
-    FJSDAOCollection: IJSEcdDAOCollection;
+    FJSDAOCollection: IJSEcdServiceDAOCollection;
+    FArquivoEcd: TFileStream;
+
+    procedure NomeiaArquivos;
+    procedure MergeArquivos; overload;
+    procedure MergeArquivos(Arquivo: string); overload;
   public
     function Config: IJSEcdServiceConfig<IJSEcdService>;
-    function DAO: IJSEcdDAOCollection;
+    function DAO: IJSEcdServiceDAOCollection;
     function Execute: IJSEcdService;
 
     constructor Create;
@@ -27,25 +34,37 @@ type
 
 implementation
 
+uses
+  JSEcd.Service.Bloco0,
+  JSEcd.Service.BlocoI.Parte1,
+  JSEcd.Service.BlocoI.Parte2,
+  JSEcd.Service.BlocoI.Parte3,
+  JSEcd.Service.BlocoI.Parte4,
+  JSEcd.Service.BlocoI.Parte5,
+  JSEcd.Service.BlocoJ,
+  JSEcd.Service.BlocoK,
+  JSEcd.Service.Bloco9;
+
 { TJSEcdService }
 
 function TJSEcdService.Config: IJSEcdServiceConfig<IJSEcdService>;
 begin
   if not Assigned(FConfig) then
     FConfig := TJSEcdServiceConfig<IJSEcdService>.New(Self);
-  result := FConfig;
+  Result := FConfig;
 end;
 
 constructor TJSEcdService.Create;
 begin
-  //FBloco0 := TJSEcdServiceBloco0.New(Self);
+  FBloco0 := TJSEcdServiceBloco0.New(Self);
+  FBloco9 := TJSEcdServiceBloco9.New(Self);
 end;
 
-function TJSEcdService.DAO: IJSEcdDAOCollection;
+function TJSEcdService.DAO: IJSEcdServiceDAOCollection;
 begin
   if not Assigned(FJSDAOCollection) then
     FJSDAOCollection := TJSEcdServiceDAOCollection.New(Self);
-  result := FJSDAOCollection;
+  Result := FJSDAOCollection;
 end;
 
 destructor TJSEcdService.Destroy;
@@ -55,32 +74,65 @@ begin
 end;
 
 function TJSEcdService.Execute: IJSEcdService;
-var
-  bloco0: TStringList;
 begin
   Result := Self;
-  FConfig.NomeChave := FloatToStr(FConfig.Empresa) + FormatDateTime('DDMMYYYY',Date) + FormatDateTime('HHMMSS',Time);
+  NomeiaArquivos;
 
-  bloco0 := nil;
+  FArquivoEcd := TFileStream.Create(FConfig.NomeArquivo, fmCreate or fmShareExclusive) ;
   try
-
+    FBloco0.Execute;
+    FBloco9.Execute;
+    MergeArquivos;
   finally
-    bloco0.Free;
+    FreeAndNil(FArquivoEcd);
+    Counter.ClearCounter;
   end;
+end;
 
-//  FConfig.NomeArquivoParte1 := Format('%s\%s.Parte1.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]);
-//  FConfig.NomeArquivoParte2 := Format('%s\%s.Parte2.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]);
-//  FConfig.NomeArquivoParte3 := Format('%s\%s.Parte3.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]);
-//  FConfig.NomeArquivoParte4 := Format('%s\%s.Parte4.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]);
-//  FConfig.NomeArquivoI200_1Tri := Format('%s\%s.I200_1Tri.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]);
-//  FConfig.NomeArquivoI200_2Tri := Format('%s\%s.I200_2Tri.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]);
-//  FConfig.NomeArquivoI200_3Tri := Format('%s\%s.I200_3Tri.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]);
-//  FConfig.NomeArquivoI200_4Tri := Format('%s\%s.I200_4Tri.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]);
+procedure TJSEcdService.MergeArquivos;
+begin
+  MergeArquivos(FConfig.NomeArquivoBloco0);
+  MergeArquivos(FConfig.NomeArquivoBloco9);
+end;
+
+procedure TJSEcdService.MergeArquivos(Arquivo: string);
+var
+   FParteArquivo: TFileStream;
+   wideChars: array[0..11] of WideChar;
+begin
+   try
+     FParteArquivo := TFileStream.Create(Arquivo, fmOpenRead or fmShareDenyWrite) ;
+     try
+        FArquivoEcd.CopyFrom(FParteArquivo, 0) ;
+     finally
+        FreeandNil(FParteArquivo);
+     end;
+
+     if FileExists(Arquivo) then
+       DeleteFile(Arquivo);
+   except
+      on E: Exception do
+        //Raise
+   end;
 end;
 
 class function TJSEcdService.New: IJSEcdService;
 begin
   Result := Self.Create;
+end;
+
+procedure TJSEcdService.NomeiaArquivos;
+begin
+  FConfig.NomeChave(FloatToStr(FConfig.Empresa) + FormatDateTime('DDMMYYYY',Date) + FormatDateTime('HHMMSS',Time));
+  FConfig.NomeArquivoBloco0(Format('%s\%s.Bloco0.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]));
+  FConfig.NomeArquivoBlocoIParte1(Format('%s\%s.BlocoI.Parte1.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]));
+  FConfig.NomeArquivoBlocoIParte2(Format('%s\%s.BlocoI.Parte2.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]));
+  FConfig.NomeArquivoBlocoIParte3_1Tri(Format('%s\%s.BlocoI.Parte3.1Tri.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]));
+  FConfig.NomeArquivoBlocoIParte3_2Tri(Format('%s\%s.BlocoI.Parte3.2Tri.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]));
+  FConfig.NomeArquivoBlocoIParte3_3Tri(Format('%s\%s.BlocoI.Parte3.3Tri.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]));
+  FConfig.NomeArquivoBlocoIParte3_4Tri(Format('%s\%s.BlocoI.Parte3.4Tri.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]));
+  FConfig.NomeArquivoBlocoK(Format('%s\%s.BlocoK.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]));
+  FConfig.NomeArquivoBloco9(Format('%s\%s.Bloco9.txt', [FConfig.NomeDiretorio, FConfig.NomeChave]));
 end;
 
 end.

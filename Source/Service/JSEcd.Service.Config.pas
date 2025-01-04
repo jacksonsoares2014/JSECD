@@ -29,14 +29,18 @@ type
     FNomeDiretorio: string;
     FNomeChave: string;
     FNomeArquivo: string;
-    FNomeArquivoParte1: string;
-    FNomeArquivoParte2: string;
-    FNomeArquivoParte3: string;
-    FNomeArquivoParte4: string;
-    FNomeArquivoI200_1Tri: string;
-    FNomeArquivoI200_2Tri: string;
-    FNomeArquivoI200_3Tri: string;
-    FNomeArquivoI200_4Tri: string;
+    FNomeArquivoBloco0: string;
+    FNomeArquivoBlocoIParte1: string;
+    FNomeArquivoBlocoIParte2: string;
+    FNomeArquivoBlocoIParte3_1Tri: string;
+    FNomeArquivoBlocoIParte3_2Tri: string;
+    FNomeArquivoBlocoIParte3_3Tri: string;
+    FNomeArquivoBlocoIParte3_4Tri: string;
+    FNomeArquivoBlocoIParte4: string;
+    FNomeArquivoBlocoIParte5: string;
+    FNomeArquivoBlocoJ: string;
+    FNomeArquivoBlocoK: string;
+    FNomeArquivoBloco9: string;
 
     FAssociacaoPlanoGoverno: IJSEcdServiceConfigAssociacaoPlanoGoverno<IJSEcdServiceConfig<I>>;
     FGeral: IJSEcdServiceConfigGeral<IJSEcdServiceConfig<I>>;
@@ -57,14 +61,18 @@ type
     function NomeDiretorio(Value: string): IJSEcdServiceConfig<I>; overload;
     function NomeChave(Value: string): IJSEcdServiceConfig<I>; overload;
     function NomeArquivo(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoParte1(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoParte2(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoParte3(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoParte4(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoI200_1Tri(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoI200_2Tri(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoI200_3Tri(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoI200_4Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBloco0(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte1(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte2(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte3_1Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte3_2Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte3_3Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte3_4Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte4(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte5(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoJ(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoK(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBloco9(Value: string): IJSEcdServiceConfig<I>; overload;
 
     function Empresa: Extended; overload;
     function Exercicio: Integer; overload;
@@ -75,14 +83,18 @@ type
     function NomeDiretorio: string; overload;
     function NomeChave: string; overload;
     function NomeArquivo: string; overload;
-    function NomeArquivoParte1: string; overload;
-    function NomeArquivoParte2: string; overload;
-    function NomeArquivoParte3: string; overload;
-    function NomeArquivoParte4: string; overload;
-    function NomeArquivoI200_1Tri: string; overload;
-    function NomeArquivoI200_2Tri: string; overload;
-    function NomeArquivoI200_3Tri: string; overload;
-    function NomeArquivoI200_4Tri: string; overload;
+    function NomeArquivoBloco0: string; overload;
+    function NomeArquivoBlocoIParte1: string; overload;
+    function NomeArquivoBlocoIParte2: string; overload;
+    function NomeArquivoBlocoIParte3_1Tri: string; overload;
+    function NomeArquivoBlocoIParte3_2Tri: string; overload;
+    function NomeArquivoBlocoIParte3_3Tri: string; overload;
+    function NomeArquivoBlocoIParte3_4Tri: string; overload;
+    function NomeArquivoBlocoIParte4: string; overload;
+    function NomeArquivoBlocoIParte5: string; overload;
+    function NomeArquivoBlocoJ: string; overload;
+    function NomeArquivoBlocoK: string; overload;
+    function NomeArquivoBloco9: string; overload;
 
     function AssociacaoPlanoGoverno: IJSEcdServiceConfigAssociacaoPlanoGoverno<IJSEcdServiceConfig<I>>;
     function Geral: IJSEcdServiceConfigGeral<IJSEcdServiceConfig<I>>;
@@ -241,93 +253,148 @@ begin
   Result := FNomeArquivo;
 end;
 
-function TJSEcdServiceConfig<I>.NomeArquivoI200_1Tri: string;
-begin
-
-end;
-
-function TJSEcdServiceConfig<I>.NomeArquivoI200_1Tri(
-  Value: string): IJSEcdServiceConfig<I>;
-begin
-
-end;
-
-function TJSEcdServiceConfig<I>.NomeArquivoI200_2Tri(
-  Value: string): IJSEcdServiceConfig<I>;
-begin
-
-end;
-
-function TJSEcdServiceConfig<I>.NomeArquivoI200_2Tri: string;
-begin
-
-end;
-
-function TJSEcdServiceConfig<I>.NomeArquivoI200_3Tri: string;
-begin
-
-end;
-
-function TJSEcdServiceConfig<I>.NomeArquivoI200_3Tri(
-  Value: string): IJSEcdServiceConfig<I>;
-begin
-
-end;
-
-function TJSEcdServiceConfig<I>.NomeArquivoI200_4Tri: string;
-begin
-
-end;
-
-function TJSEcdServiceConfig<I>.NomeArquivoI200_4Tri(
-  Value: string): IJSEcdServiceConfig<I>;
-begin
-
-end;
-
-function TJSEcdServiceConfig<I>.NomeArquivoParte1: string;
-begin
-
-end;
-
-function TJSEcdServiceConfig<I>.NomeArquivoParte1(
+function TJSEcdServiceConfig<I>.NomeArquivoBloco0(
   Value: string): IJSEcdServiceConfig<I>;
 begin
   Result := Self;
-  FNomeArquivoParte1 := Value;
+  FNomeArquivoBloco0 := Value;
 end;
 
-function TJSEcdServiceConfig<I>.NomeArquivoParte2: string;
+function TJSEcdServiceConfig<I>.NomeArquivoBloco0: string;
 begin
-
+  Result := FNomeArquivoBloco0;
 end;
 
-function TJSEcdServiceConfig<I>.NomeArquivoParte2(
+function TJSEcdServiceConfig<I>.NomeArquivoBloco9: string;
+begin
+  Result := FNomeArquivoBloco9;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBloco9(
   Value: string): IJSEcdServiceConfig<I>;
 begin
-
+  Result := Self;
+  FNomeArquivoBloco9 := Value;
 end;
 
-function TJSEcdServiceConfig<I>.NomeArquivoParte3(
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte1(
   Value: string): IJSEcdServiceConfig<I>;
 begin
-
+  Result := Self;
+  FNomeArquivoBlocoIParte1 := Value;
 end;
 
-function TJSEcdServiceConfig<I>.NomeArquivoParte3: string;
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte1: string;
 begin
-
+  Result := FNomeArquivoBlocoIParte1;
 end;
 
-function TJSEcdServiceConfig<I>.NomeArquivoParte4(
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte2: string;
+begin
+  Result := FNomeArquivoBlocoIParte2;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte2(
   Value: string): IJSEcdServiceConfig<I>;
 begin
-
+  Result := Self;
+  FNomeArquivoBlocoIParte2 := Value;
 end;
 
-function TJSEcdServiceConfig<I>.NomeArquivoParte4: string;
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte3_1Tri(
+  Value: string): IJSEcdServiceConfig<I>;
 begin
+  Result := Self;
+  FNomeArquivoBlocoIParte3_1Tri := Value;
+end;
 
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte3_1Tri: string;
+begin
+  Result := FNomeArquivoBlocoIParte3_1Tri;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte3_2Tri(
+  Value: string): IJSEcdServiceConfig<I>;
+begin
+  Result := Self;
+  FNomeArquivoBlocoIParte3_2Tri := Value;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte3_2Tri: string;
+begin
+  Result := FNomeArquivoBlocoIParte3_2Tri;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte3_3Tri(
+  Value: string): IJSEcdServiceConfig<I>;
+begin
+  Result := Self;
+  FNomeArquivoBlocoIParte3_3Tri := Value;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte3_3Tri: string;
+begin
+  Result := FNomeArquivoBlocoIParte3_3Tri;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte3_4Tri(
+  Value: string): IJSEcdServiceConfig<I>;
+begin
+  Result := Self;
+  FNomeArquivoBlocoIParte3_4Tri := Value;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte3_4Tri: string;
+begin
+  Result := FNomeArquivoBlocoIParte3_4Tri;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte4(
+  Value: string): IJSEcdServiceConfig<I>;
+begin
+  Result := Self;
+  FNomeArquivoBlocoIParte4 := Value;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte4: string;
+begin
+  Result := FNomeArquivoBlocoIParte4;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte5: string;
+begin
+  Result := FNomeArquivoBlocoIParte5;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoIParte5(
+  Value: string): IJSEcdServiceConfig<I>;
+begin
+  Result := Self;
+  FNomeArquivoBlocoIParte5 := Value;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoJ(
+  Value: string): IJSEcdServiceConfig<I>;
+begin
+  Result := Self;
+  FNomeArquivoBlocoJ := Value;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoJ: string;
+begin
+  Result := FNomeArquivoBlocoJ;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoK: string;
+begin
+  Result := FNomeArquivoBlocoK;
+end;
+
+function TJSEcdServiceConfig<I>.NomeArquivoBlocoK(
+  Value: string): IJSEcdServiceConfig<I>;
+begin
+  Result := Self;
+  FNomeArquivoBlocoK := Value;
 end;
 
 function TJSEcdServiceConfig<I>.NomeArquivo(

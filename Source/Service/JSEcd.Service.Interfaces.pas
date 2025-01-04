@@ -3,44 +3,225 @@ unit JSEcd.Service.Interfaces;
 interface
 
 uses
-  JSEcd.DAO.Interfaces;
-
+  JSEcd.DAO.Interfaces,
+  System.Classes;
 
 type
   IJSEcdServiceConfig<I: IInterface> = interface;
-  IJSEcdServiceConfigAssociacaoPlanoGoverno<I: IInterface> = interface;
-  IJSEcdServiceConfigGeral<I: IInterface> = interface;
-  IJSEcdServiceConfigFiscal<I: IInterface> = interface;
-  IJSEcdServiceConfigSignatario<I: IInterface> = interface;
-  IJSEcdServiceConfigDemonstracoesContabeis<I: IInterface> = interface;
-  IJSEcdServiceConfigInfoFiliaisLivroAuxiliar<I: IInterface> = interface;
-  IJSEcdServiceConfigInfoCadastroParticipante<I: IInterface> = interface;
-  IJSEcdServiceConfigInfoPlanoAnteriorSaldos<I: IInterface> = interface;
-  IJSEcdServiceConfigConglomeradoEconomicos<I: IInterface> = interface;
-  IJSEcdDAOCollection = interface;
-  IJSEcdDAOCollectionBloco0 = interface;
-  IJSEcdDAOCollectionBlocoIParte1 = interface;
-  IJSEcdDAOCollectionBlocoIParte2 = interface;
-  IJSEcdDAOCollectionBlocoIParte3 = interface;
-  IJSEcdDAOCollectionBlocoIParte4 = interface;
-  IJSEcdDAOCollectionBlocoIParte5 = interface;
-  IJSEcdDAOCollectionBlocoJ = interface;
-  IJSEcdDAOCollectionBlocoK = interface;
+
+  IJSEcdServiceDAOCollection = interface;
+  IJSEcdServiceDAOCollectionBloco0 = interface;
+  IJSEcdServiceDAOCollectionBlocoIParte1 = interface;
+  IJSEcdServiceDAOCollectionBlocoIParte2 = interface;
+  IJSEcdServiceDAOCollectionBlocoIParte3 = interface;
+  IJSEcdServiceDAOCollectionBlocoIParte4 = interface;
+  IJSEcdServiceDAOCollectionBlocoIParte5 = interface;
+  IJSEcdServiceDAOCollectionBlocoJ = interface;
+  IJSEcdServiceDAOCollectionBlocoK = interface;
 
   IJSEcdService = interface
-    ['{EADF2DEB-7ED2-4BB9-9AC0-BD8EE28703EA}']
+    ['{54799BF0-B207-429D-B881-5E7630AE663F}']
     function Config: IJSEcdServiceConfig<IJSEcdService>;
-    function DAO: IJSEcdDAOCollection;
+    function DAO: IJSEcdServiceDAOCollection;
     function Execute: IJSEcdService;
   end;
 
   IJSEcdServiceFactory = interface
-    ['{13841F67-3824-42BE-A546-0973908A63A0}']
+    ['{7582C76F-AC95-4F4B-92D7-108497A3798A}']
     function createService: IJSEcdService;
   end;
 
+  IJSEcdServiceConfigAssociacaoPlanoGoverno<I: IInterface> = interface
+    ['{E697FF5B-5079-4ABD-B984-C43041F65A68}']
+
+    function &End: I;
+  end;
+
+  IJSEcdServiceConfigGeral<I: IInterface> = interface
+    ['{67971BBA-4494-4580-AC1C-86EE20D86DBB}']
+    function TipoEscrituracao(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorFinalidadeEscrturacao(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorSituacaoIni(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function CodigoInstituicaoResponsavelAdministracaoCadastro(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorEmpresaGrandePorte(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function TipoECD(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorSituacaoEspecial(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicadorExisteNIRE(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function CodigoEntidadeResponsavelManutencaoPlanoContasReferencial(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function IndicaContabCentralizada(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+
+    function TipoEscrituracao: string; overload;
+    function IndicadorFinalidadeEscrturacao: string; overload;
+    function IndicadorSituacaoIni: string; overload;
+    function CodigoInstituicaoResponsavelAdministracaoCadastro: string; overload;
+    function IndicadorEmpresaGrandePorte: string; overload;
+    function TipoECD: string; overload;
+    function IndicadorSituacaoEspecial: string; overload;
+    function IndicadorExisteNIRE: string; overload;
+    function CodigoEntidadeResponsavelManutencaoPlanoContasReferencial: string; overload;
+    function IndicaContabCentralizada: string; overload;
+
+    function IndicadorSubgrupo(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function Consolidado(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function ConsolidadoSCP(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function EmpresaMatriz(Value: Integer): IJSEcdServiceConfigGeral<I>; overload;
+
+    function IndicadorSubgrupo: string; overload;
+    function Consolidado: string; overload;
+    function ConsolidadoSCP: string; overload;
+    function EmpresaMatriz: Integer; overload;
+
+    function HashEscrituracaoSubstituida(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+    function NIREEscrituracaoSubst(Value: string): IJSEcdServiceConfigGeral<I>; overload;
+
+    function HashEscrituracaoSubstituida: string; overload;
+    function NIREEscrituracaoSubst: string; overload;
+
+    function &End: I;
+  end;
+
+  IJSEcdServiceConfigFiscal<I: IInterface> = interface
+    ['{944BF2AB-70E9-4B55-B4AF-BEC035C4A926}']
+    function NumeroOrdemInstrumentoEscrituracao(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
+    function NaturezaLivro(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
+    function TipoDocNIRE(Value:  Integer): IJSEcdServiceConfigFiscal<I>; overload;
+    function DataArquivamentoAtosConstituitivos(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
+    function DataArquivamentoAtoConversao(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
+
+    function NumeroOrdemInstrumentoEscrituracao: string; overload;
+    function NaturezaLivro: string; overload;
+    function TipoDocNIRE: Integer; overload;
+    function DataArquivamentoAtosConstituitivos: string; overload;
+    function DataArquivamentoAtoConversao: string; overload;
+
+    function &End: I;
+  end;
+
+  IJSEcdServiceConfigSignatario<I: IInterface> = interface
+    ['{28D6730C-58F0-4955-A981-B217561107A0}']
+    function CodigoAssinanteContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function NomeSignatarioContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CPFSignatarioContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function EmailContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function TelefoneContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CRCSignatarioContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function EstadoCRCContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function DataValidadeCRCContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+
+    function CodigoAssinanteContador: string; overload;
+    function NomeSignatarioContador: string; overload;
+    function CPFSignatarioContador: string; overload;
+    function EmailContador: string; overload;
+    function TelefoneContador: string; overload;
+    function CRCSignatarioContador: string; overload;
+    function EstadoCRCContador: string; overload;
+    function DataValidadeCRCContador: string; overload;
+
+    function CodigoAssinanteLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function NomeSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CPFSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function EmailSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function TelefoneSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CRCSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function UFCRCSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function DataValidadeCRCSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+
+    function CodigoAssinanteLegal: string; overload;
+    function NomeSignatarioLegal: string; overload;
+    function CPFSignatarioLegal: string; overload;
+    function EmailSignatarioLegal: string; overload;
+    function TelefoneSignatarioLegal: string; overload;
+    function CRCSignatarioLegal: string; overload;
+    function UFCRCSignatarioLegal: string; overload;
+    function DataValidadeCRCSignatarioLegal: string; overload;
+
+    function NomeAuditorIndependente(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function RegistroAuditorIndependenteCVM(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function Doc(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+
+    function NomeAuditorIndependente: string; overload;
+    function RegistroAuditorIndependenteCVM: string; overload;
+    function Doc: string; overload;
+
+    function CodigoAssinanteCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function NomeSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function CNPJSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function EmailSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function TelefoneSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+    function ResponsavelLegalCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
+
+    function CodigoAssinanteCertificado: string; overload;
+    function NomeSignatarioCertificado: string; overload;
+    function CNPJSignatarioCertificado: string; overload;
+    function EmailSignatarioCertificado: string; overload;
+    function TelefoneSignatarioCertificado: string; overload;
+    function ResponsavelLegalCertificado: string; overload;
+
+    function &End: I;
+  end;
+
+  IJSEcdServiceConfigDemonstracoesContabeis<I: IInterface> = interface
+    ['{D88AEEE2-55C0-413C-A2C9-1FFC37D72393}']
+    function DemonstrativoBaseBalancoDescr(Value: string): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoBaseBalanco(Value: Double): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoBaseDRE(Value: Double): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoDLPA(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function LancContabil(Value: Boolean): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function IndicaDLPADMPL(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoDFC(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+    function DemonstrativoDVA(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
+
+    function DemonstrativoBaseBalancoDescr: string; overload;
+    function DemonstrativoBaseBalanco: Double; overload;
+    function DemonstrativoBaseDRE: Double; overload;
+    function DemonstrativoDLPA: Integer; overload;
+    function LancContabil: Boolean; overload;
+    function IndicaDLPADMPL: Integer; overload;
+    function DemonstrativoDFC: Integer; overload;
+    function DemonstrativoDVA: Integer; overload;
+
+    function &End: I;
+  end;
+
+  IJSEcdServiceConfigInfoFiliaisLivroAuxiliar<I: IInterface> = interface
+    ['{4DC66D49-195E-42A9-89B3-1988A791F1CB}']
+
+    function &End: I;
+  end;
+
+  IJSEcdServiceConfigInfoCadastroParticipante<I: IInterface> = interface
+    ['{4D8234D5-D4E3-4DFE-8429-BC6E194F4D23}']
+    function AtributoTipoRelacionamento(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function AtributoDataInicioRelacionamento(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function AtributoDataFimRelacionamento(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function TipoDocSUFRAMA(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function IdentificadorTrabalhador(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+    function InscricaoEstadualContribuinteSubstituto(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
+
+    function AtributoTipoRelacionamento: Integer; overload;
+    function AtributoDataInicioRelacionamento: Integer; overload;
+    function AtributoDataFimRelacionamento: Integer; overload;
+    function TipoDocSUFRAMA: Integer; overload;
+    function IdentificadorTrabalhador: Integer; overload;
+    function InscricaoEstadualContribuinteSubstituto: Integer; overload;
+
+    function &End: I;
+  end;
+
+  IJSEcdServiceConfigInfoPlanoAnteriorSaldos<I: IInterface> = interface
+    ['{D48370BB-C6CA-4BAE-B189-13FAAFED7EBE}']
+
+    function &End: I;
+  end;
+
+  IJSEcdServiceConfigConglomeradoEconomicos<I: IInterface> = interface
+    ['{135AC93E-048B-4315-9D79-A7E87FFD0750}']
+
+    function &End: I;
+  end;
+
   IJSEcdServiceConfig<I: IInterface> = interface
-    ['{2EF6489D-FBDD-4B86-82F2-EC8FE0B9D75D}']
+    ['{1493FF17-2C0F-4D91-8009-C44FB22F4874}']
     function Empresa(Value: Extended): IJSEcdServiceConfig<I>; overload;
     function Exercicio(Value: Integer): IJSEcdServiceConfig<I>; overload;
     function PeriodoInicial(Value: Integer): IJSEcdServiceConfig<I>; overload;
@@ -50,14 +231,18 @@ type
     function NomeDiretorio(Value: string): IJSEcdServiceConfig<I>; overload;
     function NomeChave(Value: string): IJSEcdServiceConfig<I>; overload;
     function NomeArquivo(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoParte1(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoParte2(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoParte3(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoParte4(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoI200_1Tri(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoI200_2Tri(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoI200_3Tri(Value: string): IJSEcdServiceConfig<I>; overload;
-    function NomeArquivoI200_4Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBloco0(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte1(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte2(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte3_1Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte3_2Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte3_3Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte3_4Tri(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte4(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoIParte5(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoJ(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBlocoK(Value: string): IJSEcdServiceConfig<I>; overload;
+    function NomeArquivoBloco9(Value: string): IJSEcdServiceConfig<I>; overload;
 
     function Empresa: Extended; overload;
     function Exercicio: Integer; overload;
@@ -68,14 +253,18 @@ type
     function NomeDiretorio: string; overload;
     function NomeChave: string; overload;
     function NomeArquivo: string; overload;
-    function NomeArquivoParte1: string; overload;
-    function NomeArquivoParte2: string; overload;
-    function NomeArquivoParte3: string; overload;
-    function NomeArquivoParte4: string; overload;
-    function NomeArquivoI200_1Tri: string; overload;
-    function NomeArquivoI200_2Tri: string; overload;
-    function NomeArquivoI200_3Tri: string; overload;
-    function NomeArquivoI200_4Tri: string; overload;
+    function NomeArquivoBloco0: string; overload;
+    function NomeArquivoBlocoIParte1: string; overload;
+    function NomeArquivoBlocoIParte2: string; overload;
+    function NomeArquivoBlocoIParte3_1Tri: string; overload;
+    function NomeArquivoBlocoIParte3_2Tri: string; overload;
+    function NomeArquivoBlocoIParte3_3Tri: string; overload;
+    function NomeArquivoBlocoIParte3_4Tri: string; overload;
+    function NomeArquivoBlocoIParte4: string; overload;
+    function NomeArquivoBlocoIParte5: string; overload;
+    function NomeArquivoBlocoJ: string; overload;
+    function NomeArquivoBlocoK: string; overload;
+    function NomeArquivoBloco9: string; overload;
 
     function AssociacaoPlanoGoverno: IJSEcdServiceConfigAssociacaoPlanoGoverno<IJSEcdServiceConfig<I>>;
     function Geral: IJSEcdServiceConfigGeral<IJSEcdServiceConfig<I>>;
@@ -221,223 +410,35 @@ type
 //ok    property Empresa: Extended read FEmpresa write SetEmpresa;
 
 
-  IJSEcdServiceConfigAssociacaoPlanoGoverno<I: IInterface> = interface
-    ['{E392A08B-64B3-4898-849E-D01D6D4E4C08}']
-
-    function &End: I;
-  end;
-
-  IJSEcdServiceConfigGeral<I: IInterface> = interface
-    ['{E39B7745-F32A-43E7-9D2D-46629F20BE27}']
-    function TipoEscrituracao(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function IndicadorFinalidadeEscrturacao(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function IndicadorSituacaoIni(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function CodigoInstituicaoResponsavelAdministracaoCadastro(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function IndicadorEmpresaGrandePorte(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function TipoECD(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function IndicadorSituacaoEspecial(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function IndicadorExisteNIRE(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function CodigoEntidadeResponsavelManutencaoPlanoContasReferencial(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function IndicaContabCentralizada(Value: Integer): IJSEcdServiceConfigGeral<I>; overload;
-
-    function TipoEscrituracao: string; overload;
-    function IndicadorFinalidadeEscrturacao: string; overload;
-    function IndicadorSituacaoIni: string; overload;
-    function CodigoInstituicaoResponsavelAdministracaoCadastro: string; overload;
-    function IndicadorEmpresaGrandePorte: string; overload;
-    function TipoECD: string; overload;
-    function IndicadorSituacaoEspecial: string; overload;
-    function IndicadorExisteNIRE: string; overload;
-    function CodigoEntidadeResponsavelManutencaoPlanoContasReferencial: string; overload;
-    function IndicaContabCentralizada: Integer; overload;
-
-    function IndicadorSubgrupo(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function Consolidado(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function ConsolidadoSCP(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function EmpresaMatriz(Value: Integer): IJSEcdServiceConfigGeral<I>; overload;
-
-    function IndicadorSubgrupo: string; overload;
-    function Consolidado: string; overload;
-    function ConsolidadoSCP: string; overload;
-    function EmpresaMatriz: Integer; overload;
-
-    function HashEscrituracaoSubstituida(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-    function NIREEscrituracaoSubst(Value: string): IJSEcdServiceConfigGeral<I>; overload;
-
-    function HashEscrituracaoSubstituida: string; overload;
-    function NIREEscrituracaoSubst: string; overload;
-
-    function &End: I;
-  end;
-
-  IJSEcdServiceConfigFiscal<I: IInterface> = interface
-    ['{AD910218-D340-4B33-ACF9-8E11F9809CB1}']
-    function NumeroOrdemInstrumentoEscrituracao(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
-    function NaturezaLivro(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
-    function TipoDocNIRE(Value:  Integer): IJSEcdServiceConfigFiscal<I>; overload;
-    function DataArquivamentoAtosConstituitivos(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
-    function DataArquivamentoAtoConversao(Value: string): IJSEcdServiceConfigFiscal<I>; overload;
-
-    function NumeroOrdemInstrumentoEscrituracao: string; overload;
-    function NaturezaLivro: string; overload;
-    function TipoDocNIRE: Integer; overload;
-    function DataArquivamentoAtosConstituitivos: string; overload;
-    function DataArquivamentoAtoConversao: string; overload;
-
-    function &End: I;
-  end;
-
-  IJSEcdServiceConfigSignatario<I: IInterface> = interface
-    ['{DB15EF59-2846-405B-9622-E08D2B85A885}']
-    function CodigoAssinanteContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function NomeSignatarioContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function CPFSignatarioContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function EmailContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function TelefoneContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function CRCSignatarioContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function EstadoCRCContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function DataValidadeCRCContador(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-
-    function CodigoAssinanteContador: string; overload;
-    function NomeSignatarioContador: string; overload;
-    function CPFSignatarioContador: string; overload;
-    function EmailContador: string; overload;
-    function TelefoneContador: string; overload;
-    function CRCSignatarioContador: string; overload;
-    function EstadoCRCContador: string; overload;
-    function DataValidadeCRCContador: string; overload;
-
-    function CodigoAssinanteLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function NomeSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function CPFSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function EmailSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function TelefoneSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function CRCSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function UFCRCSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function DataValidadeCRCSignatarioLegal(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-
-    function CodigoAssinanteLegal: string; overload;
-    function NomeSignatarioLegal: string; overload;
-    function CPFSignatarioLegal: string; overload;
-    function EmailSignatarioLegal: string; overload;
-    function TelefoneSignatarioLegal: string; overload;
-    function CRCSignatarioLegal: string; overload;
-    function UFCRCSignatarioLegal: string; overload;
-    function DataValidadeCRCSignatarioLegal: string; overload;
-
-    function NomeAuditorIndependente(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function RegistroAuditorIndependenteCVM(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function Doc(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-
-    function NomeAuditorIndependente: string; overload;
-    function RegistroAuditorIndependenteCVM: string; overload;
-    function Doc: string; overload;
-
-    function CodigoAssinanteCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function NomeSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function CNPJSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function EmailSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function TelefoneSignatarioCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-    function ResponsavelLegalCertificado(Value: string): IJSEcdServiceConfigSignatario<I>; overload;
-
-    function CodigoAssinanteCertificado: string; overload;
-    function NomeSignatarioCertificado: string; overload;
-    function CNPJSignatarioCertificado: string; overload;
-    function EmailSignatarioCertificado: string; overload;
-    function TelefoneSignatarioCertificado: string; overload;
-    function ResponsavelLegalCertificado: string; overload;
-
-    function &End: I;
-  end;
-
-  IJSEcdServiceConfigDemonstracoesContabeis<I: IInterface> = interface
-    ['{376B6010-06DE-42F8-9C3F-AD3BC4C02BE9}']
-    function DemonstrativoBaseBalancoDescr(Value: string): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoBaseBalanco(Value: Double): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoBaseDRE(Value: Double): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoDLPA(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
-    function LancContabil(Value: Boolean): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
-    function IndicaDLPADMPL(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoDFC(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
-    function DemonstrativoDVA(Value: Integer): IJSEcdServiceConfigDemonstracoesContabeis<I>; overload;
-
-    function DemonstrativoBaseBalancoDescr: string; overload;
-    function DemonstrativoBaseBalanco: Double; overload;
-    function DemonstrativoBaseDRE: Double; overload;
-    function DemonstrativoDLPA: Integer; overload;
-    function LancContabil: Boolean; overload;
-    function IndicaDLPADMPL: Integer; overload;
-    function DemonstrativoDFC: Integer; overload;
-    function DemonstrativoDVA: Integer; overload;
-
-    function &End: I;
-  end;
-
-  IJSEcdServiceConfigInfoFiliaisLivroAuxiliar<I: IInterface> = interface
-    ['{4E4B2F47-BE4C-480B-9D8B-848FD0D10C55}']
-
-    function &End: I;
-  end;
-
-  IJSEcdServiceConfigInfoCadastroParticipante<I: IInterface> = interface
-    ['{B255B5FE-194E-4408-95E7-F0B7306C53BF}']
-    function AtributoTipoRelacionamento(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
-    function AtributoDataInicioRelacionamento(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
-    function AtributoDataFimRelacionamento(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
-    function TipoDocSUFRAMA(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
-    function IdentificadorTrabalhador(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
-    function InscricaoEstadualContribuinteSubstituto(Value: Integer): IJSEcdServiceConfigInfoCadastroParticipante<I>; overload;
-
-    function AtributoTipoRelacionamento: Integer; overload;
-    function AtributoDataInicioRelacionamento: Integer; overload;
-    function AtributoDataFimRelacionamento: Integer; overload;
-    function TipoDocSUFRAMA: Integer; overload;
-    function IdentificadorTrabalhador: Integer; overload;
-    function InscricaoEstadualContribuinteSubstituto: Integer; overload;
-
-    function &End: I;
-  end;
 
 //FCont ?????
 //    property sQualificacaoPessoaJuridica : String read FsQualificacaoPessoaJuridica write SetsQualificacaoPessoaJuridica;
 //    property sPeriodoApuracao : String read FsPeriodoApuracao write SetsPeriodoApuracao;
 //    property sFormaTributacao : String read FsFormaTributacao write SetsFormaTributacao;
 
-  IJSEcdServiceConfigInfoPlanoAnteriorSaldos<I: IInterface> = interface
-    ['{396079DD-4A94-448C-A593-62B8FAC0A712}']
+  IJSEcdServiceDAOCollection = interface
+    ['{B958D1EA-6BF1-4A87-AE1D-6BCCF0CCF0E6}']
+    function Bloco0: IJSEcdServiceDAOCollectionBloco0;
+    function BlocoIParte1: IJSEcdServiceDAOCollectionBlocoIParte1;
+    function BlocoIParte2: IJSEcdServiceDAOCollectionBlocoIParte2;
+    function BlocoIParte3: IJSEcdServiceDAOCollectionBlocoIParte3;
+    function BlocoIParte4: IJSEcdServiceDAOCollectionBlocoIParte4;
+    function BlocoIParte5: IJSEcdServiceDAOCollectionBlocoIParte5;
+    function BlocoJ: IJSEcdServiceDAOCollectionBlocoJ;
+    function BlocoK: IJSEcdServiceDAOCollectionBlocoK;
 
-    function &End: I;
-  end;
-
-  IJSEcdServiceConfigConglomeradoEconomicos<I: IInterface> = interface
-    ['{34ECFAC7-753F-464B-8934-1B6641A5CF72}']
-
-    function &End: I;
-  end;
-
-  IJSEcdDAOCollection = interface
-    ['{9AE74B34-03FC-4B41-B870-7F3F895F0DD3}']
-    function Bloco0: IJSEcdDAOCollectionBloco0;
-    function BlocoIParte1: IJSEcdDAOCollectionBlocoIParte1; //I001, I010, I030, I050, I051, I052, I075
-    function BlocoIParte2: IJSEcdDAOCollectionBlocoIParte2; //I100, I150, I155, I157
-    function BlocoIParte3: IJSEcdDAOCollectionBlocoIParte3; //I200, I250
-    function BlocoIParte4: IJSEcdDAOCollectionBlocoIParte4; //I300, I350, I355,
-    function BlocoIParte5: IJSEcdDAOCollectionBlocoIParte5; //I500, I510, I555, I990
-    function BlocoJ: IJSEcdDAOCollectionBlocoJ;
-    function BlocoK: IJSEcdDAOCollectionBlocoK;
-
-    function &Begin: IJSEcdDAOCollection;
+    function &Begin: IJSEcdServiceDAOCollection;
     function &End: IJSEcdService;
   end;
 
-  IJSEcdDAOCollectionBloco0 = interface
-    ['{CD680FDF-0F05-45FD-826A-6E7FC4EB43FA}']
-    function Add0000(Value: IJSEcdDAO0000): IJSEcdDAOCollectionBloco0;
-    function Add0007(Value: IJSEcdDAO0007): IJSEcdDAOCollectionBloco0;
-    function Add0020(Value: IJSEcdDAO0020): IJSEcdDAOCollectionBloco0;
-    function Add0035(Value: IJSEcdDAO0035): IJSEcdDAOCollectionBloco0;
-    function Add0150(Value: IJSEcdDAO0150): IJSEcdDAOCollectionBloco0;
-    function Add0180(Value: IJSEcdDAO0180): IJSEcdDAOCollectionBloco0;
+  IJSEcdServiceDAOCollectionBloco0 = interface
+    ['{89EF9564-2198-4A11-99BA-41F89347C1AF}']
+    function Add0000(Value: IJSEcdDAO0000): IJSEcdServiceDAOCollectionBloco0;
+    function Add0007(Value: IJSEcdDAO0007): IJSEcdServiceDAOCollectionBloco0;
+    function Add0020(Value: IJSEcdDAO0020): IJSEcdServiceDAOCollectionBloco0;
+    function Add0035(Value: IJSEcdDAO0035): IJSEcdServiceDAOCollectionBloco0;
+    function Add0150(Value: IJSEcdDAO0150): IJSEcdServiceDAOCollectionBloco0;
+    function Add0180(Value: IJSEcdDAO0180): IJSEcdServiceDAOCollectionBloco0;
 
     function DAO0000: IJSEcdDAO0000;
     function DAO0007: IJSEcdDAO0007;
@@ -446,21 +447,21 @@ type
     function DAO0150: IJSEcdDAO0150;
     function DAO0180: IJSEcdDAO0180;
 
-    function &Begin: IJSEcdDAOCollectionBloco0;
-    function &End: IJSEcdDAOCollection;
+    function &Begin: IJSEcdServiceDAOCollectionBloco0;
+    function &End: IJSEcdServiceDAOCollection;
   end;
 
-  IJSEcdDAOCollectionBlocoIParte1 = interface
-    ['{4AA323A8-A6C8-44C7-9859-5E459C28B96D}']
-    function AddI010(Value: IJSEcdDAOI010): IJSEcdDAOCollectionBlocoIParte1;
-    function AddI012(Value: IJSEcdDAOI012): IJSEcdDAOCollectionBlocoIParte1;
-    function AddI015(Value: IJSEcdDAOI015): IJSEcdDAOCollectionBlocoIParte1;
-    function AddI030(Value: IJSEcdDAOI030): IJSEcdDAOCollectionBlocoIParte1;
-    function AddI050(Value: IJSEcdDAOI050): IJSEcdDAOCollectionBlocoIParte1;
-    function AddI051(Value: IJSEcdDAOI051): IJSEcdDAOCollectionBlocoIParte1;
-    function AddI052(Value: IJSEcdDAOI052): IJSEcdDAOCollectionBlocoIParte1;
-    function AddI053(Value: IJSEcdDAOI053): IJSEcdDAOCollectionBlocoIParte1;
-    function AddI075(Value: IJSEcdDAOI075): IJSEcdDAOCollectionBlocoIParte1;
+  IJSEcdServiceDAOCollectionBlocoIParte1 = interface
+    ['{D66946C8-C1E0-4306-90E6-A4330A2DA1B4}']
+    function AddI010(Value: IJSEcdDAOI010): IJSEcdServiceDAOCollectionBlocoIParte1;
+    function AddI012(Value: IJSEcdDAOI012): IJSEcdServiceDAOCollectionBlocoIParte1;
+    function AddI015(Value: IJSEcdDAOI015): IJSEcdServiceDAOCollectionBlocoIParte1;
+    function AddI030(Value: IJSEcdDAOI030): IJSEcdServiceDAOCollectionBlocoIParte1;
+    function AddI050(Value: IJSEcdDAOI050): IJSEcdServiceDAOCollectionBlocoIParte1;
+    function AddI051(Value: IJSEcdDAOI051): IJSEcdServiceDAOCollectionBlocoIParte1;
+    function AddI052(Value: IJSEcdDAOI052): IJSEcdServiceDAOCollectionBlocoIParte1;
+    function AddI053(Value: IJSEcdDAOI053): IJSEcdServiceDAOCollectionBlocoIParte1;
+    function AddI075(Value: IJSEcdDAOI075): IJSEcdServiceDAOCollectionBlocoIParte1;
 
     function DAOI010: IJSEcdDAOI010;
     function DAOI012: IJSEcdDAOI012;
@@ -472,77 +473,77 @@ type
     function DAOI053: IJSEcdDAOI053;
     function DAOI075: IJSEcdDAOI075;
 
-    function &Begin: IJSEcdDAOCollectionBlocoIParte1;
-    function &End: IJSEcdDAOCollection;
+    function &Begin: IJSEcdServiceDAOCollectionBlocoIParte1;
+    function &End: IJSEcdServiceDAOCollection;
   end;
 
-  IJSEcdDAOCollectionBlocoIParte2 = interface
-    ['{16D8CC12-1843-41F3-82B4-E916F5F35D43}']
-    function AddI100(Value: IJSEcdDAOI100): IJSEcdDAOCollectionBlocoIParte2;
-    function AddI150(Value: IJSEcdDAOI150): IJSEcdDAOCollectionBlocoIParte2;
-    function AddI155(Value: IJSEcdDAOI155): IJSEcdDAOCollectionBlocoIParte2;
-    function AddI157(Value: IJSEcdDAOI157): IJSEcdDAOCollectionBlocoIParte2;
+  IJSEcdServiceDAOCollectionBlocoIParte2 = interface
+    ['{5720B50E-B5FD-4F72-B44B-5C6E77A72B6D}']
+    function AddI100(Value: IJSEcdDAOI100): IJSEcdServiceDAOCollectionBlocoIParte2;
+    function AddI150(Value: IJSEcdDAOI150): IJSEcdServiceDAOCollectionBlocoIParte2;
+    function AddI155(Value: IJSEcdDAOI155): IJSEcdServiceDAOCollectionBlocoIParte2;
+    function AddI157(Value: IJSEcdDAOI157): IJSEcdServiceDAOCollectionBlocoIParte2;
 
     function DAOI100: IJSEcdDAOI100;
     function DAOI150: IJSEcdDAOI150;
     function DAOI155: IJSEcdDAOI155;
     function DAOI157: IJSEcdDAOI157;
 
-    function &Begin: IJSEcdDAOCollectionBlocoIParte2;
-    function &End: IJSEcdDAOCollection;
+    function &Begin: IJSEcdServiceDAOCollectionBlocoIParte2;
+    function &End: IJSEcdServiceDAOCollection;
   end;
 
-  IJSEcdDAOCollectionBlocoIParte3 = interface
-    ['{7E0D1B5F-39FC-4471-A42C-79A406F5417E}']
-    function AddI200(Value: IJSEcdDAOI200): IJSEcdDAOCollectionBlocoIParte3;
-    function AddI250(Value: IJSEcdDAOI250): IJSEcdDAOCollectionBlocoIParte3;
+  IJSEcdServiceDAOCollectionBlocoIParte3 = interface
+    ['{796F589E-9C3D-44E3-8F0D-6E16915AB980}']
+    function AddI200(Value: IJSEcdDAOI200): IJSEcdServiceDAOCollectionBlocoIParte3;
+    function AddI250(Value: IJSEcdDAOI250): IJSEcdServiceDAOCollectionBlocoIParte3;
 
     function DAOI200: IJSEcdDAOI200;
     function DAOI250: IJSEcdDAOI250;
 
-    function &Begin: IJSEcdDAOCollectionBlocoIParte3;
-    function &End: IJSEcdDAOCollection;
+    function &Begin: IJSEcdServiceDAOCollectionBlocoIParte3;
+    function &End: IJSEcdServiceDAOCollection;
   end;
 
-  IJSEcdDAOCollectionBlocoIParte4 = interface
-    ['{6F3C1EDD-50FC-4FAA-B464-BB19D15943BE}']
-    function AddI350(Value: IJSEcdDAOI350): IJSEcdDAOCollectionBlocoIParte4;
-    function AddI355(Value: IJSEcdDAOI355): IJSEcdDAOCollectionBlocoIParte4;
+  IJSEcdServiceDAOCollectionBlocoIParte4 = interface
+    ['{265EF637-AD9A-42E9-8176-F5EA0CC98616}']
+    function AddI350(Value: IJSEcdDAOI350): IJSEcdServiceDAOCollectionBlocoIParte4;
+    function AddI355(Value: IJSEcdDAOI355): IJSEcdServiceDAOCollectionBlocoIParte4;
 
     function DAOI350: IJSEcdDAOI350;
     function DAOI355: IJSEcdDAOI355;
 
-    function &Begin: IJSEcdDAOCollectionBlocoIParte4;
-    function &End: IJSEcdDAOCollection;
+    function &Begin: IJSEcdServiceDAOCollectionBlocoIParte4;
+    function &End: IJSEcdServiceDAOCollection;
   end;
 
-  IJSEcdDAOCollectionBlocoIParte5 = interface
-    ['{DEE0FC97-12E5-49E7-BC1A-9FFD201BCA99}']
-    function AddI500(Value: IJSEcdDAOI500): IJSEcdDAOCollectionBlocoIParte5;
-    function AddI510(Value: IJSEcdDAOI510): IJSEcdDAOCollectionBlocoIParte5;
-    function AddI550(Value: IJSEcdDAOI550): IJSEcdDAOCollectionBlocoIParte5;
-    function AddI555(Value: IJSEcdDAOI555): IJSEcdDAOCollectionBlocoIParte5;
+  IJSEcdServiceDAOCollectionBlocoIParte5 = interface
+    ['{FFD1ED95-6DBE-46A9-BF8F-AC806F5FCAB1}']
+    function AddI500(Value: IJSEcdDAOI500): IJSEcdServiceDAOCollectionBlocoIParte5;
+    function AddI510(Value: IJSEcdDAOI510): IJSEcdServiceDAOCollectionBlocoIParte5;
+    function AddI550(Value: IJSEcdDAOI550): IJSEcdServiceDAOCollectionBlocoIParte5;
+    function AddI555(Value: IJSEcdDAOI555): IJSEcdServiceDAOCollectionBlocoIParte5;
 
     function DAOI500: IJSEcdDAOI500;
     function DAOI510: IJSEcdDAOI510;
     function DAOI550: IJSEcdDAOI550;
     function DAOI555: IJSEcdDAOI555;
 
-    function &Begin: IJSEcdDAOCollectionBlocoIParte5;
-    function &End: IJSEcdDAOCollection;
+    function &Begin: IJSEcdServiceDAOCollectionBlocoIParte5;
+    function &End: IJSEcdServiceDAOCollection;
   end;
 
-  IJSEcdDAOCollectionBlocoJ = interface
-    ['{94B262D7-99F8-4E7F-AC90-A673E7623A6E}']
-    function AddJ005(Value: IJSEcdDAOJ005): IJSEcdDAOCollectionBlocoJ;
-    function AddJ100(Value: IJSEcdDAOJ100): IJSEcdDAOCollectionBlocoJ;
-    function AddJ150(Value: IJSEcdDAOJ150): IJSEcdDAOCollectionBlocoJ;
-    function AddJ210(Value: IJSEcdDAOJ210): IJSEcdDAOCollectionBlocoJ;
-    function AddJ215(Value: IJSEcdDAOJ215): IJSEcdDAOCollectionBlocoJ;
-    function AddJ800(Value: IJSEcdDAOJ800): IJSEcdDAOCollectionBlocoJ;
-    function AddJ900(Value: IJSEcdDAOJ900): IJSEcdDAOCollectionBlocoJ;
-    function AddJ930(Value: IJSEcdDAOJ930): IJSEcdDAOCollectionBlocoJ;
-    function AddJ935(Value: IJSEcdDAOJ935): IJSEcdDAOCollectionBlocoJ;
+  IJSEcdServiceDAOCollectionBlocoJ = interface
+    ['{0438196B-BB81-4F90-9631-9B414688BD74}']
+    function AddJ005(Value: IJSEcdDAOJ005): IJSEcdServiceDAOCollectionBlocoJ;
+    function AddJ100(Value: IJSEcdDAOJ100): IJSEcdServiceDAOCollectionBlocoJ;
+    function AddJ150(Value: IJSEcdDAOJ150): IJSEcdServiceDAOCollectionBlocoJ;
+    function AddJ210(Value: IJSEcdDAOJ210): IJSEcdServiceDAOCollectionBlocoJ;
+    function AddJ215(Value: IJSEcdDAOJ215): IJSEcdServiceDAOCollectionBlocoJ;
+    function AddJ800(Value: IJSEcdDAOJ800): IJSEcdServiceDAOCollectionBlocoJ;
+    function AddJ900(Value: IJSEcdDAOJ900): IJSEcdServiceDAOCollectionBlocoJ;
+    function AddJ930(Value: IJSEcdDAOJ930): IJSEcdServiceDAOCollectionBlocoJ;
+    function AddJ935(Value: IJSEcdDAOJ935): IJSEcdServiceDAOCollectionBlocoJ;
 
     function DAOJ005: IJSEcdDAOJ005;
     function DAOJ100: IJSEcdDAOJ100;
@@ -554,24 +555,78 @@ type
     function DAOJ930: IJSEcdDAOJ930;
     function DAOJ935: IJSEcdDAOJ935;
 
-    function &Begin: IJSEcdDAOCollectionBlocoJ;
-    function &End: IJSEcdDAOCollection;
+    function &Begin: IJSEcdServiceDAOCollectionBlocoJ;
+    function &End: IJSEcdServiceDAOCollection;
   end;
 
-  IJSEcdDAOCollectionBlocoK = interface
-    ['{3BA7AC43-29EA-4B3A-A3E6-42D69AA36B62}']
-    function AddK030(Value: IJSEcdDAOK030): IJSEcdDAOCollectionBlocoK;
-    function AddK100(Value: IJSEcdDAOK100): IJSEcdDAOCollectionBlocoK;
-    function AddK200(Value: IJSEcdDAOK200): IJSEcdDAOCollectionBlocoK;
-    function AddK210(Value: IJSEcdDAOK210): IJSEcdDAOCollectionBlocoK;
+  IJSEcdServiceDAOCollectionBlocoK = interface
+    ['{DF545E5F-7E01-4FDD-9D09-5D8DB46BBD91}']
+    function AddK030(Value: IJSEcdDAOK030): IJSEcdServiceDAOCollectionBlocoK;
+    function AddK100(Value: IJSEcdDAOK100): IJSEcdServiceDAOCollectionBlocoK;
+    function AddK200(Value: IJSEcdDAOK200): IJSEcdServiceDAOCollectionBlocoK;
+    function AddK210(Value: IJSEcdDAOK210): IJSEcdServiceDAOCollectionBlocoK;
 
     function DAOK030: IJSEcdDAOK030;
     function DAOK100: IJSEcdDAOK100;
     function DAOK200: IJSEcdDAOK200;
     function DAOK210: IJSEcdDAOK210;
 
-    function &Begin: IJSEcdDAOCollectionBlocoK;
-    function &End: IJSEcdDAOCollection;
+    function &Begin: IJSEcdServiceDAOCollectionBlocoK;
+    function &End: IJSEcdServiceDAOCollection;
+  end;
+
+  IJSEcdServiceBloco0 = interface
+    ['{E64065EA-BABB-4E42-9291-435930B578E6}']
+    function Execute: IJSEcdServiceBloco0;
+    function &End: IJSEcdService;
+  end;
+
+  IJSEcdServiceBlocoIParte1 = interface
+    ['{B01EBF93-77AF-43D3-AE05-3D1311DBC69F}']
+    function Execute: IJSEcdServiceBlocoIParte1;
+    function &End: IJSEcdService;
+  end;
+
+  IJSEcdServiceBlocoIParte2 = interface
+    ['{0CD539B5-53EC-4638-9503-488859F791FC}']
+    function Execute: IJSEcdServiceBlocoIParte2;
+    function &End: IJSEcdService;
+  end;
+
+  IJSEcdServiceBlocoIParte3 = interface
+    ['{B4F9793C-B3FF-4524-AF88-CC3C950E19DC}']
+    function Execute: IJSEcdServiceBlocoIParte3;
+    function &End: IJSEcdService;
+  end;
+
+  IJSEcdServiceBlocoIParte4 = interface
+    ['{2147D9C1-CA01-42E7-8B86-E5FDBBEE35F5}']
+    function Execute: IJSEcdServiceBlocoIParte4;
+    function &End: IJSEcdService;
+  end;
+
+  IJSEcdServiceBlocoIParte5 = interface
+    ['{490D8AE1-EA7C-4662-B880-500565694B61}']
+    function Execute: IJSEcdServiceBlocoIParte5;
+    function &End: IJSEcdService;
+  end;
+
+  IJSEcdServiceBlocoJ = interface
+    ['{DDEC04C5-8EE9-4F43-BB52-36E8A99A9114}']
+    function Execute: IJSEcdServiceBlocoJ;
+    function &End: IJSEcdService;
+  end;
+
+  IJSEcdServiceBlocoK = interface
+    ['{86EC2CD6-7ED6-4E36-9E86-FC2903843B2F}']
+    function Execute: IJSEcdServiceBlocoK;
+    function &End: IJSEcdService;
+  end;
+
+  IJSEcdServiceBloco9 = interface
+    ['{10416F83-66F2-4D00-AE32-D3C79C124607}']
+    function Execute: IJSEcdServiceBloco9;
+    function &End: IJSEcdService;
   end;
 
 function EcdServiceFactory: IJSEcdServiceFactory;

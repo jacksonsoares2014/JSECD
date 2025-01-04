@@ -431,7 +431,7 @@ function TJSEcdIndNireHelper.ToString: string;
 begin
   case Self of
     inNaoPossuiNIRE: Result := '0';
-    inPossuiNIRE: Result := '0';
+    inPossuiNIRE: Result := '1';
   end;
 end;
 
