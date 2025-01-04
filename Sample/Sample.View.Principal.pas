@@ -23,6 +23,9 @@ var
 
 implementation
 
+uses
+  JSEcd.DAO.Registro0000;
+
 {$R *.dfm}
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -30,6 +33,11 @@ begin
   Ecd := EcdService;
   Ecd
     .Config
+      .DataInicial(StrToDate('01/01/2023'))
+      .DataFinal(StrToDate('31/12/2023'))
+      .Empresa(1)
+      .NomeDiretorio('C:\Temp\JSECD\Sample')
+      .NomeArquivo('C:\Temp\JSECD\Sample\ECD_REFATORADO.TXT')
       .Geral
         .TipoECD('0')
         .IndicadorEmpresaGrandePorte('0')
@@ -41,12 +49,13 @@ begin
         .CodigoEntidadeResponsavelManutencaoPlanoContasReferencial('1')
         .IndicaContabCentralizada('0')
       .&End
-      .DataInicial(StrToDate('01/01/2023'))
-      .DataFinal(StrToDate('31/12/2023'))
-      .Empresa(1)
-      .NomeDiretorio('C:\Temp\JSECD\Sample')
-      .NomeArquivo('C:\Temp\JSECD\Sample\ECD_REFATORADO.TXT')
     .&End;
+
+  Ecd
+    .DAO
+      .Bloco0
+        .Add0000(TJSEcdDAORegistro0000.New)
+      .&End;
 
   Ecd.Execute;
 end;

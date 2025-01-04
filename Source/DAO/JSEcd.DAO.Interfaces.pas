@@ -11,7 +11,7 @@ uses
 type
   IJSEcdDAO0000 = interface
     ['{C1D245AF-CBF5-4293-9563-2494C6EE5A60}']
-    function Load: TJSEcdModelRegistro0000;
+    function Load(AEmpresa: Extended): TJSEcdModelRegistro0000;
   end;
 
   IJSEcdDAO0007 = interface
