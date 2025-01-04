@@ -24,9 +24,9 @@ type
 
     procedure AdicionaLinhaEcd(ARegistro: TJSEcdModelRegistro);
     procedure SaveToFile;
-    procedure gerar0000;
-    procedure gerar0001;
-    procedure gerar0007;
+    procedure Gerar0000;
+    procedure Gerar0001;
+    procedure Gerar0007;
   public
     function Execute: IJSEcdServiceBloco0;
     function &End: IJSEcdService;
@@ -73,9 +73,9 @@ begin
   FArquivo := TStringList.Create;
   try
     try
-      gerar0000;
-      gerar0001;
-      gerar0007;
+      Gerar0000;
+      Gerar0001;
+      Gerar0007;
     except
       on e: Exception do
       begin

@@ -22,6 +22,8 @@ type
     procedure NomeiaArquivos;
     procedure MergeArquivos; overload;
     procedure MergeArquivos(Arquivo: string); overload;
+
+    procedure GerarBlocoIParte1;
   public
     function Config: IJSEcdServiceConfig<IJSEcdService>;
     function DAO: IJSEcdServiceDAOCollection;
@@ -80,6 +82,8 @@ begin
 
   FArquivoEcd := TFileStream.Create(FConfig.NomeArquivo, fmCreate or fmShareExclusive) ;
   try
+    GerarBlocoIParte1;
+
     FBloco0.Execute;
     FBloco9.Execute;
     MergeArquivos;
@@ -89,9 +93,21 @@ begin
   end;
 end;
 
+procedure TJSEcdService.GerarBlocoIParte1;
+var
+  BlocoIParte1: IJSEcdServiceBlocoIParte1;
+begin
+  BlocoIParte1 := TJSEcdServiceBlocoIParte1.New(Self);
+//  BlocoIParte1
+//    .ServiceBloco0(FBloco0);
+
+  BlocoIParte1.Execute;
+end;
+
 procedure TJSEcdService.MergeArquivos;
 begin
   MergeArquivos(FConfig.NomeArquivoBloco0);
+  MergeArquivos(FConfig.NomeArquivoBlocoIParte1);
   MergeArquivos(FConfig.NomeArquivoBloco9);
 end;
 
