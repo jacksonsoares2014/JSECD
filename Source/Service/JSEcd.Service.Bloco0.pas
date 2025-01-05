@@ -76,6 +76,7 @@ begin
       Gerar0000;
       Gerar0001;
       Gerar0007;
+      AdicionaLinhaEcd(F0990);
     except
       on e: Exception do
       begin

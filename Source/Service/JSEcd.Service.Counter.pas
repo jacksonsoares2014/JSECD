@@ -15,6 +15,7 @@ type
     procedure AddCounter(ARegistro: String); overload;
     procedure ClearCounter;
     function GetCounter: TDictionary<string, Integer>;
+    function IsEmpty: Boolean;
     destructor Destroy; override;
   end;
 
@@ -59,6 +60,11 @@ end;
 function TJSEcdServiceCounter.GetCounter: TDictionary<string, Integer>;
 begin
   result := FCounter;
+end;
+
+function TJSEcdServiceCounter.IsEmpty: Boolean;
+begin
+  Result := not Assigned(FCounter);
 end;
 
 initialization

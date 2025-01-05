@@ -20,8 +20,6 @@ type
 
     FacadeExport: IJSEcdExportFacade;
     FArquivo: TStringList;
-    FI001: TJSEcdModelRegistroI001;
-    FI990: TJSEcdModelRegistroI990;
 
     procedure AdicionaLinhaEcd(ARegistro: TJSEcdModelRegistro);
     procedure SaveToFile;
@@ -56,17 +54,6 @@ end;
 procedure TJSEcdServiceBlocoIParte1.AdicionaLinhaEcd(
   ARegistro: TJSEcdModelRegistro);
 begin
-  if (FI990.qtdLinI = 0) then
-  begin
-    FI990.qtdLinI := FI990.qtdLinI + 1;
-    if (ARegistro.reg <> FI990.reg) then
-      FI001.indDad := imComDadosInformados;
-
-    FArquivo.Add(FacadeExport.LinhaEcd(FI001));
-    Counter.AddCounter(FI001);
-  end;
-
-  FI990.qtdLinI := FI990.qtdLinI + 1;
   Counter.AddCounter(ARegistro);
   FArquivo.Add(FacadeExport.LinhaEcd(ARegistro));
 end;
@@ -76,15 +63,11 @@ begin
   FEcdService := Parent;
   FacadeExport := JSEcd.Export.Interfaces
                     .FacadeExport(FEcdService.Config);
-
-  FI001 := TJSEcdModelRegistroI001.create;
-  FI990 := TJSEcdModelRegistroI990.create;
 end;
 
 destructor TJSEcdServiceBlocoIParte1.Destroy;
 begin
-  FreeAndNil(FI001);
-  FreeAndNil(FI990);
+
   inherited;
 end;
 
@@ -94,8 +77,7 @@ begin
   FArquivo := TStringList.Create;
   try
     try
-//      GerarI010;
-      AdicionaLinhaEcd(FI990);
+      GerarI010;
     except
       on e: Exception do
       begin
@@ -110,22 +92,55 @@ begin
 end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI010;
+var
+  RegI010: TJSEcdModelRegistroI010;
 begin
-  GerarI012;
-  GerarI020;
-  GerarI030;
-  GerarI050;
-  GerarI075;
+  //TODO: Abaixo é só teste. Verificar depois de tem DAO;
+  RegI010 := TJSEcdModelRegistroI010.create;
+  try
+    RegI010.indEsc.FromString(FEcdService.Config.Geral.IndicadorFinalidadeEscrturacao);
+    RegI010.codVerLc := '9.00';
+    AdicionaLinhaEcd(RegI010);
+
+    GerarI012;
+    GerarI020;
+    GerarI030;
+    GerarI050;
+    GerarI075;
+  finally
+    FreeAndNil(RegI010);
+  end;
 end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI012;
+var
+  RegI012: TJSEcdModelRegistroI012;
 begin
-  GerarI015;
+  //TODO: Abaixo é só teste. Verificar depois de tem DAO;
+  RegI012 := TJSEcdModelRegistroI012.create;
+  try
+    RegI012.numOrd := 1;
+    RegI012.natLivr := 'Teste';
+    RegI012.tipo := tlaDigital;
+    AdicionaLinhaEcd(RegI012);
+    GerarI015;
+  finally
+    FreeAndNil(RegI012);
+  end;
 end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI015;
+var
+  RegI015: TJSEcdModelRegistroI015;
 begin
-
+  //TODO: Abaixo é só teste. Verificar depois de tem DAO;
+  RegI015 := TJSEcdModelRegistroI015.create;
+  try
+    RegI015.codCtaRes := '1.1.1';
+    AdicionaLinhaEcd(RegI015);
+  finally
+    FreeAndNil(RegI015);
+  end;
 end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI020;
@@ -134,8 +149,17 @@ begin
 end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI030;
+var
+  RegI030: TJSEcdModelRegistroI030;
 begin
-
+  //TODO: Abaixo é só teste. Verificar depois de tem DAO;
+  RegI030 := TJSEcdModelRegistroI030.create;
+  try
+    RegI030.dnrcAbert := 'Teste';
+    AdicionaLinhaEcd(RegI030);
+  finally
+    FreeAndNil(RegI030);
+  end;
 end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI050;

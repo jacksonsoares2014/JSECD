@@ -69,13 +69,13 @@ begin
       FArquivo.Add(Format('|9001|%d|', [indicador]));
       Counter.AddCounter('9900');
 
-      for i := 0 to Pred(Length(registros)) do
+      for I := 0 to Pred(Length(registros)) do
       begin
-        reg := registros[i];
+        reg := registros[I];
         totalPorRegistro := Counter.GetCounter.Items[reg];
         totalEcd := totalEcd + totalPorRegistro;
 
-        FArquivo.Add(Format('|9900|%s|%d|', [registros[i], totalPorRegistro]));
+        FArquivo.Add(Format('|9900|%s|%d|', [registros[I], totalPorRegistro]));
         Counter.AddCounter('9900');
       end;
 

@@ -44,7 +44,7 @@ begin
         .IndicadorSituacaoEspecial('')
         .IndicadorSituacaoIni('3')
         .IndicadorExisteNIRE('1')
-        .IndicadorFinalidadeEscrturacao('0')
+        .IndicadorFinalidadeEscrturacao('1')
         .HashEscrituracaoSubstituida('')
         .CodigoEntidadeResponsavelManutencaoPlanoContasReferencial('1')
         .IndicaContabCentralizada('0')
