@@ -98,7 +98,7 @@ begin
   //TODO: Abaixo é só teste. Verificar depois de tem DAO;
   RegI010 := TJSEcdModelRegistroI010.create;
   try
-    RegI010.indEsc.FromString(FEcdService.Config.Geral.IndicadorFinalidadeEscrturacao);
+    RegI010.indEsc.FromString(FEcdService.Config.Geral.TipoEscrituracao);
     RegI010.codVerLc := '9.00';
     AdicionaLinhaEcd(RegI010);
 

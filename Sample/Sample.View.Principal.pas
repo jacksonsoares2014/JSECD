@@ -48,6 +48,7 @@ begin
         .HashEscrituracaoSubstituida('')
         .CodigoEntidadeResponsavelManutencaoPlanoContasReferencial('1')
         .IndicaContabCentralizada('0')
+        .TipoEscrituracao('A')
       .&End
     .&End;
 
