@@ -38,14 +38,14 @@ type
     property vlSldFinMf: Currency read FvlSldFinMf write FvlSldFinMf;
     property indDcFinMf: string read FindDcFinMf write FindDcFinMf;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI155 }
 
-constructor TJSEcdModelRegistroI155.create;
+constructor TJSEcdModelRegistroI155.Create;
 begin
   inherited;
   reg := 'I155';

@@ -22,14 +22,14 @@ type
     property vlCtaMf: Currency read FvlCtaMf write FvlCtaMf;
     property indDcMf: string read FindDcMf write FindDcMf;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI355 }
 
-constructor TJSEcdModelRegistroI355.create;
+constructor TJSEcdModelRegistroI355.Create;
 begin
   inherited;
   reg := 'I355';

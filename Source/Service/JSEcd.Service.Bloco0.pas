@@ -92,30 +92,30 @@ end;
 
 procedure TJSEcdServiceBloco0.gerar0000;
 var
-  reg0000: TJSEcdModelRegistro0000;
+  Reg0000: TJSEcdModelRegistro0000;
 begin
-  reg0000 := FEcdService.DAO.Bloco0.DAO0000.Load(FEcdService.Config.Empresa);
+  Reg0000 := FEcdService.DAO.Bloco0.DAO0000.Load(FEcdService.Config.Empresa);
   try
-    reg0000.dtIni := FEcdService.Config.DataInicial;
-    reg0000.dtFin := FEcdService.Config.DataFinal;
-    reg0000.indSitEsp.FromString(FEcdService.Config.Geral.IndicadorSituacaoEspecial);
-    reg0000.indSitIniPer.FromString(FEcdService.Config.Geral.IndicadorSituacaoIni);
-    reg0000.indNire.FromString(FEcdService.Config.Geral.IndicadorExisteNIRE);
-    reg0000.indFinEsc.FromString(FEcdService.Config.Geral.IndicadorFinalidadeEscrturacao);
-    reg0000.codHashSub := FEcdService.Config.Geral.HashEscrituracaoSubstituida;
+    Reg0000.dtIni := FEcdService.Config.DataInicial;
+    Reg0000.dtFin := FEcdService.Config.DataFinal;
+    Reg0000.indSitEsp.FromString(FEcdService.Config.Geral.IndicadorSituacaoEspecial);
+    Reg0000.indSitIniPer.FromString(FEcdService.Config.Geral.IndicadorSituacaoIni);
+    Reg0000.indNire.FromString(FEcdService.Config.Geral.IndicadorExisteNIRE);
+    Reg0000.indFinEsc.FromString(FEcdService.Config.Geral.IndicadorFinalidadeEscrturacao);
+    Reg0000.codHashSub := FEcdService.Config.Geral.HashEscrituracaoSubstituida;
     //  fscbIdentifSocioOstenciva //TODO:
-    reg0000.tipEcd.FromString(FEcdService.Config.Geral.TipoECD);
-    reg0000.indGrandePorte.FromString(FEcdService.Config.Geral.IndicadorEmpresaGrandePorte);
-    reg0000.codScp := '';
-      reg0000.identMf := 'N'; //TODO: Fixo ?
-      reg0000.indEscCons := 'N'; //TODO: Fixo ?
-    reg0000.indCentralizada.FromString(FEcdService.Config.Geral.IndicaContabCentralizada);
-      reg0000.indMudancPc := impHouveMudanca; //TODO: Preencher de outro registro
-    reg0000.codPlanRef.FromString(FEcdService.Config.Geral.CodigoEntidadeResponsavelManutencaoPlanoContasReferencial);
+    Reg0000.tipEcd.FromString(FEcdService.Config.Geral.TipoECD);
+    Reg0000.indGrandePorte.FromString(FEcdService.Config.Geral.IndicadorEmpresaGrandePorte);
+    Reg0000.codScp := '';
+      Reg0000.identMf := 'N'; //TODO: Fixo ?
+      Reg0000.indEscCons := 'N'; //TODO: Fixo ?
+    Reg0000.indCentralizada.FromString(FEcdService.Config.Geral.IndicaContabCentralizada);
+      Reg0000.indMudancPc := impHouveMudanca; //TODO: Preencher de outro registro
+    Reg0000.codPlanRef.FromString(FEcdService.Config.Geral.CodigoEntidadeResponsavelManutencaoPlanoContasReferencial);
 
-    AdicionaLinhaEcd(reg0000);
+    AdicionaLinhaEcd(Reg0000);
   finally
-    FreeAndNil(reg0000);
+    FreeAndNil(Reg0000);
   end;
 end;
 

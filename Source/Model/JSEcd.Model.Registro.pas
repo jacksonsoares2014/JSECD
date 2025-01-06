@@ -11,7 +11,7 @@ type
     property reg: String read Freg write Freg;
     property _id: String read F_id write F_id;
 
-    constructor create; virtual;
+    constructor Create; virtual;
     destructor Destroy; override;
   end;
 
@@ -19,7 +19,7 @@ implementation
 
 { TJSEcdModelRegistro }
 
-constructor TJSEcdModelRegistro.create;
+constructor TJSEcdModelRegistro.Create;
 begin
 
 end;

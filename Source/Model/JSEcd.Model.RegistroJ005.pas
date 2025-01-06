@@ -18,14 +18,14 @@ type
     property idDem: Integer read FidDem write FidDem;
     property cadDem: string read FcadDem write FcadDem;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroJ005 }
 
-constructor TJSEcdModelRegistroJ005.create;
+constructor TJSEcdModelRegistroJ005.Create;
 begin
   inherited;
   reg := 'J005';

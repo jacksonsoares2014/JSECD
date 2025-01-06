@@ -26,14 +26,14 @@ type
     property im: string read Fim write Fim;
     property nire: string read Fnire write Fnire;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistro0020 }
 
-constructor TJSEcdModelRegistro0020.create;
+constructor TJSEcdModelRegistro0020.Create;
 begin
   inherited;
   reg := '0020';

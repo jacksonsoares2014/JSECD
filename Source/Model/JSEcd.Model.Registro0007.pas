@@ -16,14 +16,14 @@ type
     property codEntRef: TJSEcdCodEntRef read FcodEntRef write FcodEntRef;
     property codInscr: string read FcodInscr write FcodInscr;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistro0007 }
 
-constructor TJSEcdModelRegistro0007.create;
+constructor TJSEcdModelRegistro0007.Create;
 begin
   inherited;
   reg := '0007';

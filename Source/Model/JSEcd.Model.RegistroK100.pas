@@ -28,14 +28,14 @@ type
     property dataIniEmp: TDateTime read FdataIniEmp write FdataIniEmp;
     property dataFinEmp: TDateTime read FdataFinEmp write FdataFinEmp;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroK100 }
 
-constructor TJSEcdModelRegistroK100.create;
+constructor TJSEcdModelRegistroK100.Create;
 begin
   inherited;
   reg := 'K100';

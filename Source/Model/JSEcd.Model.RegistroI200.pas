@@ -23,14 +23,14 @@ type
     property dtLctoExt: TDateTime read FdtLctoExt write FdtLctoExt;
     property vlLctoMf: Currency read FvlLctoMf write FvlLctoMf;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI200 }
 
-constructor TJSEcdModelRegistroI200.create;
+constructor TJSEcdModelRegistroI200.Create;
 begin
   inherited;
   reg := 'I200';

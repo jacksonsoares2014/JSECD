@@ -35,14 +35,14 @@ type
     property im: string read Fim write Fim;
     property suframa: string read Fsuframa write Fsuframa;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistro0150 }
 
-constructor TJSEcdModelRegistro0150.create;
+constructor TJSEcdModelRegistro0150.Create;
 begin
   inherited;
   reg := '0150';

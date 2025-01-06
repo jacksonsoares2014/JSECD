@@ -14,14 +14,14 @@ type
     property codHist: string read FcodHist write FcodHist;
     property descrHist: string read FdescrHist write FdescrHist;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI075 }
 
-constructor TJSEcdModelRegistroI075.create;
+constructor TJSEcdModelRegistroI075.Create;
 begin
   inherited;
   reg := 'I075';

@@ -32,14 +32,14 @@ type
     property dtCrc: TDateTime read FdtCrc write FdtCrc;
     property indRespLegal: string read FindRespLegal write FindRespLegal;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroJ930 }
 
-constructor TJSEcdModelRegistroJ930.create;
+constructor TJSEcdModelRegistroJ930.Create;
 begin
   inherited;
   reg := 'J930';

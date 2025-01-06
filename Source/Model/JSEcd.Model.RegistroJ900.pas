@@ -24,14 +24,14 @@ type
     property dtIniEscr: TDateTime read FdtIniEscr write FdtIniEscr;
     property dtFinEscr: TDateTime read FdtFinEscr write FdtFinEscr;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroJ900 }
 
-constructor TJSEcdModelRegistroJ900.create;
+constructor TJSEcdModelRegistroJ900.Create;
 begin
   inherited;
   reg := 'J900';

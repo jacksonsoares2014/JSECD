@@ -14,14 +14,14 @@ type
     property codScp: string read FcodScp write FcodScp;
     property nomeScp: string read FnomeScp write FnomeScp;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistro0035 }
 
-constructor TJSEcdModelRegistro0035.create;
+constructor TJSEcdModelRegistro0035.Create;
 begin
   inherited;
   reg := '0035';

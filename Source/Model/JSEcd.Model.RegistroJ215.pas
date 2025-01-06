@@ -18,14 +18,14 @@ type
     property vlFatCont: Currency read FvlFatCont write FvlFatCont;
     property indDcFat: string read FindDcFat write FindDcFat;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroJ215 }
 
-constructor TJSEcdModelRegistroJ215.create;
+constructor TJSEcdModelRegistroJ215.Create;
 begin
   inherited;
   reg := 'J215';

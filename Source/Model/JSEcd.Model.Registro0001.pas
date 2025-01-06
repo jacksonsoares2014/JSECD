@@ -13,14 +13,14 @@ type
   public
     property indDad: TJSEcdIndicadorMovimento read FindDad write FindDad;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistro0001 }
 
-constructor TJSEcdModelRegistro0001.create;
+constructor TJSEcdModelRegistro0001.Create;
 begin
   inherited;
   reg := '0001';

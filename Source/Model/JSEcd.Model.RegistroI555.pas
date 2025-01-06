@@ -12,14 +12,14 @@ type
   public
     property rzContTot: string read FrzContTot write FrzContTot;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI555 }
 
-constructor TJSEcdModelRegistroI555.create;
+constructor TJSEcdModelRegistroI555.Create;
 begin
   inherited;
   reg := 'I555';

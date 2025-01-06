@@ -16,14 +16,14 @@ type
     property codCntCorr: string read FcodCntCorr write FcodCntCorr;
     property natSubCnt: string read FnatSubCnt write FnatSubCnt;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI053 }
 
-constructor TJSEcdModelRegistroI053.create;
+constructor TJSEcdModelRegistroI053.Create;
 begin
   inherited;
   reg := 'I053';

@@ -14,14 +14,14 @@ type
     property dtIni: TDateTime read FdtIni write FdtIni;
     property dtFin: TDateTime read FdtFin write FdtFin;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroK030 }
 
-constructor TJSEcdModelRegistroK030.create;
+constructor TJSEcdModelRegistroK030.Create;
 begin
   inherited;
   reg := 'K030';

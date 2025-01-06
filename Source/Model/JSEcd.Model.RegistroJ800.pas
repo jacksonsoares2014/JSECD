@@ -21,14 +21,14 @@ type
     property arqRtf: string read FarqRtf write FarqRtf;
     property indFimRtf: string read FindFimRtf write FindFimRtf;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroJ800 }
 
-constructor TJSEcdModelRegistroJ800.create;
+constructor TJSEcdModelRegistroJ800.Create;
 begin
   inherited;
   reg := 'J800';

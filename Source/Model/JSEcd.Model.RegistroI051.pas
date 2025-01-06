@@ -14,14 +14,14 @@ type
     property codCcus: string read FcodCcus write FcodCcus;
     property codCtaRef: string read FcodCtaRef write FcodCtaRef;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI051 }
 
-constructor TJSEcdModelRegistroI051.create;
+constructor TJSEcdModelRegistroI051.Create;
 begin
   inherited;
   reg := 'I051';

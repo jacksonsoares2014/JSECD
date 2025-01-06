@@ -24,14 +24,14 @@ type
     property codCtaSup: string read FcodCtaSup write FcodCtaSup;
     property cta: string read Fcta write Fcta;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI050 }
 
-constructor TJSEcdModelRegistroI050.create;
+constructor TJSEcdModelRegistroI050.Create;
 begin
   inherited;
   reg := 'I050';

@@ -12,14 +12,14 @@ type
   public
     property qtdLin0: Integer read FqtdLin0 write FqtdLin0;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistro0990 }
 
-constructor TJSEcdModelRegistro0990.create;
+constructor TJSEcdModelRegistro0990.Create;
 begin
   inherited;
   reg := '0990';

@@ -26,14 +26,14 @@ type
     property indDcCtaFin: string read FindDcCtaFin write FindDcCtaFin;
     property notasExpRef: string read FnotasExpRef write FnotasExpRef;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroJ210 }
 
-constructor TJSEcdModelRegistroJ210.create;
+constructor TJSEcdModelRegistroJ210.Create;
 begin
   inherited;
   reg := 'J210';

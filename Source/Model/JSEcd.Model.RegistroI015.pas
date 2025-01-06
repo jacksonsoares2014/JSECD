@@ -11,14 +11,14 @@ type
     FcodCtaRes: string;
   public
     property codCtaRes: string read FcodCtaRes write FcodCtaRes;
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI015 }
 
-constructor TJSEcdModelRegistroI015.create;
+constructor TJSEcdModelRegistroI015.Create;
 begin
   inherited;
   reg := 'I015';

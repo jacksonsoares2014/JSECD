@@ -34,14 +34,14 @@ type
     property indGrpDre: string read FindGrpDre write FindGrpDre;
     property notaExpRef: string read FnotaExpRef write FnotaExpRef;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroJ150 }
 
-constructor TJSEcdModelRegistroJ150.create;
+constructor TJSEcdModelRegistroJ150.Create;
 begin
   inherited;
   reg := 'J150';

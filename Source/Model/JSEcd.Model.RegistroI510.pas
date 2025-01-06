@@ -22,14 +22,14 @@ type
     property decCampo: Integer read FdecCampo write FdecCampo;
     property colCampo: Integer read FcolCampo write FcolCampo;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI510 }
 
-constructor TJSEcdModelRegistroI510.create;
+constructor TJSEcdModelRegistroI510.Create;
 begin
   inherited;
   reg := 'I510';

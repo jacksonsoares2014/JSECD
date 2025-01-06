@@ -6,9 +6,10 @@ uses
   JSEcd.Service.Interfaces,
   JSEcd.Service.Counter,
   JSEcd.Export.Interfaces,
+  JSEcd.DAO.Interfaces,
   JSEcd.Model.Classes,
   JSEcd.Model.Types,
-//  System.Generics.Collections,
+  System.Generics.Collections,
   System.SysUtils,
   System.Classes;
 
@@ -95,15 +96,19 @@ procedure TJSEcdServiceBlocoIParte1.GerarI010;
 var
   RegI010: TJSEcdModelRegistroI010;
 begin
-  //TODO: Abaixo é só teste. Verificar depois de tem DAO;
   RegI010 := TJSEcdModelRegistroI010.create;
   try
     RegI010.indEsc.FromString(FEcdService.Config.Geral.TipoEscrituracao);
     RegI010.codVerLc := '9.00';
     AdicionaLinhaEcd(RegI010);
 
-    GerarI012;
-    GerarI020;
+    case RegI010.indEsc of
+      ieLivroDiarioResumido,
+      ieLivroDiarioAuxiliar,
+      ieRazaoAuxiliar: GerarI012;
+    end;
+
+    GerarI020; //Não Implementado
     GerarI030;
     GerarI050;
     GerarI075;
@@ -114,11 +119,21 @@ end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI012;
 var
+  DAO: IJSEcdDAOI012;
+  ListI012: TObjectList<TJSEcdModelRegistroI012>;
   RegI012: TJSEcdModelRegistroI012;
 begin
   //TODO: Abaixo é só teste. Verificar depois de tem DAO;
   RegI012 := TJSEcdModelRegistroI012.create;
+//  DAO := FEcdService.DAO.BlocoIParte1.DAOI012;
+//  ListI012 := DAO.List;
+//
   try
+//    for RegI012 in ListI012 do
+//    begin
+//      AdicionaLinhaEcd(RegI012);
+//      GerarI015;
+//    end;
     RegI012.numOrd := 1;
     RegI012.natLivr := 'Teste';
     RegI012.tipo := tlaDigital;

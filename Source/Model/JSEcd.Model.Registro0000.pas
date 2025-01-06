@@ -55,14 +55,14 @@ type
     property indMudancPc: TJSEcdIndMudancPc read FindMudancPc write FindMudancPc;
     property codPlanRef: TJSEcdCodPlanRef read FcodPlanRef write FcodPlanRef;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistro0000 }
 
-constructor TJSEcdModelRegistro0000.create;
+constructor TJSEcdModelRegistro0000.Create;
 begin
   inherited;
   reg := '0000';

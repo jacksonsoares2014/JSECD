@@ -32,14 +32,14 @@ type
     property descMun: string read FdescMun write FdescMun;
     property dtExSocial: TDateTime read FdtExSocial write FdtExSocial;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI030 }
 
-constructor TJSEcdModelRegistroI030.create;
+constructor TJSEcdModelRegistroI030.Create;
 begin
   inherited;
   reg := 'I030';

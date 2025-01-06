@@ -12,14 +12,14 @@ type
   public
     property tamFonte: Integer read FtamFonte write FtamFonte;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI500 }
 
-constructor TJSEcdModelRegistroI500.create;
+constructor TJSEcdModelRegistroI500.Create;
 begin
   inherited;
   reg := 'I500';

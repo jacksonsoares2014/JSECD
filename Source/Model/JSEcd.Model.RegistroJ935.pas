@@ -16,14 +16,14 @@ type
     property nomeAuditorFirma: string read FnomeAuditorFirma write FnomeAuditorFirma;
     property codCvmAuditor: string read FcodCvmAuditor write FcodCvmAuditor;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroJ935 }
 
-constructor TJSEcdModelRegistroJ935.create;
+constructor TJSEcdModelRegistroJ935.Create;
 begin
   inherited;
   reg := 'J935';

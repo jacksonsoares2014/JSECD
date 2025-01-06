@@ -19,14 +19,14 @@ type
     property tipo: TJSEcdTipoLivroAssoc read Ftipo write Ftipo;
     property codHashAux: string read FcodHashAux write FcodHashAux;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI012 }
 
-constructor TJSEcdModelRegistroI012.create;
+constructor TJSEcdModelRegistroI012.Create;
 begin
   inherited;
   reg := 'I012';

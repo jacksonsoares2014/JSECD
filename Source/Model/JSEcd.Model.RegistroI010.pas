@@ -15,14 +15,14 @@ type
     property indEsc: TJSEcdIndEsc read FindEsc write FindEsc;
     property codVerLc: string read FcodVerLc write FcodVerLc;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI010 }
 
-constructor TJSEcdModelRegistroI010.create;
+constructor TJSEcdModelRegistroI010.Create;
 begin
   inherited;
   reg := 'I010';

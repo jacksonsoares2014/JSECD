@@ -12,14 +12,14 @@ type
   public
     property dtRes: string read FdtRes write FdtRes;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI350 }
 
-constructor TJSEcdModelRegistroI350.create;
+constructor TJSEcdModelRegistroI350.Create;
 begin
   inherited;
   reg := 'I350';

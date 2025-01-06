@@ -30,14 +30,14 @@ type
     property vlDcMf: Currency read FvlDcMf write FvlDcMf;
     property indDcMf: string read FindDcMf write FindDcMf;
 
-    constructor create; override;
+    constructor Create; override;
   end;
 
 implementation
 
 { TJSEcdModelRegistroI250 }
 
-constructor TJSEcdModelRegistroI250.create;
+constructor TJSEcdModelRegistroI250.Create;
 begin
   inherited;
   reg := 'I250';
