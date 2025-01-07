@@ -24,7 +24,10 @@ var
 implementation
 
 uses
-  JSEcd.DAO.Registro0000;
+  JSEcd.DAO.Registro0000,
+  JSEcd.DAO.RegistroI050,
+  JSEcd.DAO.RegistroI051,
+  JSEcd.DAO.RegistroI052;
 
 {$R *.dfm}
 
@@ -56,6 +59,14 @@ begin
     .DAO
       .Bloco0
         .Add0000(TJSEcdDAORegistro0000.New)
+      .&End;
+
+  Ecd
+    .DAO
+      .BlocoIParte1
+        .AddI050(TJSEcdDAORegistroI050.New)
+        .AddI051(TJSEcdDAORegistroI051.New)
+        .AddI052(TJSEcdDAORegistroI052.New)
       .&End;
 
   Ecd.Execute;

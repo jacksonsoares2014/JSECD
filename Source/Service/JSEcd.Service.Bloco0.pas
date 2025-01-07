@@ -20,6 +20,7 @@ type
 
     FacadeExport: IJSEcdExportFacade;
     FArquivo: TStringList;
+    FListCodPart: TList<string>;
     F0990: TJSEcdModelRegistro0990;
 
     procedure AdicionaLinhaEcd(ARegistro: TJSEcdModelRegistro);
@@ -27,6 +28,7 @@ type
     procedure Gerar0001;
     procedure Gerar0007;
   public
+    function AddCodPart(Value: String): IJSEcdServiceBloco0;
     function Execute: TStringList;
     function &End: IJSEcdService;
 
@@ -42,6 +44,16 @@ implementation
 function TJSEcdServiceBloco0.&End: IJSEcdService;
 begin
   Result := FEcdService;
+end;
+
+function TJSEcdServiceBloco0.AddCodPart(Value: String): IJSEcdServiceBloco0;
+begin
+  Result := Self;
+  if not Assigned(FListCodPart) then
+    FListCodPart := TList<string>.Create;
+
+  if not Value.IsEmpty and not FListCodPart.Contains(Value) then
+    FListCodPart.Add(Value);
 end;
 
 procedure TJSEcdServiceBloco0.AdicionaLinhaEcd(ARegistro: TJSEcdModelRegistro);

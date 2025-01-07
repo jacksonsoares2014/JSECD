@@ -74,6 +74,10 @@ type
 
   TJSEcdIndLcto = (ilNormal, ilEncerramento, ilExtemporaneo);
 
+  TJSEcdIndCta = (icSintetica, icAnalitica);
+
+  TJSEcdCodNat = (cnAtivo, cnPassivo, cnPatrimonioLiquido, cnResultado, cnCompensacao, cnOutras);
+
   TJSEcdIndCentralizadaHelper = record helper for TJSEcdIndCentralizada
   public
     function ToString: string;
@@ -177,6 +181,17 @@ type
     procedure FromString(Value: string);
   end;
 
+  TJSEcdIndCtaHelper = record helper for TJSEcdIndCta
+  public
+    function ToString: string;
+    procedure FromString(Value: string);
+  end;
+
+  TJSEcdCodNatHelper = record helper for TJSEcdCodNat
+  public
+    function ToString: string;
+    procedure FromString(Value: string);
+  end;
 
 implementation
 
@@ -196,6 +211,8 @@ var
   aStrTipoDoc: array of string = ['001','002','003','010','011','012','099'];
 
   aStrIndLcto: array of string = ['N','E','X'];
+
+  aStrCodNat: array of string = ['01','02','03','04','05','06','07','08','09','10','11'];
 
 { TJSEcdIndSitEspHelper }
 
@@ -581,6 +598,48 @@ begin
     ilNormal: Result := 'N';
     ilEncerramento: Result := 'E';
     ilExtemporaneo: Result := 'X';
+  end;
+end;
+
+{ TJSEcdIndCtaHelper }
+
+procedure TJSEcdIndCtaHelper.FromString(Value: string);
+begin
+  if AnsiSameText(Value, 'S') then
+    Self := icSintetica
+  else
+    if AnsiSameText(Value, 'A') then
+      Self := icAnalitica;
+end;
+
+function TJSEcdIndCtaHelper.ToString: string;
+begin
+  case Self of
+    icSintetica: Result := 'S';
+    icAnalitica: Result := 'A';
+  end;
+end;
+
+{ TJSEcdCodNatHelper }
+
+procedure TJSEcdCodNatHelper.FromString(Value: string);
+var
+  I: Integer;
+begin
+  for I := Low(aStrCodNat) to High(aStrCodNat) do
+    if AnsiSameText(Value, aStrCodNat[I]) then
+      Self := TJSEcdCodNat(I);
+end;
+
+function TJSEcdCodNatHelper.ToString: string;
+begin
+  case Self of
+    cnAtivo: Result := '01';
+    cnPassivo: Result := '02';
+    cnPatrimonioLiquido: Result := '03';
+    cnResultado: Result := '04';
+    cnCompensacao: Result := '05';
+    cnOutras: Result := '09';
   end;
 end;
 

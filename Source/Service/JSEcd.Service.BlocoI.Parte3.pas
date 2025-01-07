@@ -12,8 +12,12 @@ type
     [Weak]
     FEcdService: IJSEcdService;
 
+    [Weak]
+    FBloco0: IJSEcdServiceBloco0;
+
     FArquivo: TStringList;
   public
+    function ServiceBloco0(Value: IJSEcdServiceBloco0): IJSEcdServiceBlocoIParte3;
     function Execute: TStringList;
     function &End: IJSEcdService;
 
@@ -51,6 +55,13 @@ end;
 class function TJSEcdServiceBlocoIParte3.New(Parent: IJSEcdService): IJSEcdServiceBlocoIParte3;
 begin
   Result := Self.Create(Parent);
+end;
+
+function TJSEcdServiceBlocoIParte3.ServiceBloco0(
+  Value: IJSEcdServiceBloco0): IJSEcdServiceBlocoIParte3;
+begin
+  result  := Self;
+  FBloco0 := Value;
 end;
 
 end.

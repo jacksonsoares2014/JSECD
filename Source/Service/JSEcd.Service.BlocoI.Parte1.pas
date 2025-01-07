@@ -21,6 +21,7 @@ type
 
     FacadeExport: IJSEcdExportFacade;
     FArquivo: TStringList;
+    FIndexOfI030: Integer;
 
     procedure AdicionaLinhaEcd(ARegistro: TJSEcdModelRegistro);
     procedure GerarI010;
@@ -29,11 +30,12 @@ type
     procedure GerarI020;
     procedure GerarI030;
     procedure GerarI050;
-    procedure GerarI051;
-    procedure GerarI052;
+    procedure GerarI051(RegI050: TJSEcdModelRegistroI050);
+    procedure GerarI052(RegI050: TJSEcdModelRegistroI050);
     procedure GerarI053;
     procedure GerarI075;
   public
+    function IndexOfI030: Integer;
     function Execute: TStringList;
     function &End: IJSEcdService;
 
@@ -75,6 +77,7 @@ end;
 function TJSEcdServiceBlocoIParte1.Execute: TStringList;
 begin
   try
+    FIndexOfI030 := -1;
     GerarI010;
     Result := FArquivo;
   except
@@ -162,7 +165,7 @@ procedure TJSEcdServiceBlocoIParte1.GerarI030;
 var
   RegI030: TJSEcdModelRegistroI030;
 begin
-  //TODO: Abaixo é só teste. Verificar depois de tem DAO;
+  //TODO: Abaixo é só teste. Verificar depois se tem DAO;
   RegI030 := TJSEcdModelRegistroI030.create;
   try
     RegI030.dnrcAbert := 'TERMO DE ABERTURA';
@@ -177,57 +180,68 @@ begin
     RegI030.descMun := 'Una';
     RegI030.dtExSocial := FEcdService.Config.DataFinal;
     AdicionaLinhaEcd(RegI030);
-{
-|I030|TERMO DE ABERTURA|333|livro diaro|489066|TRANSAMERICA DE HOTEIS NORDESTE LTDA|
-29203275327|13432810000169|03112005|03112005|Una|31122023|
-|I050|01082023|01|S|1|1||ATIVO|
-|I050|01082023|01|S|2|11|1|ATIVO CIRCULANTE|
-|I050|01082023|01|S|3|111|11|DISPONIBILIDADES|
-|I050|01082023|01|S|4|11101|111|CAIXA GERAL|
-|I050|01082023|01|A|5|11101001|11101|CAIXA FUNDO FIXO - TESOURARIA GERAL|
-|I051||1.01.01.01.01|
-|I052||18002550|
-|I050|01082023|01|A|5|11101002|11101|CAIXA FUNDO FIXO - COMPRAS SP|
-|I051||1.01.01.01.01|
-|I052||18002550|
-|I050|01082023|01|A|5|11101005|11101|CAIXA FUNDO FIXO - RH|
-|I051||1.01.01.01.01|
-|I052||18002550|
-|I050|01082023|01|A|5|11101007|11101|CAIXA FUNDO FIXO - TRANSPORTE|
-|I051||1.01.01.01.01|
-|I052||18002550|
-|I050|01082023|01|A|5|11101008|11101|NUMERARIOS EM TRANSITO|
-|I051||1.01.01.04.01|
-|I052||18002550|
-|I050|01082023|01|S|4|11102|111|BANCOS CONTA MOVIMENTO|
-|I050|01082023|01|A|5|11102001|11102|BANCO BRADESCO|
-|I051||1.01.01.02.01|
-|I052||18002551|
-|I050|01082023|01|A|5|11102002|11102|BANCO SANTANDER|
-|I051||1.01.01.02.01|
-|I052||18002551|
-}
-
+    FIndexOfI030 := FArquivo.Count - 1;
   finally
     FreeAndNil(RegI030);
   end;
 end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI050;
+var
+  RegI050: TJSEcdModelRegistroI050;
+  ListI050: TObjectList<TJSEcdModelRegistroI050>;
 begin
-  GerarI051;
-  GerarI052;
-  GerarI053;
+  //TODO: Abaixo é só teste. Verificar os parâmetros da List;
+  ListI050 := FEcdService.DAO.BlocoIParte1.DAOI050.List;
+  try
+    for RegI050 in ListI050 do
+    begin
+      AdicionaLinhaEcd(RegI050);
+      GerarI051(RegI050);
+      GerarI052(RegI050);
+      GerarI053;
+    end;
+  finally
+    FreeAndNil(ListI050);
+  end;
 end;
 
-procedure TJSEcdServiceBlocoIParte1.GerarI051;
+procedure TJSEcdServiceBlocoIParte1.GerarI051(RegI050: TJSEcdModelRegistroI050);
+var
+  RegI051: TJSEcdModelRegistroI051;
+  ListI051: TObjectList<TJSEcdModelRegistroI051>;
 begin
-
+  if RegI050.indCta = icAnalitica then
+  begin
+    ListI051 := FEcdService.DAO.BlocoIParte1.DAOI051.List(RegI050.codCta);
+    try
+      for RegI051 in ListI051 do
+      begin
+        AdicionaLinhaEcd(RegI051);
+      end;
+    finally
+      FreeAndNil(ListI051);
+    end;
+  end;
 end;
 
-procedure TJSEcdServiceBlocoIParte1.GerarI052;
+procedure TJSEcdServiceBlocoIParte1.GerarI052(RegI050: TJSEcdModelRegistroI050);
+var
+  RegI052: TJSEcdModelRegistroI052;
+  ListI052: TObjectList<TJSEcdModelRegistroI052>;
 begin
-
+  if RegI050.indCta = icAnalitica then
+  begin
+    ListI052 := FEcdService.DAO.BlocoIParte1.DAOI052.List(RegI050.codCta);
+    try
+      for RegI052 in ListI052 do
+      begin
+        AdicionaLinhaEcd(RegI052);
+      end;
+    finally
+      FreeAndNil(ListI052);
+    end;
+  end;
 end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI053;
@@ -238,6 +252,11 @@ end;
 procedure TJSEcdServiceBlocoIParte1.GerarI075;
 begin
 
+end;
+
+function TJSEcdServiceBlocoIParte1.IndexOfI030: Integer;
+begin
+  Result := FIndexOfI030;
 end;
 
 class function TJSEcdServiceBlocoIParte1.New(Parent: IJSEcdService): IJSEcdServiceBlocoIParte1;

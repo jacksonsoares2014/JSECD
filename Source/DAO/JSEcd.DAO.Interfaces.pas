@@ -66,12 +66,12 @@ type
 
   IJSEcdDAOI051 = interface
     ['{EF742F62-588D-4921-ADA9-950884F24056}']
-    function List: TObjectList<TJSEcdModelRegistroI051>;
+    function List(Value: string): TObjectList<TJSEcdModelRegistroI051>;
   end;
 
   IJSEcdDAOI052 = interface
     ['{7075E743-8744-476C-9EBF-B2042985FB09}']
-    function List: TObjectList<TJSEcdModelRegistroI052>;
+    function List(Value: string): TObjectList<TJSEcdModelRegistroI052>;
   end;
 
   IJSEcdDAOI053 = interface

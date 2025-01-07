@@ -14,8 +14,9 @@ type
     FEcdService: IJSEcdService;
 
     FArquivo: TStringList;
+    FIndexOfJ900: Integer;
   public
-    function TotalLinhasArquivo(Value: Integer): IJSEcdServiceBlocoJ;
+    function IndexOfJ900: Integer;
     function Execute: TStringList;
     function &End: IJSEcdService;
 
@@ -35,8 +36,8 @@ end;
 
 constructor TJSEcdServiceBlocoJ.Create(Parent: IJSEcdService);
 begin
+  FArquivo := TStringList.Create;
   FEcdService := Parent;
-
 end;
 
 destructor TJSEcdServiceBlocoJ.Destroy;
@@ -47,23 +48,18 @@ end;
 
 function TJSEcdServiceBlocoJ.Execute: TStringList;
 begin
-  FArquivo := TStringList.Create;
+  FIndexOfJ900 := -1;
   Result := FArquivo;
+end;
+
+function TJSEcdServiceBlocoJ.IndexOfJ900: Integer;
+begin
+  Result := FIndexOfJ900;
 end;
 
 class function TJSEcdServiceBlocoJ.New(Parent: IJSEcdService): IJSEcdServiceBlocoJ;
 begin
   Result := Self.Create(Parent);
-end;
-
-function TJSEcdServiceBlocoJ.TotalLinhasArquivo(
-  Value: Integer): IJSEcdServiceBlocoJ;
-var
-  I: Integer;
-begin
-  Result := Self;
-  FArquivo.Find('J900', I);
-  FArquivo.Strings[I].Replace('-1',IntToStr(Value));
 end;
 
 end.

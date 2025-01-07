@@ -577,12 +577,14 @@ type
 
   IJSEcdServiceBloco0 = interface
     ['{E64065EA-BABB-4E42-9291-435930B578E6}']
+    function AddCodPart(Value: String): IJSEcdServiceBloco0;
     function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
   IJSEcdServiceBlocoIParte1 = interface
     ['{B01EBF93-77AF-43D3-AE05-3D1311DBC69F}']
+    function IndexOfI030: Integer;
     function Execute: TStringList;
     function &End: IJSEcdService;
   end;
@@ -595,6 +597,7 @@ type
 
   IJSEcdServiceBlocoIParte3 = interface
     ['{B4F9793C-B3FF-4524-AF88-CC3C950E19DC}']
+    function ServiceBloco0(Value: IJSEcdServiceBloco0): IJSEcdServiceBlocoIParte3;
     function Execute: TStringList;
     function &End: IJSEcdService;
   end;
@@ -613,7 +616,7 @@ type
 
   IJSEcdServiceBlocoJ = interface
     ['{DDEC04C5-8EE9-4F43-BB52-36E8A99A9114}']
-    function TotalLinhasArquivo(Value: Integer): IJSEcdServiceBlocoJ;
+    function IndexOfJ900: Integer;
     function Execute: TStringList;
     function &End: IJSEcdService;
   end;

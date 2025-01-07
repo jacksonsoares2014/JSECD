@@ -6,6 +6,8 @@ uses
   JSEcd.Export.Interfaces,
   JSEcd.Export.Base,
   JSEcd.Model.Classes,
+  JSEcd.Model.Types,
+  JSEcd.Model.Format,
   System.SysUtils;
 
 const
@@ -28,10 +30,10 @@ begin
   validateInstance<TJSEcdModelRegistroI050>(AModel, FRegI050);
 
   result := Format(cI050,
-                   [FRegI050.dtAlt,
-                    FRegI050.codNat,
-                    FRegI050.indCta,
-                    FRegI050.nivel,
+                   [JSEF.FormatData(FRegI050.dtAlt),
+                    FRegI050.codNat.ToString,
+                    FRegI050.indCta.ToString,
+                    FRegI050.nivel.ToString,
                     FRegI050.codCta,
                     FRegI050.codCtaSup,
                     FRegI050.cta]);
