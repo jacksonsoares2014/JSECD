@@ -577,55 +577,57 @@ type
 
   IJSEcdServiceBloco0 = interface
     ['{E64065EA-BABB-4E42-9291-435930B578E6}']
-    function Execute: IJSEcdServiceBloco0;
+    function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
   IJSEcdServiceBlocoIParte1 = interface
     ['{B01EBF93-77AF-43D3-AE05-3D1311DBC69F}']
-    function Execute: IJSEcdServiceBlocoIParte1;
+    function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
   IJSEcdServiceBlocoIParte2 = interface
     ['{0CD539B5-53EC-4638-9503-488859F791FC}']
-    function Execute: IJSEcdServiceBlocoIParte2;
+    function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
   IJSEcdServiceBlocoIParte3 = interface
     ['{B4F9793C-B3FF-4524-AF88-CC3C950E19DC}']
-    function Execute: IJSEcdServiceBlocoIParte3;
+    function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
   IJSEcdServiceBlocoIParte4 = interface
     ['{2147D9C1-CA01-42E7-8B86-E5FDBBEE35F5}']
-    function Execute: IJSEcdServiceBlocoIParte4;
+    function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
   IJSEcdServiceBlocoIParte5 = interface
     ['{490D8AE1-EA7C-4662-B880-500565694B61}']
-    function Execute: IJSEcdServiceBlocoIParte5;
+    function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
   IJSEcdServiceBlocoJ = interface
     ['{DDEC04C5-8EE9-4F43-BB52-36E8A99A9114}']
-    function Execute: IJSEcdServiceBlocoJ;
+    function TotalLinhasArquivo(Value: Integer): IJSEcdServiceBlocoJ;
+    function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
   IJSEcdServiceBlocoK = interface
     ['{86EC2CD6-7ED6-4E36-9E86-FC2903843B2F}']
-    function Execute: IJSEcdServiceBlocoK;
+    function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
   IJSEcdServiceBloco9 = interface
     ['{10416F83-66F2-4D00-AE32-D3C79C124607}']
-    function Execute: IJSEcdServiceBloco9;
+    function TotalRegistroArquivo: Integer;
+    function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 

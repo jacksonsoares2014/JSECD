@@ -3,15 +3,18 @@ unit JSEcd.Service.BlocoI.Parte4;
 interface
 
 uses
-  JSEcd.Service.Interfaces;
+  JSEcd.Service.Interfaces,
+  System.Classes;
 
 type
   TJSEcdServiceBlocoIParte4 = class(TInterfacedObject, IJSEcdServiceBlocoIParte4)
   private
     [Weak]
     FEcdService: IJSEcdService;
+
+    FArquivo: TStringList;
   public
-    function Execute: IJSEcdServiceBlocoIParte4;
+    function Execute: TStringList;
     function &End: IJSEcdService;
 
     constructor Create(Parent: IJSEcdService);
@@ -30,6 +33,7 @@ end;
 
 constructor TJSEcdServiceBlocoIParte4.Create(Parent: IJSEcdService);
 begin
+  FArquivo := TStringList.Create;
   FEcdService := Parent;
 end;
 
@@ -39,9 +43,9 @@ begin
   inherited;
 end;
 
-function TJSEcdServiceBlocoIParte4.Execute: IJSEcdServiceBlocoIParte4;
+function TJSEcdServiceBlocoIParte4.Execute: TStringList;
 begin
-  Result := Self;
+  Result := FArquivo;
 end;
 
 class function TJSEcdServiceBlocoIParte4.New(Parent: IJSEcdService): IJSEcdServiceBlocoIParte4;

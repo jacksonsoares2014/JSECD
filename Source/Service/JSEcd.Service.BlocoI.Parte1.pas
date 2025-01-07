@@ -23,7 +23,6 @@ type
     FArquivo: TStringList;
 
     procedure AdicionaLinhaEcd(ARegistro: TJSEcdModelRegistro);
-    procedure SaveToFile;
     procedure GerarI010;
     procedure GerarI012;
     procedure GerarI015;
@@ -35,7 +34,7 @@ type
     procedure GerarI053;
     procedure GerarI075;
   public
-    function Execute: IJSEcdServiceBlocoIParte1;
+    function Execute: TStringList;
     function &End: IJSEcdService;
 
     constructor Create(Parent: IJSEcdService);
@@ -61,6 +60,7 @@ end;
 
 constructor TJSEcdServiceBlocoIParte1.Create(Parent: IJSEcdService);
 begin
+  FArquivo := TStringList.Create;
   FEcdService := Parent;
   FacadeExport := JSEcd.Export.Interfaces
                     .FacadeExport(FEcdService.Config);
@@ -72,23 +72,18 @@ begin
   inherited;
 end;
 
-function TJSEcdServiceBlocoIParte1.Execute: IJSEcdServiceBlocoIParte1;
+function TJSEcdServiceBlocoIParte1.Execute: TStringList;
 begin
-  Result := Self;
-  FArquivo := TStringList.Create;
   try
-    try
-      GerarI010;
-    except
-      on e: Exception do
-      begin
-//        OnLogErro('Houve erro na geração do bloco 0: ' + e.Message);
-        Raise;
-      end;
+    GerarI010;
+    Result := FArquivo;
+  except
+    on e: Exception do
+    begin
+      FreeAndNil(FArquivo);
+//      OnLogErro('Houve erro na geração do bloco 0: ' + e.Message);
+      Raise;
     end;
-  finally
-    SaveToFile;
-    FreeAndNil(FArquivo);
   end;
 end;
 
@@ -170,8 +165,49 @@ begin
   //TODO: Abaixo é só teste. Verificar depois de tem DAO;
   RegI030 := TJSEcdModelRegistroI030.create;
   try
-    RegI030.dnrcAbert := 'Teste';
+    RegI030.dnrcAbert := 'TERMO DE ABERTURA';
+    RegI030.numOrd := 333;
+    RegI030.natLivr := 'livro diaro';
+    RegI030.qtdLin := -1;
+    RegI030.nome := 'TRANSAMERICA DE HOTEIS NORDESTE LTDA';
+    RegI030.nire := '13432810000169';
+    RegI030.cnpj := '29203275327';
+    RegI030.dtArq := Date;
+    RegI030.dtArqConv := Date;
+    RegI030.descMun := 'Una';
+    RegI030.dtExSocial := FEcdService.Config.DataFinal;
     AdicionaLinhaEcd(RegI030);
+{
+|I030|TERMO DE ABERTURA|333|livro diaro|489066|TRANSAMERICA DE HOTEIS NORDESTE LTDA|
+29203275327|13432810000169|03112005|03112005|Una|31122023|
+|I050|01082023|01|S|1|1||ATIVO|
+|I050|01082023|01|S|2|11|1|ATIVO CIRCULANTE|
+|I050|01082023|01|S|3|111|11|DISPONIBILIDADES|
+|I050|01082023|01|S|4|11101|111|CAIXA GERAL|
+|I050|01082023|01|A|5|11101001|11101|CAIXA FUNDO FIXO - TESOURARIA GERAL|
+|I051||1.01.01.01.01|
+|I052||18002550|
+|I050|01082023|01|A|5|11101002|11101|CAIXA FUNDO FIXO - COMPRAS SP|
+|I051||1.01.01.01.01|
+|I052||18002550|
+|I050|01082023|01|A|5|11101005|11101|CAIXA FUNDO FIXO - RH|
+|I051||1.01.01.01.01|
+|I052||18002550|
+|I050|01082023|01|A|5|11101007|11101|CAIXA FUNDO FIXO - TRANSPORTE|
+|I051||1.01.01.01.01|
+|I052||18002550|
+|I050|01082023|01|A|5|11101008|11101|NUMERARIOS EM TRANSITO|
+|I051||1.01.01.04.01|
+|I052||18002550|
+|I050|01082023|01|S|4|11102|111|BANCOS CONTA MOVIMENTO|
+|I050|01082023|01|A|5|11102001|11102|BANCO BRADESCO|
+|I051||1.01.01.02.01|
+|I052||18002551|
+|I050|01082023|01|A|5|11102002|11102|BANCO SANTANDER|
+|I051||1.01.01.02.01|
+|I052||18002551|
+}
+
   finally
     FreeAndNil(RegI030);
   end;
@@ -207,19 +243,6 @@ end;
 class function TJSEcdServiceBlocoIParte1.New(Parent: IJSEcdService): IJSEcdServiceBlocoIParte1;
 begin
   Result := Self.Create(Parent);
-end;
-
-procedure TJSEcdServiceBlocoIParte1.SaveToFile;
-begin
-  try
-    FArquivo.SaveToFile(FEcdService.Config.NomeArquivoBlocoIParte1);
-  except
-    on e: Exception do
-    begin
-//      OnLogErro('Houve erro na gravação do arquivo em disco: ' + e.Message);
-      raise;
-    end;
-  end;
 end;
 
 end.

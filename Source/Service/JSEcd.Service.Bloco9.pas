@@ -18,9 +18,12 @@ type
     FEcdService: IJSEcdService;
 
     FArquivo: TStringList;
+    FTotalEcd: Integer;
+
     procedure SaveToFile;
   public
-    function Execute: IJSEcdServiceBloco9;
+    function TotalRegistroArquivo: Integer;
+    function Execute: TStringList;
     function &End: IJSEcdService;
 
     constructor Create(Parent: IJSEcdService);
@@ -34,6 +37,7 @@ implementation
 
 constructor TJSEcdServiceBloco9.Create(Parent: IJSEcdService);
 begin
+  FArquivo := TStringList.Create;
   FEcdService := Parent;
 end;
 
@@ -48,57 +52,51 @@ begin
   Result := FEcdService;
 end;
 
-function TJSEcdServiceBloco9.Execute: IJSEcdServiceBloco9;
+function TJSEcdServiceBloco9.Execute: TStringList;
 var
   registros: TArray<String>;
   reg: string;
   indicador: Integer;
   totalPorRegistro: Integer;
-  totalEcd: Integer;
   I: Integer;
 begin
-  Result := Self;
-  FArquivo := TStringList.Create;
   try
-    try
-      totalEcd := 0;
-      registros := Counter.GetCounter.Keys.ToArray;
-      TArray.sort<String>(registros);
+    FTotalEcd := 0;
+    registros := Counter.GetCounter.Keys.ToArray;
+    TArray.sort<String>(registros);
 
-      indicador := IfThen(Counter.GetCounter.Count > 0, 0, 1);
-      FArquivo.Add(Format('|9001|%d|', [indicador]));
+    indicador := IfThen(Counter.GetCounter.Count > 0, 0, 1);
+    FArquivo.Add(Format('|9001|%d|', [indicador]));
+    Counter.AddCounter('9900');
+
+    for I := 0 to Pred(Length(registros)) do
+    begin
+      reg := registros[I];
+      totalPorRegistro := Counter.GetCounter.Items[reg];
+      FTotalEcd := FTotalEcd + totalPorRegistro;
+
+      FArquivo.Add(Format('|9900|%s|%d|', [registros[I], totalPorRegistro]));
       Counter.AddCounter('9900');
-
-      for I := 0 to Pred(Length(registros)) do
-      begin
-        reg := registros[I];
-        totalPorRegistro := Counter.GetCounter.Items[reg];
-        totalEcd := totalEcd + totalPorRegistro;
-
-        FArquivo.Add(Format('|9900|%s|%d|', [registros[I], totalPorRegistro]));
-        Counter.AddCounter('9900');
-      end;
-
-      FArquivo.Add('|9900|9001|1|');
-      Counter.AddCounter('9900');
-      FArquivo.Add(Format('|9900|9900|%d|',[Counter.GetCounter.Items['9900'] + 2]));
-      Counter.AddCounter('9900');
-      FArquivo.Add('|9900|9990|1|');
-      Counter.AddCounter('9900');
-      FArquivo.Add('|9900|9999|1|');
-      Counter.AddCounter('9900');
-
-      totalPorRegistro := Counter.GetCounter.Items['9900'] + 2;
-      totalEcd := totalEcd + totalPorRegistro;
-
-      FArquivo.Add(Format('|9990|%d|', [totalPorRegistro]));
-      FArquivo.Add(Format('|9999|%d|', [totalEcd]));
-    except
-      raise;
     end;
-  finally
-    SaveToFile;
-    FreeAndNil(FArquivo);
+
+    FArquivo.Add('|9900|9001|1|');
+    Counter.AddCounter('9900');
+    FArquivo.Add(Format('|9900|9900|%d|',[Counter.GetCounter.Items['9900'] + 2]));
+    Counter.AddCounter('9900');
+    FArquivo.Add('|9900|9990|1|');
+    Counter.AddCounter('9900');
+    FArquivo.Add('|9900|9999|1|');
+    Counter.AddCounter('9900');
+
+    totalPorRegistro := Counter.GetCounter.Items['9900'] + 2;
+    FTotalEcd := FTotalEcd + totalPorRegistro;
+
+    FArquivo.Add(Format('|9990|%d|', [totalPorRegistro]));
+    FArquivo.Add(Format('|9999|%d|', [FTotalEcd]));
+
+    Result := FArquivo;
+  except
+    raise;
   end;
 end;
 
@@ -119,6 +117,11 @@ begin
       raise;
     end;
   end;
+end;
+
+function TJSEcdServiceBloco9.TotalRegistroArquivo: Integer;
+begin
+  Result := FTotalEcd;
 end;
 
 end.

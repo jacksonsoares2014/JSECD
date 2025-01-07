@@ -25,7 +25,7 @@ type
     procedure AdicionaLinhaEcd(ARegistro: TJSEcdModelRegistro);
     procedure SaveToFile;
   public
-    function Execute: IJSEcdServiceBlocoIParte5;
+    function Execute: TStringList;
     function &End: IJSEcdService;
 
     constructor Create(Parent: IJSEcdService);
@@ -51,6 +51,7 @@ end;
 
 constructor TJSEcdServiceBlocoIParte5.Create(Parent: IJSEcdService);
 begin
+  FArquivo := TStringList.Create;
   FEcdService := Parent;
   FacadeExport := JSEcd.Export.Interfaces
                     .FacadeExport(FEcdService.Config);
@@ -64,23 +65,17 @@ begin
   inherited;
 end;
 
-function TJSEcdServiceBlocoIParte5.Execute: IJSEcdServiceBlocoIParte5;
+function TJSEcdServiceBlocoIParte5.Execute: TStringList;
 begin
-  Result := Self;
-  FArquivo := TStringList.Create;
   try
-    try
 //      Gerar qualquer coisa;
-    except
-      on e: Exception do
-      begin
-//        OnLogErro('Houve erro na geração do bloco 0: ' + e.Message);
-        Raise;
-      end;
+    Result := FArquivo;
+  except
+    on e: Exception do
+    begin
+//      OnLogErro('Houve erro na geração do bloco 0: ' + e.Message);
+      Raise;
     end;
-  finally
-    SaveToFile;
-    FreeAndNil(FArquivo);
   end;
 end;
 

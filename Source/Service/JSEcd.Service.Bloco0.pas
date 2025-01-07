@@ -23,12 +23,11 @@ type
     F0990: TJSEcdModelRegistro0990;
 
     procedure AdicionaLinhaEcd(ARegistro: TJSEcdModelRegistro);
-    procedure SaveToFile;
     procedure Gerar0000;
     procedure Gerar0001;
     procedure Gerar0007;
   public
-    function Execute: IJSEcdServiceBloco0;
+    function Execute: TStringList;
     function &End: IJSEcdService;
 
     constructor Create(Parent: IJSEcdService);
@@ -54,6 +53,7 @@ end;
 
 constructor TJSEcdServiceBloco0.Create(Parent: IJSEcdService);
 begin
+  FArquivo := TStringList.Create;
   FEcdService := Parent;
   FacadeExport := JSEcd.Export.Interfaces
                     .FacadeExport(FEcdService.Config);
@@ -67,26 +67,20 @@ begin
   inherited;
 end;
 
-function TJSEcdServiceBloco0.Execute: IJSEcdServiceBloco0;
+function TJSEcdServiceBloco0.Execute: TStringList;
 begin
-  Result := Self;
-  FArquivo := TStringList.Create;
   try
-    try
-      Gerar0000;
-      Gerar0001;
-      Gerar0007;
-      AdicionaLinhaEcd(F0990);
-    except
-      on e: Exception do
-      begin
-//        OnLogErro('Houve erro na geração do bloco 0: ' + e.Message);
-        Raise;
-      end;
+    Gerar0000;
+    Gerar0001;
+    Gerar0007;
+    AdicionaLinhaEcd(F0990);
+    Result := FArquivo;
+  except
+    on e: Exception do
+    begin
+//      OnLogErro('Houve erro na geração do bloco 0: ' + e.Message);
+      Raise;
     end;
-  finally
-    SaveToFile;
-    FreeAndNil(FArquivo);
   end;
 end;
 
@@ -154,19 +148,6 @@ end;
 class function TJSEcdServiceBloco0.New(Parent: IJSEcdService): IJSEcdServiceBloco0;
 begin
   Result := Self.Create(Parent);
-end;
-
-procedure TJSEcdServiceBloco0.SaveToFile;
-begin
-  try
-    FArquivo.SaveToFile(FEcdService.Config.NomeArquivoBloco0);
-  except
-    on e: Exception do
-    begin
-//      OnLogErro('Houve erro na gravação do arquivo em disco: ' + e.Message);
-      raise;
-    end;
-  end;
 end;
 
 end.

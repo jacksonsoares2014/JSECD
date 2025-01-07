@@ -3,15 +3,20 @@ unit JSEcd.Service.BlocoJ;
 interface
 
 uses
-  JSEcd.Service.Interfaces;
+  JSEcd.Service.Interfaces,
+  System.SysUtils,
+  System.Classes;
 
 type
   TJSEcdServiceBlocoJ = class(TInterfacedObject, IJSEcdServiceBlocoJ)
   private
     [Weak]
     FEcdService: IJSEcdService;
+
+    FArquivo: TStringList;
   public
-    function Execute: IJSEcdServiceBlocoJ;
+    function TotalLinhasArquivo(Value: Integer): IJSEcdServiceBlocoJ;
+    function Execute: TStringList;
     function &End: IJSEcdService;
 
     constructor Create(Parent: IJSEcdService);
@@ -40,14 +45,25 @@ begin
   inherited;
 end;
 
-function TJSEcdServiceBlocoJ.Execute: IJSEcdServiceBlocoJ;
+function TJSEcdServiceBlocoJ.Execute: TStringList;
 begin
-  Result := Self;
+  FArquivo := TStringList.Create;
+  Result := FArquivo;
 end;
 
 class function TJSEcdServiceBlocoJ.New(Parent: IJSEcdService): IJSEcdServiceBlocoJ;
 begin
   Result := Self.Create(Parent);
+end;
+
+function TJSEcdServiceBlocoJ.TotalLinhasArquivo(
+  Value: Integer): IJSEcdServiceBlocoJ;
+var
+  I: Integer;
+begin
+  Result := Self;
+  FArquivo.Find('J900', I);
+  FArquivo.Strings[I].Replace('-1',IntToStr(Value));
 end;
 
 end.
