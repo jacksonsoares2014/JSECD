@@ -30,14 +30,14 @@ begin
      (Value = '11101007') then
   begin
     Result.Add(TJSEcdModelRegistroI051.Create);
-    Result.Last.codCcus := '';
+    Result.Last.codCcus := '110100202';
     Result.Last.codCtaRef := '1.01.01.01.01';
   end;
 
   if Value = '11101008' then
   begin
     Result.Add(TJSEcdModelRegistroI051.Create);
-    Result.Last.codCcus := '';
+    Result.Last.codCcus := '110110101';
     Result.Last.codCtaRef := '1.01.01.04.01';
   end;
 

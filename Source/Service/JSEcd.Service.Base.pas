@@ -18,6 +18,7 @@ type
   private
     FBloco0: IJSEcdServiceBloco0;
     FBlocoIParte1: IJSEcdServiceBlocoIParte1;
+    FBlocoIParte2: IJSEcdServiceBlocoIParte2;
     FBlocoJ: IJSEcdServiceBlocoJ;
     FBloco9: IJSEcdServiceBloco9;
 
@@ -105,6 +106,7 @@ constructor TJSEcdService.Create;
 begin
   FBloco0 := TJSEcdServiceBloco0.New(Self);
   FBlocoIParte1 := TJSEcdServiceBlocoIParte1.New(Self);
+  FBlocoIParte2 := TJSEcdServiceBlocoIParte2.New(Self);
   FBlocoJ := TJSEcdServiceBlocoJ.New(Self);
   FI001 := TJSEcdModelRegistroI001.create;
   FI990 := TJSEcdModelRegistroI990.create;;
@@ -216,17 +218,18 @@ end;
 
 function TJSEcdService.GerarBlocoIParte1: TStringList;
 begin
+  FBlocoIParte1
+    .ServiceBlocoIParte2(FBlocoIParte2);
+
   Result := FBlocoIParte1.Execute;
 end;
 
 procedure TJSEcdService.GerarBlocoIParte2;
 var
-  BlocoIParte2: IJSEcdServiceBlocoIParte2;
   FListBlocoIParte2: TStringList;
 begin
   try
-    BlocoIParte2 := TJSEcdServiceBlocoIParte2.New(Self);
-    FListBlocoIParte2 := BlocoIParte2.Execute;
+    FListBlocoIParte2 := FBlocoIParte2.Execute;
     SaveToFile(FListBlocoIParte2, FConfig.NomeArquivoBlocoIParte2);
   finally
     FreeAndNil(FListBlocoIParte2);

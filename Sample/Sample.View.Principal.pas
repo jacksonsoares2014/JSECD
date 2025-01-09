@@ -27,7 +27,9 @@ uses
   JSEcd.DAO.Registro0000,
   JSEcd.DAO.RegistroI050,
   JSEcd.DAO.RegistroI051,
-  JSEcd.DAO.RegistroI052;
+  JSEcd.DAO.RegistroI052,
+  JSEcd.DAO.RegistroI075,
+  JSEcd.DAO.RegistroI100;
 
 {$R *.dfm}
 
@@ -67,6 +69,13 @@ begin
         .AddI050(TJSEcdDAORegistroI050.New)
         .AddI051(TJSEcdDAORegistroI051.New)
         .AddI052(TJSEcdDAORegistroI052.New)
+        .AddI075(TJSEcdDAORegistroI075.New)
+      .&End;
+
+  Ecd
+    .DAO
+      .BlocoIParte2
+        .AddI100(TJSEcdDAORegistroI100.New)
       .&End;
 
   Ecd.Execute;

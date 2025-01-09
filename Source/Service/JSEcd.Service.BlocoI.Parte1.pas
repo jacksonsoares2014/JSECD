@@ -19,6 +19,9 @@ type
     [Weak]
     FEcdService: IJSEcdService;
 
+    [Weak]
+    FBlocoIParte2: IJSEcdServiceBlocoIParte2;
+
     FacadeExport: IJSEcdExportFacade;
     FArquivo: TStringList;
     FIndexOfI030: Integer;
@@ -35,6 +38,7 @@ type
     procedure GerarI053;
     procedure GerarI075;
   public
+    function ServiceBlocoIParte2(Value: IJSEcdServiceBlocoIParte2): IJSEcdServiceBlocoIParte1;
     function IndexOfI030: Integer;
     function Execute: TStringList;
     function &End: IJSEcdService;
@@ -218,7 +222,8 @@ begin
       for RegI051 in ListI051 do
       begin
         AdicionaLinhaEcd(RegI051);
-      end;
+        FBlocoIParte2.AddCodCcus(RegI051.codCcus);
+    end;
     finally
       FreeAndNil(ListI051);
     end;
@@ -237,6 +242,7 @@ begin
       for RegI052 in ListI052 do
       begin
         AdicionaLinhaEcd(RegI052);
+        FBlocoIParte2.AddCodCcus(RegI052.codCcus);
       end;
     finally
       FreeAndNil(ListI052);
@@ -250,8 +256,19 @@ begin
 end;
 
 procedure TJSEcdServiceBlocoIParte1.GerarI075;
+var
+  RegI075: TJSEcdModelRegistroI075;
+  ListI075: TObjectList<TJSEcdModelRegistroI075>;
 begin
-
+  ListI075 := FEcdService.DAO.BlocoIParte1.DAOI075.List;
+  try
+    for RegI075 in ListI075 do
+    begin
+      AdicionaLinhaEcd(RegI075);
+    end;
+  finally
+    FreeAndNil(ListI075);
+  end;
 end;
 
 function TJSEcdServiceBlocoIParte1.IndexOfI030: Integer;
@@ -262,6 +279,13 @@ end;
 class function TJSEcdServiceBlocoIParte1.New(Parent: IJSEcdService): IJSEcdServiceBlocoIParte1;
 begin
   Result := Self.Create(Parent);
+end;
+
+function TJSEcdServiceBlocoIParte1.ServiceBlocoIParte2(
+  Value: IJSEcdServiceBlocoIParte2): IJSEcdServiceBlocoIParte1;
+begin
+  Result := Self;
+  FBlocoIParte2 := Value;
 end;
 
 end.

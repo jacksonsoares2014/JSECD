@@ -582,15 +582,17 @@ type
     function &End: IJSEcdService;
   end;
 
-  IJSEcdServiceBlocoIParte1 = interface
-    ['{B01EBF93-77AF-43D3-AE05-3D1311DBC69F}']
-    function IndexOfI030: Integer;
+  IJSEcdServiceBlocoIParte2 = interface
+    ['{0CD539B5-53EC-4638-9503-488859F791FC}']
+    function AddCodCcus(Value: String): IJSEcdServiceBlocoIParte2;
     function Execute: TStringList;
     function &End: IJSEcdService;
   end;
 
-  IJSEcdServiceBlocoIParte2 = interface
-    ['{0CD539B5-53EC-4638-9503-488859F791FC}']
+  IJSEcdServiceBlocoIParte1 = interface
+    ['{B01EBF93-77AF-43D3-AE05-3D1311DBC69F}']
+    function ServiceBlocoIParte2(Value: IJSEcdServiceBlocoIParte2): IJSEcdServiceBlocoIParte1;
+    function IndexOfI030: Integer;
     function Execute: TStringList;
     function &End: IJSEcdService;
   end;
@@ -604,6 +606,7 @@ type
 
   IJSEcdServiceBlocoIParte4 = interface
     ['{2147D9C1-CA01-42E7-8B86-E5FDBBEE35F5}']
+    function ServiceBlocoIParte2(Value: IJSEcdServiceBlocoIParte2): IJSEcdServiceBlocoIParte4;
     function Execute: TStringList;
     function &End: IJSEcdService;
   end;

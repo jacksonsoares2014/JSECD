@@ -86,7 +86,7 @@ type
 
   IJSEcdDAOI100 = interface
     ['{F7F1B834-3EC3-4EA2-B232-766C1A1FE8AE}']
-    function List: TObjectList<TJSEcdModelRegistroI100>;
+    function List(CodCcus: TList<String>): TObjectList<TJSEcdModelRegistroI100>;
   end;
 
   IJSEcdDAOI150 = interface
