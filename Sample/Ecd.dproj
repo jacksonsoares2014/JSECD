@@ -114,6 +114,10 @@
         <DCCReference Include="DAO\JSEcd.DAO.RegistroI052.pas"/>
         <DCCReference Include="DAO\JSEcd.DAO.RegistroI075.pas"/>
         <DCCReference Include="DAO\JSEcd.DAO.RegistroI100.pas"/>
+        <DCCReference Include="DAO\JSEcd.DAO.RegistroI150.pas"/>
+        <DCCReference Include="DAO\JSEcd.DAO.RegistroI155.pas"/>
+        <DCCReference Include="DAO\JSEcd.DAO.RegistroI157.pas"/>
+        <DCCReference Include="DAO\JSEcd.DAO.Classes.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

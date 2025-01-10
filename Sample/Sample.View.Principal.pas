@@ -24,12 +24,7 @@ var
 implementation
 
 uses
-  JSEcd.DAO.Registro0000,
-  JSEcd.DAO.RegistroI050,
-  JSEcd.DAO.RegistroI051,
-  JSEcd.DAO.RegistroI052,
-  JSEcd.DAO.RegistroI075,
-  JSEcd.DAO.RegistroI100;
+  JSEcd.DAO.Classes;
 
 {$R *.dfm}
 
@@ -76,6 +71,9 @@ begin
     .DAO
       .BlocoIParte2
         .AddI100(TJSEcdDAORegistroI100.New)
+        .AddI150(TJSEcdDAORegistroI150.New)
+        .AddI155(TJSEcdDAORegistroI155.New)
+        .AddI157(TJSEcdDAORegistroI157.New)
       .&End;
 
   Ecd.Execute;

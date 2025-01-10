@@ -8,7 +8,11 @@ uses
   JSEcd.DAO.RegistroI051 in 'DAO\JSEcd.DAO.RegistroI051.pas',
   JSEcd.DAO.RegistroI052 in 'DAO\JSEcd.DAO.RegistroI052.pas',
   JSEcd.DAO.RegistroI075 in 'DAO\JSEcd.DAO.RegistroI075.pas',
-  JSEcd.DAO.RegistroI100 in 'DAO\JSEcd.DAO.RegistroI100.pas';
+  JSEcd.DAO.RegistroI100 in 'DAO\JSEcd.DAO.RegistroI100.pas',
+  JSEcd.DAO.RegistroI150 in 'DAO\JSEcd.DAO.RegistroI150.pas',
+  JSEcd.DAO.RegistroI155 in 'DAO\JSEcd.DAO.RegistroI155.pas',
+  JSEcd.DAO.RegistroI157 in 'DAO\JSEcd.DAO.RegistroI157.pas',
+  JSEcd.DAO.Classes in 'DAO\JSEcd.DAO.Classes.pas';
 
 {$R *.res}
 
