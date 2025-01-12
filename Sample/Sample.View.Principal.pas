@@ -5,11 +5,12 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  JSEcd.Service.Interfaces;
+  JSEcd.Service.Interfaces, System.Threading;
 
 type
   TForm1 = class(TForm)
     Button1: TButton;
+    lblTempoGeracao: TLabel;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -29,6 +30,9 @@ uses
 {$R *.dfm}
 
 procedure TForm1.Button1Click(Sender: TObject);
+var
+  start: TDateTime;
+  &end : TDateTime;
 begin
   Ecd := EcdService;
   Ecd
@@ -76,7 +80,27 @@ begin
         .AddI157(TJSEcdDAORegistroI157.New)
       .&End;
 
-  Ecd.Execute;
+  TTask.Run(
+    procedure
+    begin
+      lblTempoGeracao.Visible := False;
+      Self.Enabled := False;
+      try
+        start := Now;
+        try
+          Ecd.Execute;
+        except
+          on e: exception do
+            Showmessage(e.message);
+        end;
+        &end := Now;
+      finally
+        lblTempoGeracao.Caption := Format('Tempo de Geração: %s',[FormatDateTime('hh:mm:ss', &end-start)]);
+        lblTempoGeracao.Visible := True;
+        Self.Enabled := True;
+        Ecd := nil;
+      end;
+    end);
 end;
 
 end.

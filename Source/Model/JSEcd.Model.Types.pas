@@ -3,6 +3,8 @@ unit JSEcd.Model.Types;
 interface
 
 type
+  TJSEcdIndPeriodo = (ipPrimeiroTrimestre, ipSegundoTrimestre, ipTerceiroTrimestre, ipQuartoTrimestre);
+
   TJSEcdIndCentralizada = (icCentralizada, icDescentralizada);
 
   TJSEcdIndSitEsp = (iseVazio, iseCisao, iseFusao, iseIncorporacao, iseExtincao);

@@ -13,9 +13,16 @@ object Form1: TForm1
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
+  object lblTempoGeracao: TLabel
+    Left = 344
+    Top = 144
+    Width = 82
+    Height = 13
+    Caption = 'lblTempoGeracao'
+  end
   object Button1: TButton
-    Left = 264
-    Top = 192
+    Left = 216
+    Top = 139
     Width = 75
     Height = 25
     Caption = 'Gerar Teste'

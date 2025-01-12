@@ -11,7 +11,8 @@ uses
   JSEcd.Model.Classes,
   JSEcd.Model.Types,
   System.Classes,
-  System.SysUtils;
+  System.SysUtils,
+  System.Threading;
 
 type
   TJSEcdService = class(TInterfacedObject, IJSEcdService)
@@ -31,10 +32,6 @@ type
     FI990: TJSEcdModelRegistroI990;
 
     FListBlocoIParte1: TStringList;
-    FListBlocoIParte2: TStringList;
-    FListBlocoIParte3: TStringList;
-    FListBlocoIParte4: TStringList;
-    FListBlocoIParte5: TStringList;
     FListBlocoJ: TStringList;
 
     procedure NomeiaArquivos;
@@ -45,9 +42,13 @@ type
     procedure TotalizaLivro;
 
     procedure GerarBlocoI;
-    function GerarBlocoIParte1: TStringList;
+    procedure GerarBlocoIParte1;
     procedure GerarBlocoIParte2;
     procedure GerarBlocoIParte3;
+    procedure GerarBlocoIParte3_1Tri;
+    procedure GerarBlocoIParte3_2Tri;
+    procedure GerarBlocoIParte3_3Tri;
+    procedure GerarBlocoIParte3_4Tri;
     procedure GerarBlocoIParte4;
     procedure GerarBlocoIParte5;
     procedure GerarBlocoJ;
@@ -140,9 +141,11 @@ begin
     GerarBloco9;
     TotalizaLivro;
     SaveToFile(FListBlocoIParte1, FConfig.NomeArquivoBlocoIParte1);
+    SaveToFile(FListBlocoJ, FConfig.NomeArquivoBlocoJ);
     MergeArquivos;
   finally
     FreeAndNil(FListBlocoIParte1);
+    FreeAndNil(FListBlocoJ);
     FreeAndNil(FArquivoEcd);
     Counter.ClearCounter;
   end;
@@ -179,49 +182,37 @@ var
   reg: string;
   I: Integer;
 begin
-  FListBlocoIParte1 := nil;
-//  FListBlocoIParte2 := nil;
-//  FListBlocoIParte3 := nil;
-//  FListBlocoIParte4 := nil;
-//  FListBlocoIParte5 := nil;
+  GerarBlocoIParte1;
+  GerarBlocoIParte2;
+  GerarBlocoIParte3;
+  GerarBlocoIParte4;
+  GerarBlocoIParte5;
 
-  try
-    FListBlocoIParte1 := GerarBlocoIParte1;
-
-    GerarBlocoIParte2;
-//    FListBlocoIParte3 := GerarBlocoIParte3;
-//    SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3);
-    GerarBlocoIParte4;
-    GerarBlocoIParte5;
-
-    if not Counter.IsEmpty then
+  if not Counter.IsEmpty then
+  begin
+    registros := Counter.GetCounter.Keys.ToArray;
+    for I := 0 to Pred(Length(registros)) do
     begin
-      registros := Counter.GetCounter.Keys.ToArray;
-      for I := 0 to Pred(Length(registros)) do
-      begin
-        reg := registros[I];
-        if Copy(Reg, 1, 1) = 'I' then
-          FI990.qtdLinI := FI990.qtdLinI + Counter.GetCounter.Items[Reg];
-      end;
+      reg := registros[I];
+      if Copy(Reg, 1, 1) = 'I' then
+        FI990.qtdLinI := FI990.qtdLinI + Counter.GetCounter.Items[Reg];
     end;
-
-    if FI990.qtdLinI > 0 then
-      FI001.indDad := imComDadosInformados;
-
-    FI990.qtdLinI := FI990.qtdLinI + 2;
-    Counter.AddCounter(FI001);
-    Counter.AddCounter(FI990);
-  finally
-//    FreeAndNil(FListBlocoIParte3);
   end;
+
+  if FI990.qtdLinI > 0 then
+    FI001.indDad := imComDadosInformados;
+
+  FI990.qtdLinI := FI990.qtdLinI + 2;
+  Counter.AddCounter(FI001);
+  Counter.AddCounter(FI990);
 end;
 
-function TJSEcdService.GerarBlocoIParte1: TStringList;
+procedure TJSEcdService.GerarBlocoIParte1;
 begin
   FBlocoIParte1
     .ServiceBlocoIParte2(FBlocoIParte2);
 
-  Result := FBlocoIParte1.Execute;
+  FListBlocoIParte1 := FBlocoIParte1.Execute;
 end;
 
 procedure TJSEcdService.GerarBlocoIParte2;
@@ -238,15 +229,77 @@ end;
 
 procedure TJSEcdService.GerarBlocoIParte3;
 var
+  Tasks: array[0..3] of ITask;
+begin
+  Tasks[0] := TTask.Create(GerarBlocoIParte3_1Tri);
+  Tasks[0].Start;
+
+  Tasks[1] := TTask.Create(GerarBlocoIParte3_2Tri);
+  Tasks[1].Start;
+
+  Tasks[2] := TTask.Create(GerarBlocoIParte3_3Tri);
+  Tasks[2].Start;
+
+  Tasks[3] := TTask.Create(GerarBlocoIParte3_4Tri);
+  Tasks[3].Start;
+
+  TTask.WaitForAll(Tasks);
+end;
+
+procedure TJSEcdService.GerarBlocoIParte3_1Tri;
+var
+  FListBlocoIParte3: TStringList;
   BlocoIParte3: IJSEcdServiceBlocoIParte3;
 begin
-//  Result := nil;
-//TODO: Dividir por Trimestre
-//  BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
-//  BlocoIParte3
-//    .ServiceBloco0(FBloco0);
+  try
+    BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
+    FListBlocoIParte3 := BlocoIParte3.Execute(ipPrimeiroTrimestre);
+    SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_1Tri);
+  finally
+    FreeAndNil(FListBlocoIParte3);
+  end;
+end;
 
-//  BlocoIParte3.Execute;
+procedure TJSEcdService.GerarBlocoIParte3_2Tri;
+var
+  FListBlocoIParte3: TStringList;
+  BlocoIParte3: IJSEcdServiceBlocoIParte3;
+begin
+  try
+    BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
+    FListBlocoIParte3 := BlocoIParte3.Execute(ipSegundoTrimestre);
+    SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_2Tri);
+  finally
+    FreeAndNil(FListBlocoIParte3);
+  end;
+end;
+
+procedure TJSEcdService.GerarBlocoIParte3_3Tri;
+var
+  FListBlocoIParte3: TStringList;
+  BlocoIParte3: IJSEcdServiceBlocoIParte3;
+begin
+  try
+    BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
+    FListBlocoIParte3 := BlocoIParte3.Execute(ipTerceiroTrimestre);
+    SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_3Tri);
+  finally
+    FreeAndNil(FListBlocoIParte3);
+  end;
+end;
+
+procedure TJSEcdService.GerarBlocoIParte3_4Tri;
+var
+  FListBlocoIParte3: TStringList;
+  BlocoIParte3: IJSEcdServiceBlocoIParte3;
+begin
+  try
+    BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
+    FListBlocoIParte3 := BlocoIParte3.Execute(ipQuartoTrimestre);
+    SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_4Tri);
+  finally
+    FreeAndNil(FListBlocoIParte3);
+  end;
 end;
 
 procedure TJSEcdService.GerarBlocoIParte4;
@@ -278,15 +331,8 @@ begin
 end;
 
 procedure TJSEcdService.GerarBlocoJ;
-var
-  FListBlocoJ: TStringList;
 begin
-  try
-    FListBlocoJ := FBlocoJ.Execute;
-    SaveToFile(FListBlocoJ, FConfig.NomeArquivoBlocoJ);
-  finally
-    FreeAndNil(FListBlocoJ);
-  end;
+  FListBlocoJ := FBlocoJ.Execute;
 end;
 
 procedure TJSEcdService.MergeArquivos;

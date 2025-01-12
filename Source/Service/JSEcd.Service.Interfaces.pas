@@ -4,6 +4,7 @@ interface
 
 uses
   JSEcd.DAO.Interfaces,
+  JSEcd.Model.Types,
   System.Classes;
 
 type
@@ -603,7 +604,7 @@ type
   IJSEcdServiceBlocoIParte3 = interface
     ['{B4F9793C-B3FF-4524-AF88-CC3C950E19DC}']
     function ServiceBloco0(Value: IJSEcdServiceBloco0): IJSEcdServiceBlocoIParte3;
-    function Execute: TStringList;
+    function Execute(Periodo: TJSEcdIndPeriodo): TStringList;
     function &End: IJSEcdService;
   end;
 
