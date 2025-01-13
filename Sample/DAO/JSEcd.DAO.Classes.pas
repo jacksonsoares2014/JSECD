@@ -11,7 +11,10 @@ uses
   JSEcd.DAO.RegistroI100,
   JSEcd.DAO.RegistroI150,
   JSEcd.DAO.RegistroI155,
-  JSEcd.DAO.RegistroI157;
+  JSEcd.DAO.RegistroI157,
+
+  JSEcd.DAO.RegistroI200,
+  JSEcd.DAO.RegistroI250;
 
 type
   TJSEcdDAORegistro0000 = JSEcd.DAO.Registro0000.TJSEcdDAORegistro0000;
@@ -23,6 +26,9 @@ type
   TJSEcdDAORegistroI150 = JSEcd.DAO.RegistroI150.TJSEcdDAORegistroI150;
   TJSEcdDAORegistroI155 = JSEcd.DAO.RegistroI155.TJSEcdDAORegistroI155;
   TJSEcdDAORegistroI157 = JSEcd.DAO.RegistroI157.TJSEcdDAORegistroI157;
+
+  TJSEcdDAORegistroI200 = JSEcd.DAO.RegistroI200.TJSEcdDAORegistroI200;
+  TJSEcdDAORegistroI250 = JSEcd.DAO.RegistroI250.TJSEcdDAORegistroI250;
 
 implementation
 

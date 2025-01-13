@@ -106,12 +106,12 @@ type
 
   IJSEcdDAOI200 = interface
     ['{FAD14B4C-B100-4D78-98A1-4C587300F153}']
-    function List: TObjectList<TJSEcdModelRegistroI200>;
+    function List(DataInicial, DataFinal: TDateTime): TObjectList<TJSEcdModelRegistroI200>;
   end;
 
   IJSEcdDAOI250 = interface
     ['{FD4942A2-2B46-4501-AF66-C130592C808D}']
-    function List: TObjectList<TJSEcdModelRegistroI250>;
+    function List(RegI200: TJSEcdModelRegistroI200): TObjectList<TJSEcdModelRegistroI250>;
   end;
 
   IJSEcdDAOI350 = interface

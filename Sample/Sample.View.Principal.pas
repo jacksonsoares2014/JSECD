@@ -80,6 +80,13 @@ begin
         .AddI157(TJSEcdDAORegistroI157.New)
       .&End;
 
+  Ecd
+    .DAO
+      .BlocoIParte3
+        .AddI200(TJSEcdDAORegistroI200.New)
+        .AddI250(TJSEcdDAORegistroI250.New)
+      .&End;
+
   TTask.Run(
     procedure
     begin

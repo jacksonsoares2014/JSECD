@@ -183,10 +183,10 @@ var
   I: Integer;
 begin
   GerarBlocoIParte1;
-  GerarBlocoIParte2;
   GerarBlocoIParte3;
   GerarBlocoIParte4;
   GerarBlocoIParte5;
+  GerarBlocoIParte2;
 
   if not Counter.IsEmpty then
   begin
@@ -251,13 +251,20 @@ var
   FListBlocoIParte3: TStringList;
   BlocoIParte3: IJSEcdServiceBlocoIParte3;
 begin
-  try
-    BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
-    FListBlocoIParte3 := BlocoIParte3.Execute(ipPrimeiroTrimestre);
-    SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_1Tri);
-  finally
-    FreeAndNil(FListBlocoIParte3);
-  end;
+  TThread.Synchronize(TThread.CurrentThread,
+    procedure
+    begin
+      try
+        BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
+        BlocoIParte3
+          .ServiceBlocoIParte2(FBlocoIParte2);
+
+        FListBlocoIParte3 := BlocoIParte3.Execute(ipPrimeiroTrimestre);
+        SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_1Tri);
+      finally
+        FreeAndNil(FListBlocoIParte3);
+      end;
+    end);
 end;
 
 procedure TJSEcdService.GerarBlocoIParte3_2Tri;
@@ -265,13 +272,20 @@ var
   FListBlocoIParte3: TStringList;
   BlocoIParte3: IJSEcdServiceBlocoIParte3;
 begin
-  try
-    BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
-    FListBlocoIParte3 := BlocoIParte3.Execute(ipSegundoTrimestre);
-    SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_2Tri);
-  finally
-    FreeAndNil(FListBlocoIParte3);
-  end;
+  TThread.Synchronize(TThread.CurrentThread,
+    procedure
+    begin
+      try
+        BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
+        BlocoIParte3
+          .ServiceBlocoIParte2(FBlocoIParte2);
+
+        FListBlocoIParte3 := BlocoIParte3.Execute(ipSegundoTrimestre);
+        SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_2Tri);
+      finally
+        FreeAndNil(FListBlocoIParte3);
+      end;
+    end);
 end;
 
 procedure TJSEcdService.GerarBlocoIParte3_3Tri;
@@ -279,13 +293,20 @@ var
   FListBlocoIParte3: TStringList;
   BlocoIParte3: IJSEcdServiceBlocoIParte3;
 begin
-  try
-    BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
-    FListBlocoIParte3 := BlocoIParte3.Execute(ipTerceiroTrimestre);
-    SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_3Tri);
-  finally
-    FreeAndNil(FListBlocoIParte3);
-  end;
+  TThread.Synchronize(TThread.CurrentThread,
+    procedure
+    begin
+      try
+        BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
+        BlocoIParte3
+          .ServiceBlocoIParte2(FBlocoIParte2);
+
+        FListBlocoIParte3 := BlocoIParte3.Execute(ipTerceiroTrimestre);
+        SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_3Tri);
+      finally
+        FreeAndNil(FListBlocoIParte3);
+      end;
+    end);
 end;
 
 procedure TJSEcdService.GerarBlocoIParte3_4Tri;
@@ -293,13 +314,20 @@ var
   FListBlocoIParte3: TStringList;
   BlocoIParte3: IJSEcdServiceBlocoIParte3;
 begin
-  try
-    BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
-    FListBlocoIParte3 := BlocoIParte3.Execute(ipQuartoTrimestre);
-    SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_4Tri);
-  finally
-    FreeAndNil(FListBlocoIParte3);
-  end;
+  TThread.Synchronize(TThread.CurrentThread,
+    procedure
+    begin
+      try
+        BlocoIParte3 := TJSEcdServiceBlocoIParte3.New(Self);
+        BlocoIParte3
+          .ServiceBlocoIParte2(FBlocoIParte2);
+
+        FListBlocoIParte3 := BlocoIParte3.Execute(ipQuartoTrimestre);
+        SaveToFile(FListBlocoIParte3, FConfig.NomeArquivoBlocoIParte3_4Tri);
+      finally
+        FreeAndNil(FListBlocoIParte3);
+      end;
+    end);
 end;
 
 procedure TJSEcdService.GerarBlocoIParte4;
@@ -341,6 +369,10 @@ begin
   AdicionaLinhaEcd(FI001);
   MergeArquivos(FConfig.NomeArquivoBlocoIParte1);
   MergeArquivos(FConfig.NomeArquivoBlocoIParte2);
+  MergeArquivos(FConfig.NomeArquivoBlocoIParte3_1Tri);
+  MergeArquivos(FConfig.NomeArquivoBlocoIParte3_2Tri);
+  MergeArquivos(FConfig.NomeArquivoBlocoIParte3_3Tri);
+  MergeArquivos(FConfig.NomeArquivoBlocoIParte3_4Tri);
   MergeArquivos(FConfig.NomeArquivoBlocoIParte4);
   MergeArquivos(FConfig.NomeArquivoBlocoIParte5);
   AdicionaLinhaEcd(FI990);

@@ -12,7 +12,9 @@ uses
   JSEcd.DAO.RegistroI150 in 'DAO\JSEcd.DAO.RegistroI150.pas',
   JSEcd.DAO.RegistroI155 in 'DAO\JSEcd.DAO.RegistroI155.pas',
   JSEcd.DAO.RegistroI157 in 'DAO\JSEcd.DAO.RegistroI157.pas',
-  JSEcd.DAO.Classes in 'DAO\JSEcd.DAO.Classes.pas';
+  JSEcd.DAO.Classes in 'DAO\JSEcd.DAO.Classes.pas',
+  JSEcd.DAO.RegistroI200 in 'DAO\JSEcd.DAO.RegistroI200.pas',
+  JSEcd.DAO.RegistroI250 in 'DAO\JSEcd.DAO.RegistroI250.pas';
 
 {$R *.res}
 
