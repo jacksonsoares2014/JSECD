@@ -337,6 +337,9 @@ var
 begin
   try
     BlocoIParte4 := TJSEcdServiceBlocoIParte4.New(Self);
+    BlocoIParte4
+      .ServiceBlocoIParte2(FBlocoIParte2);
+
     FListBlocoIParte4 := BlocoIParte4.Execute;
     SaveToFile(FListBlocoIParte4, FConfig.NomeArquivoBlocoIParte4);
   finally

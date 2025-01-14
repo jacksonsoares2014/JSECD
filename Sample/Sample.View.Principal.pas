@@ -15,6 +15,11 @@ type
   private
     { Private declarations }
     Ecd: IJSEcdService;
+    procedure ConfiguraEcd;
+    procedure ConfiguraDAOBloco0;
+    procedure ConfiguraDAOBlocoI;
+    procedure ConfiguraDAOBlocoJ;
+    procedure ConfiguraDAOBlocoK;
   public
     { Public declarations }
   end;
@@ -34,34 +39,42 @@ var
   start: TDateTime;
   &end : TDateTime;
 begin
-  Ecd := EcdService;
-  Ecd
-    .Config
-      .DataInicial(StrToDate('01/01/2023'))
-      .DataFinal(StrToDate('31/12/2023'))
-      .Empresa(1)
-      .NomeDiretorio('C:\Temp\JSECD\Sample')
-      .NomeArquivo('C:\Temp\JSECD\Sample\ECD_REFATORADO.TXT')
-      .Geral
-        .TipoECD('0')
-        .IndicadorEmpresaGrandePorte('0')
-        .IndicadorSituacaoEspecial('')
-        .IndicadorSituacaoIni('3')
-        .IndicadorExisteNIRE('1')
-        .IndicadorFinalidadeEscrturacao('1')
-        .HashEscrituracaoSubstituida('')
-        .CodigoEntidadeResponsavelManutencaoPlanoContasReferencial('1')
-        .IndicaContabCentralizada('0')
-        .TipoEscrituracao('G')
-      .&End
-    .&End;
+  ConfiguraEcd;
 
+  TTask.Run(
+    procedure
+    begin
+      lblTempoGeracao.Visible := False;
+      Self.Enabled := False;
+      try
+        start := Now;
+        try
+          Ecd.Execute;
+        except
+          on e: exception do
+            Showmessage(e.message);
+        end;
+        &end := Now;
+      finally
+        lblTempoGeracao.Caption := Format('Tempo de Geração: %s',[FormatDateTime('hh:mm:ss', &end-start)]);
+        lblTempoGeracao.Visible := True;
+        Self.Enabled := True;
+        Ecd := nil;
+      end;
+    end);
+end;
+
+procedure TForm1.ConfiguraDAOBloco0;
+begin
   Ecd
     .DAO
       .Bloco0
         .Add0000(TJSEcdDAORegistro0000.New)
       .&End;
+end;
 
+procedure TForm1.ConfiguraDAOBlocoI;
+begin
   Ecd
     .DAO
       .BlocoIParte1
@@ -87,27 +100,53 @@ begin
         .AddI250(TJSEcdDAORegistroI250.New)
       .&End;
 
-  TTask.Run(
-    procedure
-    begin
-      lblTempoGeracao.Visible := False;
-      Self.Enabled := False;
-      try
-        start := Now;
-        try
-          Ecd.Execute;
-        except
-          on e: exception do
-            Showmessage(e.message);
-        end;
-        &end := Now;
-      finally
-        lblTempoGeracao.Caption := Format('Tempo de Geração: %s',[FormatDateTime('hh:mm:ss', &end-start)]);
-        lblTempoGeracao.Visible := True;
-        Self.Enabled := True;
-        Ecd := nil;
-      end;
-    end);
+  Ecd
+    .DAO
+      .BlocoIParte4
+        .AddI350(TJSEcdDAORegistroI350.New)
+        .AddI355(TJSEcdDAORegistroI355.New)
+      .&End;
+end;
+
+procedure TForm1.ConfiguraDAOBlocoJ;
+begin
+
+end;
+
+procedure TForm1.ConfiguraDAOBlocoK;
+begin
+
+end;
+
+procedure TForm1.ConfiguraEcd;
+begin
+  Ecd := EcdService;
+  Ecd
+    .Config
+      .DataInicial(StrToDate('01/01/2023'))
+      .DataFinal(StrToDate('31/12/2023'))
+      .Empresa(1)
+      .NomeDiretorio('C:\Temp\JSECD\Sample')
+      .NomeArquivo('C:\Temp\JSECD\Sample\ECD_REFATORADO.TXT')
+      .Geral
+        .TipoECD('0')
+        .IndicadorEmpresaGrandePorte('0')
+        .IndicadorSituacaoEspecial('')
+        .IndicadorSituacaoIni('3')
+        .IndicadorExisteNIRE('1')
+        .IndicadorFinalidadeEscrturacao('1')
+        .HashEscrituracaoSubstituida('')
+        .CodigoEntidadeResponsavelManutencaoPlanoContasReferencial('1')
+        .IndicaContabCentralizada('0')
+        .Consolidado('CONSOLIDADO MATRIZ E FILIAL')
+        .TipoEscrituracao('G')
+      .&End
+    .&End;
+
+  ConfiguraDAOBloco0;
+  ConfiguraDAOBlocoI;
+  ConfiguraDAOBlocoJ;
+  ConfiguraDAOBlocoK;
 end;
 
 end.

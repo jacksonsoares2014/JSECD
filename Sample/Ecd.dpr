@@ -14,7 +14,9 @@ uses
   JSEcd.DAO.RegistroI157 in 'DAO\JSEcd.DAO.RegistroI157.pas',
   JSEcd.DAO.Classes in 'DAO\JSEcd.DAO.Classes.pas',
   JSEcd.DAO.RegistroI200 in 'DAO\JSEcd.DAO.RegistroI200.pas',
-  JSEcd.DAO.RegistroI250 in 'DAO\JSEcd.DAO.RegistroI250.pas';
+  JSEcd.DAO.RegistroI250 in 'DAO\JSEcd.DAO.RegistroI250.pas',
+  JSEcd.DAO.RegistroI350 in 'DAO\JSEcd.DAO.RegistroI350.pas',
+  JSEcd.DAO.RegistroI355 in 'DAO\JSEcd.DAO.RegistroI355.pas';
 
 {$R *.res}
 

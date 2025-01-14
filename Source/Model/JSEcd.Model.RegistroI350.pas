@@ -8,9 +8,9 @@ uses
 type
   TJSEcdModelRegistroI350 = class(TJSEcdModelRegistro)
   private
-    FdtRes: string;
+    FdtRes: TDateTime;
   public
-    property dtRes: string read FdtRes write FdtRes;
+    property dtRes: TDateTime read FdtRes write FdtRes;
 
     constructor Create; override;
   end;
