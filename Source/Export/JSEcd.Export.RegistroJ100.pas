@@ -10,7 +10,7 @@ uses
   System.SysUtils;
 
 const
-  cJ100 = '|J100|';
+  cJ100 = '|J100|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|';
 
 type
   TJSEcdExportRegistroJ100 = class(TJSEcdExportBase, IJSEcdExport)
@@ -28,7 +28,9 @@ function TJSEcdExportRegistroJ100.LinhaEcd(AModel: TJSEcdModelRegistro): string;
 begin
   validateInstance<TJSEcdModelRegistroJ100>(AModel, FRegJ100);
 
-  result := Format(cJ100,
+//  cJ100 = '|J100|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|';
+
+  Result := Format(cJ100,
                    [FRegJ100.codAgl,
                     FRegJ100.indCodAgl,
                     FRegJ100.nivelAgl.ToString,

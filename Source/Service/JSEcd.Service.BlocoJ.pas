@@ -73,13 +73,14 @@ begin
   FEcdService := Parent;
   FacadeExport := JSEcd.Export.Interfaces
                     .FacadeExport(FEcdService.Config);
-  FJ001 := TJSEcdModelRegistroJ001.create;
-  FJ990 := TJSEcdModelRegistroJ990.create;
+  FJ001 := TJSEcdModelRegistroJ001.Create;
+  FJ990 := TJSEcdModelRegistroJ990.Create;
 end;
 
 destructor TJSEcdServiceBlocoJ.Destroy;
 begin
-
+  FreeAndNil(FJ001);
+  FreeAndNil(FJ990);
   inherited;
 end;
 
@@ -131,8 +132,13 @@ procedure TJSEcdServiceBlocoJ.GerarJ100;
 var
   RegJ100: TJSEcdModelRegistroJ100;
   ListJ100: TObjectList<TJSEcdModelRegistroJ100>;
+  DAO: IJSEcdDAOJ100;
 begin
   //TODO: Abaixo é só teste. Verificar os parâmetros da List;
+  DAO := FEcdService.DAO.BlocoJ.DAOJ100;
+  if not Assigned(DAO) then
+    Exit;
+
   ListJ100 := FEcdService.DAO.BlocoJ.DAOJ100.List;
   try
     for RegJ100 in ListJ100 do
@@ -148,9 +154,14 @@ procedure TJSEcdServiceBlocoJ.GerarJ150;
 var
   RegJ150: TJSEcdModelRegistroJ150;
   ListJ150: TObjectList<TJSEcdModelRegistroJ150>;
+  DAO: IJSEcdDAOJ150;
 begin
   //TODO: Abaixo é só teste. Verificar os parâmetros da List;
-  ListJ150 := FEcdService.DAO.BlocoJ.DAOJ150.List;
+  DAO := FEcdService.DAO.BlocoJ.DAOJ150;
+  if not Assigned(DAO) then
+    Exit;
+
+  ListJ150 := DAO.List;
   try
     for RegJ150 in ListJ150 do
     begin
@@ -162,7 +173,25 @@ begin
 end;
 
 procedure TJSEcdServiceBlocoJ.GerarJ900;
+var
+  RegJ900: TJSEcdModelRegistroJ900;
 begin
+  //TODO: Abaixo é só teste. Verificar depois se tem DAO;
+  RegJ900 := TJSEcdModelRegistroJ900.create;
+  try
+    RegJ900.dnrcEncer := 'TERMO DE ENCERRAMENTO';
+    RegJ900.numOrd := 333;
+    RegJ900.natLivro := 'livro diaro';
+    RegJ900.qtdLin := -1;
+    RegJ900.nome := 'TRANSAMERICA DE HOTEIS NORDESTE LTDA';
+    RegJ900.dtIniEscr := FEcdService.Config.DataInicial;
+    RegJ900.dtFinEscr := FEcdService.Config.DataFinal;
+    AdicionaLinhaEcd(RegJ900);
+    FIndexOfJ900 := FArquivo.Count - 1;
+  finally
+    FreeAndNil(RegJ900);
+  end;
+
   GerarJ930;
 end;
 

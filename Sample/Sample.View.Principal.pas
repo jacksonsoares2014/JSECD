@@ -110,7 +110,12 @@ end;
 
 procedure TForm1.ConfiguraDAOBlocoJ;
 begin
-
+  Ecd
+    .DAO
+      .BlocoJ
+        .AddJ100(TJSEcdDAORegistroJ100.New)
+        .AddJ150(TJSEcdDAORegistroJ150.New)
+      .&End;
 end;
 
 procedure TForm1.ConfiguraDAOBlocoK;
