@@ -115,6 +115,7 @@ begin
       .BlocoJ
         .AddJ100(TJSEcdDAORegistroJ100.New)
         .AddJ150(TJSEcdDAORegistroJ150.New)
+        .AddJ930(TJSEcdDAORegistroJ930.New)
       .&End;
 end;
 

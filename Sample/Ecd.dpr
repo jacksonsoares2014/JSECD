@@ -18,7 +18,8 @@ uses
   JSEcd.DAO.RegistroI350 in 'DAO\JSEcd.DAO.RegistroI350.pas',
   JSEcd.DAO.RegistroI355 in 'DAO\JSEcd.DAO.RegistroI355.pas',
   JSEcd.DAO.RegistroJ100 in 'DAO\JSEcd.DAO.RegistroJ100.pas',
-  JSEcd.DAO.RegistroJ150 in 'DAO\JSEcd.DAO.RegistroJ150.pas';
+  JSEcd.DAO.RegistroJ150 in 'DAO\JSEcd.DAO.RegistroJ150.pas',
+  JSEcd.DAO.RegistroJ930 in 'DAO\JSEcd.DAO.RegistroJ930.pas';
 
 {$R *.res}
 

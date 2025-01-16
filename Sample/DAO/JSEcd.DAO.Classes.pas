@@ -20,7 +20,9 @@ uses
   JSEcd.DAO.RegistroI355,
 
   JSEcd.DAO.RegistroJ100,
-  JSEcd.DAO.RegistroJ150;
+  JSEcd.DAO.RegistroJ150,
+
+  JSEcd.DAO.RegistroJ930;
 
 type
   TJSEcdDAORegistro0000 = JSEcd.DAO.Registro0000.TJSEcdDAORegistro0000;
@@ -41,6 +43,8 @@ type
 
   TJSEcdDAORegistroJ100 = JSEcd.DAO.RegistroJ100.TJSEcdDAORegistroJ100;
   TJSEcdDAORegistroJ150 = JSEcd.DAO.RegistroJ150.TJSEcdDAORegistroJ150;
+
+  TJSEcdDAORegistroJ930 = JSEcd.DAO.RegistroJ930.TJSEcdDAORegistroJ930;
 
 implementation
 

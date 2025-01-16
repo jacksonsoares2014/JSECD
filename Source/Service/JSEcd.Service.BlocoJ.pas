@@ -196,8 +196,25 @@ begin
 end;
 
 procedure TJSEcdServiceBlocoJ.GerarJ930;
+var
+  RegJ930: TJSEcdModelRegistroJ930;
+  ListJ930: TObjectList<TJSEcdModelRegistroJ930>;
+  DAO: IJSEcdDAOJ930;
 begin
+  //TODO: Abaixo é só teste. Verificar os parâmetros da List;
+  DAO := FEcdService.DAO.BlocoJ.DAOJ930;
+  if not Assigned(DAO) then
+    Exit;
 
+  ListJ930 := DAO.List;
+  try
+    for RegJ930 in ListJ930 do
+    begin
+      AdicionaLinhaEcd(RegJ930);
+    end;
+  finally
+    FreeAndNil(ListJ930);
+  end;
 end;
 
 function TJSEcdServiceBlocoJ.IndexOfJ900: Integer;
